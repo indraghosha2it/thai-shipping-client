@@ -1,788 +1,1751 @@
 
+// "use client";
+
+// import { motion, useReducedMotion } from "framer-motion";
+// import Link from "next/link";
+// import Shipping from '@/components/home/shipping';
+
+// import {
+//   ArrowRight,
+//   ArrowUpRight,
+//   Globe2,
+//   Ship,
+//   Plane,
+//   Truck,
+//   Package,
+//   Scale,
+//   UtensilsCrossed,
+//   Utensils,
+//   Leaf,
+//   Building2,
+//   Users,
+//   Target,
+//   ShieldCheck,
+//   TrendingUp,
+//   Handshake,
+//   Anchor,
+//   MapPin,
+//   FileText,
+//   Award,
+//   CheckCircle2,
+//   Container,
+//   FileCheck2
+// } from "lucide-react";
+
+// // ================= STATS =================
+// const heroStats = [
+//   { icon: Globe2, value: "20+", label: ["Trade", "Partners"] },
+//   { icon: Ship, value: "6+", label: ["Featured", "Providers"] },
+//   { icon: Package, value: "15+", label: ["Export", "Categories"] },
+//   { icon: Users, value: "1000s", label: ["Businesses", "Served"] },
+// ];
+
+// // ================= PILLARS (What we do) =================
+// const pillars = [
+//   {
+//     title: "Thai Imports",
+//     description:
+//       "Explore the products, resources, and goods imported into Thailand from global markets.",
+//     href: "/thai-imports",
+//     image: "/images/im.jpg",
+//     icon: Package,
+//   },
+//   {
+//     title: "Thai Exports",
+//     description:
+//       "Discover Thailand's major export products and its growing role in international trade.",
+//     href: "/thai-exports",
+//     image: "/images/ex.jpg",
+//     icon: Globe2,
+//   },
+//   {
+//     title: "Thai Food Shipping",
+//     description:
+//       "Learn about frozen, canned, packaged, and other Thai food products shipped worldwide.",
+//     href: "/thai-food-shipping",
+//     image: "/images/food.jpg",
+//     icon: Utensils,
+//   },
+//   {
+//     title: "Shipping Regulations",
+//     description:
+//       "Understand important shipping requirements, restrictions, and regulations before you ship.",
+//     href: "/shipping-regulations",
+//     image: "/images/s4.jpg",
+//     icon: FileCheck2,
+//   },
+//   {
+//     title: "Shipping Services",
+//     description:
+//       "Explore air, sea, and land transportation options used for shipping within and from Thailand.",
+//     href: "/shipping-services",
+//     image: "/images/ab1.jpg",
+//     icon: Ship,
+//   },
+// ];
+
+// // ================= PRINCIPLES =================
+// const principles = [
+//   {
+//     icon: Target,
+//     title: "Clarity First",
+//     description:
+//       "We turn complex shipping regulations and trade requirements into straightforward information anyone can act on.",
+//   },
+//   {
+//     icon: ShieldCheck,
+//     title: "Reliability",
+//     description:
+//       "Every detail we share is grounded in real trade practices and the shipping services operating across Thailand today.",
+//   },
+//   {
+//     icon: Handshake,
+//     title: "Connection",
+//     description:
+//       "We connect businesses, exporters, and individuals with the shipping providers and information they need.",
+//   },
+//   {
+//     icon: TrendingUp,
+//     title: "Growth Mindset",
+//     description:
+//       "Thailand's trade economy is always evolving — we keep our resources up to date so you're never behind.",
+//   },
+// ];
+
+// // ================= ROLE OF THAILAND =================
+// const thailandFacts = [
+//   {
+//     icon: Anchor,
+//     title: "Strategic Location",
+//     description:
+//       "Positioned at the heart of Southeast Asia, Thailand serves as a natural gateway for regional and global trade.",
+//   },
+//   {
+//     icon: FileText,
+//     title: "Two-Way Trade",
+//     description:
+//       "Thailand maintains strong relationships with the United States, Japan, China, Malaysia, and other major economies.",
+//   },
+//   {
+//     icon: Award,
+//     title: "Recognized Excellence",
+//     description:
+//       "Thai exporters are recognized through awards such as the Prime Minister's Export Award for quality and standards.",
+//   },
+//   {
+//     icon: Leaf,
+//     title: "Natural Resources",
+//     description:
+//       "Rubber, fish, timber, lead, and agricultural goods give Thailand's export economy a strong natural foundation.",
+//   },
+// ];
+
+// // ================= TRANSPORTATION MODES =================
+// const transportationModes = [
+//   {
+//     icon: Plane,
+//     title: "Air Freight",
+//     tagline: "International exports",
+//     description:
+//       "Air shipping is one of the main transportation methods used by Thai exporters sending products to other countries.",
+//   },
+//   {
+//     icon: Ship,
+//     title: "Sea Freight",
+//     tagline: "Global trade",
+//     description:
+//       "Sea shipping is a major transportation method for Thailand's international trade and is widely used by exporters.",
+//   },
+//   {
+//     icon: Truck,
+//     title: "Road & Local",
+//     tagline: "Local deliveries",
+//     description:
+//       "Automobile transportation is mainly associated with local deliveries and regional distribution within Thailand.",
+//   },
+// ];
+
+// // ================= FEATURED PROVIDERS =================
+// const providers = [
+//   "Kintetsu World Express",
+//   "World Freight",
+//   "Asian Tigers",
+//   "Seaborne Logistics",
+//   "V.A.S. Services",
+//   "B & J Services",
+// ];
+
+// function SectionHeading({ eyebrow, title, description, centered = false }) {
+//   return (
+//     <div className={`max-w-2xl ${centered ? "mx-auto text-center" : ""}`}>
+//       <div
+//         className={`mb-4 flex items-center gap-3 ${
+//           centered ? "justify-center" : ""
+//         }`}
+//       >
+//         <span className="h-[2px] w-8 bg-[#E96C35]" />
+//         <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#E96C35] sm:text-xs">
+//           {eyebrow}
+//         </span>
+//       </div>
+
+//       <h2 className="text-2xl font-semibold leading-[1.15] tracking-tight text-[#073155] sm:text-3xl lg:text-[38px]">
+//         {title}
+//       </h2>
+
+//       {description && (
+//         <p className="mt-4 text-sm leading-7 text-[#687985] sm:text-base">
+//           {description}
+//         </p>
+//       )}
+//     </div>
+//   );
+// }
+
+// export default function AboutPage() {
+//   const reduceMotion = useReducedMotion();
+
+//   const container = {
+//     hidden: {},
+//     visible: {
+//       transition: { staggerChildren: reduceMotion ? 0 : 0.08, delayChildren: 0.05 },
+//     },
+//   };
+
+//   const item = {
+//     hidden: { opacity: 0, y: reduceMotion ? 0 : 18 },
+//     visible: {
+//       opacity: 1,
+//       y: 0,
+//       transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+//     },
+//   };
+
+//   const heroContainer = {
+//     hidden: {},
+//     visible: {
+//       transition: { staggerChildren: reduceMotion ? 0 : 0.1, delayChildren: 0.1 },
+//     },
+//   };
+
+//   const heroItem = {
+//     hidden: { opacity: 0, y: reduceMotion ? 0 : 18 },
+//     visible: {
+//       opacity: 1,
+//       y: 0,
+//       transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+//     },
+//   };
+
+//   return (
+//     <main className="overflow-hidden bg-white text-[#073155] -mt-6">
+//       {/* ============================================================
+//           HERO
+//       ============================================================ */}
+//    {/* ============================================================
+//     HERO — reduced height
+// ============================================================ */}
+// {/* ============================================================
+//     HERO — reduced height
+// ============================================================ */}
+// <section
+//   className="relative isolate overflow-hidden bg-[#041B30]"
+//   aria-labelledby="about-heading"
+// >
+//   <div
+//     className="absolute inset-0 -z-20 bg-cover bg-center bg-no-repeat"
+//     style={{ backgroundImage: "url('/images/about.jpg')" }}
+//     aria-hidden="true"
+//   />
+
+//   <div
+//     className="absolute inset-0 -z-10"
+//     style={{
+//       background:
+//         "linear-gradient(90deg, rgba(4,27,48,0.95) 0%, rgba(4,27,48,0.85) 35%, rgba(4,27,48,0.35) 65%, rgba(4,27,48,0.05) 100%)",
+//     }}
+//     aria-hidden="true"
+//   />
+
+//   <div
+//     className="absolute inset-x-0 bottom-0 -z-10 h-32"
+//     style={{
+//       background:
+//         "linear-gradient(to top, rgba(4,27,48,0.85) 0%, rgba(4,27,48,0) 100%)",
+//     }}
+//     aria-hidden="true"
+//   />
+
+//   <div className="relative mx-auto w-full max-w-7xl px-5 pt-12 pb-0 sm:px-8 sm:pt-14 lg:px-12 lg:pt-16">
+//     <motion.div
+//       variants={heroContainer}
+//       initial="hidden"
+//       animate="visible"
+//       className="max-w-2xl pb-8 sm:pb-9 lg:pb-10"
+//     >
+//       <motion.div variants={heroItem} className="mb-4 flex items-center gap-3">
+//         <span className="h-px w-9 bg-[#E96C35]" />
+//         <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#F2A57C] sm:text-[11px]">
+//           About Thai Shipping
+//         </span>
+//       </motion.div>
+
+//       <motion.h1
+//         variants={heroItem}
+//         id="about-heading"
+//         className="text-3xl font-bold leading-[1.08] tracking-[-0.03em] text-white drop-shadow-md sm:text-4xl lg:text-[44px]"
+//       >
+//         Connecting Thailand to the World
+//       </motion.h1>
+
+//       <motion.p
+//         variants={heroItem}
+//         className="mt-4 max-w-xl text-[13.5px] leading-6 text-white/85 drop-shadow sm:text-sm"
+//       >
+//         Thai Shipping is a dedicated information platform for Thailand&apos;s
+//         import, export, food shipping, logistics, and trade regulations —
+//         built to make global trade simpler and more transparent.
+//       </motion.p>
+
+//       <motion.div variants={heroItem} className="mt-5 flex flex-wrap gap-2.5">
+//         <a
+//           href="#our-purpose"
+//           className="group inline-flex items-center gap-2.5 rounded-md bg-[#E96C35] px-5 py-2.5 text-[11px] font-bold uppercase tracking-[0.14em] text-white shadow-lg shadow-[#E96C35]/30 transition-all duration-300 hover:bg-[#d55f2b] hover:shadow-[#E96C35]/40"
+//         >
+//           Our Purpose
+//           <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+//         </a>
+//         <Link
+//           href="/contact"
+//           className="inline-flex items-center gap-2.5 rounded-md border border-white/25 bg-white/5 px-5 py-2.5 text-[11px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-sm transition-colors duration-300 hover:bg-white/10"
+//         >
+//           Get in Touch
+//         </Link>
+//       </motion.div>
+//     </motion.div>
+//   </div>
+
+//   {/* Stats bar */}
+//   <motion.div
+//     variants={heroContainer}
+//     initial="hidden"
+//     animate="visible"
+//     className="relative border-t border-white/10 bg-[#041B30]/95 backdrop-blur-sm"
+//   >
+//     <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
+//       <div className="grid grid-cols-2 divide-white/10 sm:grid-cols-4 sm:divide-x">
+//         {heroStats.map((stat) => {
+//           const Icon = stat.icon;
+//           return (
+//             <motion.div
+//               key={stat.value}
+//               variants={heroItem}
+//               className="flex items-center gap-3 py-3.5 sm:justify-center sm:py-4"
+//             >
+//               <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#E96C35]/40 bg-[#E96C35]/10 text-[#F2A57C]">
+//                 <Icon className="h-4 w-4" strokeWidth={1.8} />
+//               </span>
+//               <div>
+//                 <p className="text-base font-bold leading-none text-white sm:text-lg">
+//                   {stat.value}
+//                 </p>
+//                 <p className="mt-1 text-[10px] font-medium leading-tight text-white/60 sm:text-[10.5px]">
+//                   {stat.label[0]}
+//                   <br />
+//                   {stat.label[1]}
+//                 </p>
+//               </div>
+//             </motion.div>
+//           );
+//         })}
+//       </div>
+//     </div>
+//   </motion.div>
+// </section>
+
+//       {/* ============================================================
+//           OUR PURPOSE
+//       ============================================================ */}
+//       <section id="our-purpose" className="py-10 sm:py-14 lg:py-16">
+//   <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+//     <motion.div
+//       variants={container}
+//       initial="hidden"
+//       whileInView="visible"
+//       viewport={{ once: true, amount: 0.2 }}
+//       className="grid items-stretch gap-10 lg:grid-cols-[1fr_1.2fr] lg:gap-16"
+//     >
+//       {/* ================= LEFT SECTION ================= */}
+//       <motion.div
+//         variants={item}
+//         className="flex h-full flex-col"
+//       >
+//         <SectionHeading
+//           eyebrow="Who We Are"
+//           title="A clear guide to Thailand's global trade"
+//         />
+
+//         {/* Image Gallery */}
+//         <div className="mt-7 grid flex-1 grid-cols-2 gap-3 sm:gap-4">
+//           {/* Large Image */}
+//           <div className="relative min-h-[280px] overflow-hidden rounded-2xl sm:min-h-[340px]">
+//             <img
+//               src="/images/trans.jpg"
+//               alt="Cargo ship transporting goods"
+//               className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+//             />
+//           </div>
+
+//           {/* Two Small Images */}
+//           <div className="grid min-h-[280px] grid-rows-2 gap-3 sm:min-h-[340px] sm:gap-4">
+//             <div className="relative overflow-hidden rounded-2xl">
+//               <img
+//                 src="/images/container.jpg"
+//                 alt="Shipping container"
+//                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+//               />
+//             </div>
+
+//             <div className="relative overflow-hidden rounded-2xl">
+//               <img
+//                 src="/images/on port.jpg"
+//                 alt="Cargo containers at port"
+//                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+//               />
+//             </div>
+//           </div>
+//         </div>
+//       </motion.div>
+
+//       {/* ================= RIGHT SECTION ================= */}
+//    {/* ================= RIGHT SECTION ================= */}
+// <motion.div
+//   variants={item}
+//   className="flex h-full flex-col"
+// >
+//   {/* Top spacer matches the heading area on the left */}
+//   <div className="hidden lg:block">
+//     <div className="h-[105px]" />
+//   </div>
+
+//   <div className="flex flex-1 flex-col justify-between">
+//     <div className="space-y-5">
+//       <p className="text-[14.5px] leading-7 text-[#4A5568] sm:text-[15px]">
+//         Thailand plays an important role in international trade —
+//         connecting businesses and markets through imports, exports,
+//         logistics, and shipping. Yet understanding how the pieces fit
+//         together is often harder than it should be.
+//       </p>
+
+//       <p className="text-[14.5px] leading-7 text-[#4A5568] sm:text-[15px]">
+//         <span className="font-semibold text-[#073155]">
+//           Thai Shipping
+//         </span>{" "}
+//         was built to change that. We bring together practical,
+//         easy-to-read information about Thailand&apos;s trade activity —
+//         from the goods flowing in and out of the country, to the
+//         regulations that govern them, to the shipping providers that move
+//         them.
+//       </p>
+
+//       <p className="text-[14.5px] leading-7 text-[#4A5568] sm:text-[15px]">
+//         Whether you&apos;re an exporter, importer, food shipper, logistics
+//         professional, or simply exploring Thailand&apos;s role in global
+//         commerce, our goal is to give you the clarity you need to make
+//         informed decisions.
+//       </p>
+//     </div>
+
+//     {/* Bottom Information */}
+//     <div className="mt-8 border-t border-[#E5E9EF] pt-6">
+//       <div className="flex items-center gap-3">
+//         <CheckCircle2 className="h-5 w-5 shrink-0 text-[#E96C35]" />
+
+//         <p className="text-[13.5px] font-medium text-[#5A6B7B]">
+//           Trusted information, organized for real-world shipping.
+//         </p>
+//       </div>
+//     </div>
+//   </div>
+// </motion.div>
+//     </motion.div>
+//   </div>
+// </section>
+
+//       {/* ============================================================
+//           FIVE PILLARS — What We Cover
+//       ============================================================ */}
+//  <section className="relative overflow-hidden bg-[#F7F9FB] py-12 sm:py-16 lg:py-20">
+//   {/* Background decoration */}
+//   <div className="pointer-events-none absolute -left-32 top-1/3 h-72 w-72 rounded-full bg-[#E96C35]/5 blur-[100px]" />
+
+//   <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+
+//     {/* ================= SECTION HEADING ================= */}
+//     <SectionHeading
+//       eyebrow="What We Cover"
+//       title="Five pillars of Thai trade and shipping"
+//       description="Explore the key areas of Thailand's global trade, from imports and exports to food shipping, regulations, and transportation services."
+//       centered
+//     />
+
+//     {/* ================= FIVE CARDS ================= */}
+//     <motion.div
+//       variants={container}
+//       initial="hidden"
+//       whileInView="visible"
+//       viewport={{ once: true, amount: 0.15 }}
+//       className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+//     >
+//       {pillars.map((pillar) => {
+//         const Icon = pillar.icon;
+
+//         return (
+//           <motion.div
+//             key={pillar.title}
+//             variants={item}
+//             className="group"
+//           >
+//             <Link
+//               href={pillar.href}
+//               className="relative block overflow-hidden rounded-[18px] bg-white shadow-[0_8px_30px_-15px_rgba(7,49,85,0.18)] transition-all duration-400 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_-18px_rgba(7,49,85,0.28)]"
+//             >
+
+//               {/* ================= IMAGE ================= */}
+//               <div className="relative h-[220px] overflow-hidden sm:h-[230px]">
+//                 <img
+//                   src={pillar.image}
+//                   alt={pillar.title}
+//                   className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+//                 />
+
+//                 {/* Image overlay */}
+//                 <div className="absolute inset-0 bg-gradient-to-t from-[#073155]/45 via-transparent to-transparent opacity-70" />
+
+//                 {/* Small top label */}
+//                 <div className="absolute left-4 top-4">
+//                   <span className="rounded-full bg-white/90 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.16em] text-[#073155] backdrop-blur-sm">
+//                     Thailand
+//                   </span>
+//                 </div>
+//               </div>
+
+//               {/* ================= WHITE CONTENT ================= */}
+//               <div className="relative mx-3 -mt-10 rounded-xl bg-white px-5 pb-5 pt-4 shadow-[0_8px_25px_-15px_rgba(7,49,85,0.35)]">
+
+//                 {/* Icon + Title */}
+//                 <div className="flex items-start gap-3">
+
+//                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#073155] text-white transition-colors duration-300 group-hover:bg-[#E96C35]">
+//                     <Icon
+//                       className="h-[18px] w-[18px]"
+//                       strokeWidth={1.8}
+//                     />
+//                   </div>
+
+//                   <div className="min-w-0">
+//                     <h3 className="pt-1 text-[16px] font-semibold text-[#073155] sm:text-[17px]">
+//                       {pillar.title}
+//                     </h3>
+//                   </div>
+//                 </div>
+
+//                 {/* Description */}
+//                 <p className="mt-4 pr-8 text-[12.5px] leading-5.5 text-[#687583] sm:text-[13px]">
+//                   {pillar.description}
+//                 </p>
+
+//                 {/* Bottom */}
+//                 <div className="mt-5 flex items-center justify-between border-t border-[#E8ECF0] pt-4">
+
+//                   <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#073155]/55 transition-colors duration-300 group-hover:text-[#E96C35]">
+//                     Explore
+//                   </span>
+
+//                   {/* Arrow button */}
+//                   <div className="absolute bottom-0 right-0 flex h-11 w-11 items-center justify-center rounded-tl-xl bg-[#073155] text-white transition-all duration-300 group-hover:bg-[#E96C35]">
+//                     <ArrowUpRight
+//                       className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+//                     />
+//                   </div>
+//                 </div>
+
+//               </div>
+//             </Link>
+//           </motion.div>
+//         );
+//       })}
+//     </motion.div>
+
+//   </div>
+// </section>
+//       <Shipping />
+    
+
+//       {/* ============================================================
+//           TRANSPORTATION MODES
+//       ============================================================ */}
+//       <section className="relative overflow-hidden bg-[#F7F9FB] py-10 sm:py-14 lg:py-16">
+//         <div className="pointer-events-none absolute -right-32 bottom-0 h-72 w-72 rounded-full bg-[#073155]/5 blur-[100px]" />
+
+//         <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+//           <SectionHeading
+//             eyebrow="How Goods Move"
+//             title="Three ways Thailand ships the world"
+//             description="Thailand uses many different modes of transportation for its shipping services — air, sea, and road. Each mode serves a different part of Thailand's trade economy."
+//             centered
+//           />
+
+//           <motion.div
+//             variants={container}
+//             initial="hidden"
+//             whileInView="visible"
+//             viewport={{ once: true, amount: 0.15 }}
+//             className="mt-10 grid gap-5 md:grid-cols-3"
+//           >
+//             {transportationModes.map((mode) => {
+//               const Icon = mode.icon;
+//               return (
+//                 <motion.div
+//                   key={mode.title}
+//                   variants={item}
+//                   className="group relative overflow-hidden rounded-2xl border border-[#E5E9EF] bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#E96C35]/40 hover:shadow-[0_20px_45px_-20px_rgba(7,49,85,0.3)] sm:p-7"
+//                 >
+//                   <span className="absolute left-0 top-0 h-[3px] w-0 bg-[#E96C35] transition-all duration-500 group-hover:w-full" />
+
+//                   <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#073155] text-white transition-all duration-300 group-hover:bg-[#E96C35]">
+//                     <Icon className="h-5 w-5" strokeWidth={1.8} />
+//                   </div>
+
+//                   <p className="mt-5 text-[10.5px] font-bold uppercase tracking-[0.18em] text-[#E96C35]">
+//                     {mode.tagline}
+//                   </p>
+
+//                   <h3 className="mt-2 text-lg font-semibold text-[#073155] sm:text-xl">
+//                     {mode.title}
+//                   </h3>
+
+//                   <p className="mt-2.5 text-[13.5px] leading-6 text-[#5A6B7B]">
+//                     {mode.description}
+//                   </p>
+//                 </motion.div>
+//               );
+//             })}
+//           </motion.div>
+//         </div>
+//       </section>
+
+//       {/* ============================================================
+//           PROVIDERS
+//       ============================================================ */}
+//       <section className="py-10 sm:py-14 lg:py-16">
+//         <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+//           <motion.div
+//             variants={container}
+//             initial="hidden"
+//             whileInView="visible"
+//             viewport={{ once: true, amount: 0.2 }}
+//             className="grid items-center gap-10 lg:grid-cols-[1.1fr_1fr] lg:gap-16"
+//           >
+//             <motion.div variants={item}>
+//               <SectionHeading
+//                 eyebrow="Trusted Providers"
+//                 title="The shipping companies moving Thailand's trade"
+//               />
+
+//               <p className="mt-6 text-[14.5px] leading-7 text-[#4A5568] sm:text-[15px]">
+//                 Thai Shipping features some of Thailand&apos;s most established
+//                 shipping companies — spanning air, sea, land, moving,
+//                 worldwide logistics, and heavy transportation.
+//               </p>
+
+//               <div className="mt-7 flex flex-wrap gap-2.5">
+//                 {providers.map((provider) => (
+//                   <span
+//                     key={provider}
+//                     className="inline-flex items-center gap-2 rounded-full border border-[#E96C35]/25 bg-[#E96C35]/5 px-4 py-2 text-[12.5px] font-medium text-[#073155]"
+//                   >
+//                     <Building2 className="h-3.5 w-3.5 text-[#E96C35]" strokeWidth={2} />
+//                     {provider}
+//                   </span>
+//                 ))}
+//               </div>
+
+//               <Link
+//                 href="/shipping-services"
+//                 className="group mt-8 inline-flex items-center gap-2.5 rounded-lg bg-[#073155] px-5 py-3 text-[13px] font-semibold text-white transition-all duration-300 hover:bg-[#E96C35]"
+//               >
+//                 Explore Shipping Services
+//                 <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+//               </Link>
+//             </motion.div>
+
+//             <motion.div variants={item} className="relative">
+//               <div className="relative overflow-hidden rounded-2xl shadow-[0_25px_60px_-30px_rgba(7,49,85,0.45)]">
+//                 <img
+//                   src="/images/about-providers.jpg"
+//                   alt="Thai shipping partners"
+//                   loading="lazy"
+//                   className="h-80 w-full object-cover sm:h-96 lg:h-[400px]"
+//                 />
+//                 <div className="absolute inset-0 bg-gradient-to-t from-[#073155]/60 via-transparent to-transparent" />
+
+//                 <div className="absolute bottom-5 left-5 rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 backdrop-blur-md">
+//                   <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#F2A57C]">
+//                     Featured Providers
+//                   </p>
+//                   <p className="mt-0.5 text-[13px] font-semibold text-white">
+//                     Air · Sea · Land · Heavy Cargo
+//                   </p>
+//                 </div>
+//               </div>
+
+//               <span
+//                 className="pointer-events-none absolute -left-3 -top-3 h-16 w-16 rounded-tl-2xl border-l-2 border-t-2 border-[#E96C35]/50"
+//                 aria-hidden="true"
+//               />
+//               <span
+//                 className="pointer-events-none absolute -bottom-3 -right-3 h-16 w-16 rounded-br-2xl border-b-2 border-r-2 border-[#E96C35]/50"
+//                 aria-hidden="true"
+//               />
+//             </motion.div>
+//           </motion.div>
+//         </div>
+//       </section>
+
+//       {/* ============================================================
+//           PRINCIPLES
+//       ============================================================ */}
+//       <section className="relative overflow-hidden bg-[#041B30] py-12 text-white sm:py-16 lg:py-20">
+//         <div className="pointer-events-none absolute -right-32 top-1/4 h-80 w-80 rounded-full bg-[#E96C35]/10 blur-[100px]" />
+
+//         <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+//           <div className="mx-auto max-w-2xl text-center">
+//             <div className="mb-4 flex items-center justify-center gap-3">
+//               <span className="h-[2px] w-8 bg-[#E96C35]" />
+//               <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#F2A57C] sm:text-xs">
+//                 Our Principles
+//               </span>
+//               <span className="h-[2px] w-8 bg-[#E96C35]" />
+//             </div>
+
+//             <h2 className="text-2xl font-semibold leading-[1.15] tracking-tight sm:text-3xl lg:text-[38px]">
+//               What guides everything we publish
+//             </h2>
+
+//             <p className="mt-4 text-sm leading-7 text-white/65 sm:text-base">
+//               These are the principles we apply when organizing, presenting,
+//               and updating the information across Thai Shipping.
+//             </p>
+//           </div>
+
+//           <motion.div
+//             variants={container}
+//             initial="hidden"
+//             whileInView="visible"
+//             viewport={{ once: true, amount: 0.15 }}
+//             className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 sm:gap-5"
+//           >
+//             {principles.map((principle) => {
+//               const Icon = principle.icon;
+//               return (
+//                 <motion.div
+//                   key={principle.title}
+//                   variants={item}
+//                   className="group rounded-2xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#E96C35]/50 hover:bg-white/[0.07]"
+//                 >
+//                   <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#E96C35]/15 text-[#F2A57C] transition-all duration-300 group-hover:bg-[#E96C35] group-hover:text-white">
+//                     <Icon className="h-5 w-5" strokeWidth={1.8} />
+//                   </div>
+
+//                   <h3 className="mt-5 text-base font-semibold text-white">
+//                     {principle.title}
+//                   </h3>
+
+//                   <p className="mt-2 text-[13px] leading-6 text-white/65">
+//                     {principle.description}
+//                   </p>
+//                 </motion.div>
+//               );
+//             })}
+//           </motion.div>
+//         </div>
+//       </section>
+
+//       {/* ============================================================
+//           CTA
+//       ============================================================ */}
+//       <section className="bg-[#F7F9FB] py-10 sm:py-12 lg:py-14 mb-8">
+//         <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+//           <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+//             <div className="flex items-start gap-4">
+//               <div className="hidden h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#073155] text-white sm:flex">
+//                 <Handshake size={24} />
+//               </div>
+
+//               <div>
+//                 <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#E96C35]">
+//                   Let&apos;s Work Together
+//                 </p>
+
+//                 <h2 className="mt-2 text-xl font-semibold text-[#073155] sm:text-2xl">
+//                   Ready to explore Thai trade and shipping?
+//                 </h2>
+
+//                 <p className="mt-2 max-w-xl text-sm leading-6 text-[#5A6B7B]">
+//                   Browse our shipping resources or get in touch — we&apos;re
+//                   here to help you make the most of Thailand&apos;s global trade
+//                   network.
+//                 </p>
+//               </div>
+//             </div>
+
+//             <div className="flex flex-wrap gap-3">
+//               <Link
+//                 href="/shipping-services"
+//                 className="inline-flex items-center justify-center gap-2 rounded-full border border-[#073155]/25 px-5 py-2.5 text-[13px] font-semibold text-[#073155] transition-colors hover:border-[#073155] hover:bg-[#073155] hover:text-white sm:py-3 sm:text-sm"
+//               >
+//                 Shipping Services
+//                 <ArrowUpRight size={16} />
+//               </Link>
+
+//               <Link
+//                 href="/contact"
+//                 className="inline-flex items-center justify-center gap-2 rounded-full bg-[#E96C35] px-5 py-2.5 text-[13px] font-semibold text-white transition-colors hover:bg-[#D95C27] sm:py-3 sm:text-sm"
+//               >
+//                 Contact Us
+//                 <ArrowRight size={16} />
+//               </Link>
+//             </div>
+//           </div>
+//         </div>
+//       </section>
+
+//       <div className="h-10 bg-[#073155] sm:h-14" />
+//     </main>
+//   );
+// }
+
 
 "use client";
-import React, { useEffect, useRef, useState } from "react";
-import { motion, useInView, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import Image from "next/image";
+
+import { useEffect, useRef, useState } from "react";
+import { motion, useReducedMotion, useInView } from "framer-motion";
 import Link from "next/link";
-import { 
-  Ship, 
-  Globe, 
-  Award, 
-  MapPin, 
-  Building, 
-  TrendingUp, 
-  Shield,
-  Users,
-  Anchor,
-  Box,
-  Trophy,
-  Star,
-  CheckCircle,
+import Shipping from '@/components/home/shipping';
+
+import {
   ArrowRight,
-  Phone,
-  Mail,
+  ArrowUpRight,
+  Globe2,
+  Ship,
+  Plane,
+  Truck,
+  Package,
+  Scale,
+  UtensilsCrossed,
+  Utensils,
+  Leaf,
+  Building2,
+  Users,
+  Target,
+  ShieldCheck,
+  TrendingUp,
+  Handshake,
+  Anchor,
+  MapPin,
+  FileText,
+  Award,
+  CheckCircle2,
   Container,
-  Warehouse,
-  Briefcase,
-  Compass,
-  ChevronRight,
-  Zap,
-  Sparkles,
-  Rocket
+  FileCheck2
 } from "lucide-react";
 
-export default function AboutPage() {
-  const sectionRef = useRef(null);
-  const heroRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"]
-  });
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
+// ================= STATS =================
+const heroStats = [
+  { icon: Globe2, value: 20, suffix: "+", label: ["Trade", "Partners"] },
+  { icon: Ship, value: 6, suffix: "+", label: ["Featured", "Providers"] },
+  { icon: Package, value: 15, suffix: "+", label: ["Export", "Categories"] },
+  { icon: Users, value: 1000, suffix: "+", label: ["Businesses", "Served"] },
+];
 
-  // State for rotating images
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  
-  const rotatingImages = [
-    { src: "/images/building.avif", alt: "Hanjin Headquarters", label: "Headquarters" },
-    { src: "/images/Ocean.PNG", alt: "Container Ship", label: "Container Fleet" },
-    { src: "/images/global.avif", alt: "Cargo Operations", label: "Cargo Operations" }
-  ];
+// ================= PILLARS =================
+const pillars = [
+  {
+    title: "Thai Imports",
+    description:
+      "Explore the products, resources, and goods imported into Thailand from global markets.",
+    href: "/thai-imports",
+    image: "/images/im.jpg",
+    icon: Package,
+  },
+  {
+    title: "Thai Exports",
+    description:
+      "Discover Thailand's major export products and its growing role in international trade.",
+    href: "/thai-exports",
+    image: "/images/ex.jpg",
+    icon: Globe2,
+  },
+  {
+    title: "Thai Food Shipping",
+    description:
+      "Learn about frozen, canned, packaged, and other Thai food products shipped worldwide.",
+    href: "/thai-food-shipping",
+    image: "/images/food.jpg",
+    icon: Utensils,
+  },
+  {
+    title: "Shipping Regulations",
+    description:
+      "Understand important shipping requirements, restrictions, and regulations before you ship.",
+    href: "/shipping-regulations",
+    image: "/images/s4.jpg",
+    icon: FileCheck2,
+  },
+  {
+    title: "Shipping Services",
+    description:
+      "Explore air, sea, and land transportation options used for shipping within and from Thailand.",
+    href: "/shipping-services",
+    image: "/images/ab1.jpg",
+    icon: Ship,
+  },
+];
+
+// ================= PRINCIPLES =================
+const principles = [
+  {
+    icon: Target,
+    title: "Clarity First",
+    description:
+      "We turn complex shipping regulations and trade requirements into straightforward information anyone can act on.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Reliability",
+    description:
+      "Every detail we share is grounded in real trade practices and the shipping services operating across Thailand today.",
+  },
+  {
+    icon: Handshake,
+    title: "Connection",
+    description:
+      "We connect businesses, exporters, and individuals with the shipping providers and information they need.",
+  },
+  {
+    icon: TrendingUp,
+    title: "Growth Mindset",
+    description:
+      "Thailand's trade economy is always evolving — we keep our resources up to date so you're never behind.",
+  },
+];
+
+// ================= ROLE OF THAILAND =================
+const thailandFacts = [
+  {
+    icon: Anchor,
+    title: "Strategic Location",
+    description:
+      "Positioned at the heart of Southeast Asia, Thailand serves as a natural gateway for regional and global trade.",
+  },
+  {
+    icon: FileText,
+    title: "Two-Way Trade",
+    description:
+      "Thailand maintains strong relationships with the United States, Japan, China, Malaysia, and other major economies.",
+  },
+  {
+    icon: Award,
+    title: "Recognized Excellence",
+    description:
+      "Thai exporters are recognized through awards such as the Prime Minister's Export Award for quality and standards.",
+  },
+  {
+    icon: Leaf,
+    title: "Natural Resources",
+    description:
+      "Rubber, fish, timber, lead, and agricultural goods give Thailand's export economy a strong natural foundation.",
+  },
+];
+
+// ================= TRANSPORTATION MODES =================
+const transportationModes = [
+  {
+    icon: Plane,
+    title: "Air Freight",
+    tagline: "International exports",
+    description:
+      "Air shipping is one of the main transportation methods used by Thai exporters sending products to other countries.",
+  },
+  {
+    icon: Ship,
+    title: "Sea Freight",
+    tagline: "Global trade",
+    description:
+      "Sea shipping is a major transportation method for Thailand's international trade and is widely used by exporters.",
+  },
+  {
+    icon: Truck,
+    title: "Road & Local",
+    tagline: "Local deliveries",
+    description:
+      "Automobile transportation is mainly associated with local deliveries and regional distribution within Thailand.",
+  },
+];
+
+// ================= FEATURED PROVIDERS =================
+const providers = [
+  "Kintetsu World Express",
+  "World Freight",
+  "Asian Tigers",
+  "Seaborne Logistics",
+  "V.A.S. Services",
+  "B & J Services",
+];
+
+function SectionHeading({ eyebrow, title, description, centered = false }) {
+  return (
+    <div className={`max-w-2xl ${centered ? "mx-auto text-center" : ""}`}>
+      <div
+        className={`mb-4 flex items-center gap-3 ${
+          centered ? "justify-center" : ""
+        }`}
+      >
+        <span className="h-[2px] w-8 bg-[#E96C35]" />
+        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#E96C35] sm:text-xs">
+          {eyebrow}
+        </span>
+      </div>
+
+      <h2 className="text-xl font-semibold leading-[1.15] tracking-tight text-[#073155] sm:text-3xl lg:text-[38px]">
+        {title}
+      </h2>
+
+      {description && (
+        <p className="mt-3 text-[13px] leading-6 text-[#687985] sm:mt-4 sm:text-base sm:leading-7">
+          {description}
+        </p>
+      )}
+    </div>
+  );
+}
+
+// ================= COUNTER =================
+function Counter({ target, suffix = "", duration = 1500, start = true }) {
+  const [count, setCount] = useState(0);
+  const hasRun = useRef(false);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % rotatingImages.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
+    if (!start || hasRun.current) return;
+    hasRun.current = true;
 
-  const stats = [
-    { value: "200+", label: "Global Offices", icon: <Globe className="w-5 h-5 md:w-6 md:h-6" />, desc: "Worldwide presence", change: "+12% growth", color: "from-blue-500 to-cyan-500" },
-    { value: "11", label: "Dedicated Terminals", icon: <Anchor className="w-5 h-5 md:w-6 md:h-6" />, desc: "Strategic locations", change: "2 more planned", color: "from-emerald-500 to-teal-500" },
-    { value: "90%", label: "Overseas Revenue", icon: <TrendingUp className="w-5 h-5 md:w-6 md:h-6" />, desc: "International business", change: "Global reach", color: "from-purple-500 to-pink-500" },
-    { value: "30+", label: "Years of Excellence", icon: <Trophy className="w-5 h-5 md:w-6 md:h-6" />, desc: "Industry leadership", change: "Since 1988", color: "from-amber-500 to-orange-500" },
-    { value: "5", label: "Regional HQs", icon: <Building className="w-5 h-5 md:w-6 md:h-6" />, desc: "Global management", change: "4 continents", color: "from-rose-500 to-red-500" },
-    { value: "20", label: "Local Corporations", icon: <Users className="w-5 h-5 md:w-6 md:h-6" />, desc: "Local expertise", change: "Growing network", color: "from-indigo-500 to-blue-500" }
-  ];
+    const startTime = performance.now();
+    const easeOutQuart = (t) => 1 - Math.pow(1 - t, 4);
 
-  const achievements = [
-    { year: "2003", title: "Best Carrier Award", by: "Global Shippers Association", icon: <Trophy className="w-4 h-4" />, color: "from-amber-500 to-orange-500", desc: "Industry recognition" },
-    { year: "2004", title: "Best Carrier Award", by: "Fred Meyer", icon: <Award className="w-4 h-4" />, color: "from-blue-500 to-cyan-500", desc: "Retail excellence" },
-    { year: "2005", title: "Good Partner Award", by: "Target Store & Best Buy", icon: <Star className="w-4 h-4" />, color: "from-purple-500 to-pink-500", desc: "Partnership excellence" },
-    { year: "2006", title: "Ocean Carrier of the Year", by: "Owens Corning (4x)", icon: <Award className="w-4 h-4" />, color: "from-emerald-500 to-teal-500", desc: "4 consecutive years" }
-  ];
+    let raf;
+    const tick = (now) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = easeOutQuart(progress);
+      setCount(Math.floor(eased * target));
 
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+      if (progress < 1) {
+        raf = requestAnimationFrame(tick);
+      } else {
+        setCount(target);
+      }
+    };
+
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [start, target, duration]);
+
+  return (
+    <span>
+      {count.toLocaleString()}
+      {suffix}
+    </span>
+  );
+}
+
+export default function AboutPage() {
+  const reduceMotion = useReducedMotion();
+  const statsRef = useRef(null);
+  const statsInView = useInView(statsRef, { once: true, amount: 0.4 });
+
+  const container = {
+    hidden: {},
+    visible: {
+      transition: { staggerChildren: reduceMotion ? 0 : 0.08, delayChildren: 0.05 },
+    },
   };
 
-  const staggerContainer = {
-    hidden: { opacity: 0 },
+  const item = {
+    hidden: { opacity: 0, y: reduceMotion ? 0 : 18 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.1, delayChildren: 0.2 }
-    }
+      y: 0,
+      transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+    },
   };
 
-  const floatingAnimation = {
-    y: [0, -10, 0],
-    transition: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+  const heroContainer = {
+    hidden: {},
+    visible: {
+      transition: { staggerChildren: reduceMotion ? 0 : 0.1, delayChildren: 0.1 },
+    },
+  };
+
+  const heroItem = {
+    hidden: { opacity: 0, y: reduceMotion ? 0 : 18 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+    },
   };
 
   return (
-    <div className="min-h-screen bg-white overflow-x-hidden">
-      
-      {/* Hero Section */}
-      <section ref={heroRef} className="relative h-[50vh] md:h-[60vh] min-h-[400px] md:min-h-[500px] overflow-hidden -mt-6">
-        <motion.div 
-          className="absolute inset-0"
-          style={{ opacity, scale }}
-        >
-          <Image
-            src="/images/building.avif"
-            alt="Hanjin Shipping"
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#041367]/70 via-[#041367]/50 to-[#041367]/30" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
-        </motion.div>
-        
-        {/* Animated Waves - Hidden on mobile */}
-        <div className="absolute bottom-0 left-0 right-0 hidden md:block">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className="w-full">
-            <path fill="#ffffff" fillOpacity="1" d="M0,192L48,197.3C96,203,192,213,288,208C384,203,480,181,576,176C672,171,768,181,864,197.3C960,213,1056,235,1152,234.7C1248,235,1344,213,1392,202.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-          </svg>
-        </div>
-        
-        <div className="relative h-full flex items-center z-10">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="max-w-3xl"
-            >
-              <motion.div 
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ delay: 0.3, duration: 0.6 }}
-                className="w-16 md:w-20 h-1 bg-white/80 rounded-full mb-4 md:mb-5"
-              />
-              <motion.div
-                animate={floatingAnimation}
-                className="inline-flex items-center gap-2 mb-3 md:mb-4 bg-white/10 backdrop-blur px-3 py-1.5 md:px-4 md:py-2 rounded-full"
-              >
-                <Sparkles className="w-3 h-3 md:w-4 md:h-4 text-white" />
-                <span className="text-white/90 text-[10px] md:text-xs tracking-wider font-medium">EST. 1988 | Global Leader</span>
-              </motion.div>
-              <h1 className="text-3xl md:text-5xl lg:text-7xl font-bold text-white mb-3 md:mb-4 leading-tight">
-                Hanjin Shipping
-                <span className="text-white/90 block text-xl md:text-3xl lg:text-4xl mt-1 md:mt-2">Thailand</span>
-              </h1>
-              <p className="text-white/80 text-sm md:text-lg max-w-2xl leading-relaxed mb-6 md:mb-8">
-                A member of the Hanjin Group, delivering excellence in global shipping and logistics
-                with a comprehensive network spanning five continents.
-              </p>
+    <main className="overflow-hidden bg-white text-[#073155] -mt-6">
+      {/* ============================================================
+          HERO
+      ============================================================ */}
+      <section
+        className="relative isolate overflow-hidden bg-[#041B30]"
+        aria-labelledby="about-heading"
+      >
+        <div
+          className="absolute inset-0 -z-20 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: "url('/images/about.jpg')" }}
+          aria-hidden="true"
+        />
+
+        <div
+          className="absolute inset-0 -z-10"
+          style={{
+            background:
+              "linear-gradient(90deg, rgba(4,27,48,0.95) 0%, rgba(4,27,48,0.85) 35%, rgba(4,27,48,0.35) 65%, rgba(4,27,48,0.05) 100%)",
+          }}
+          aria-hidden="true"
+        />
+
+        <div
+          className="absolute inset-x-0 bottom-0 -z-10 h-32"
+          style={{
+            background:
+              "linear-gradient(to top, rgba(4,27,48,0.85) 0%, rgba(4,27,48,0) 100%)",
+          }}
+          aria-hidden="true"
+        />
+
+        <div className="relative mx-auto w-full max-w-7xl px-4 pt-10 pb-0 sm:px-8 sm:pt-14 lg:px-12 lg:pt-16">
+          <motion.div
+            variants={heroContainer}
+            initial="hidden"
+            animate="visible"
+            className="max-w-2xl pb-7 sm:pb-9 lg:pb-10"
+          >
+            <motion.div variants={heroItem} className="mb-3 flex items-center gap-3 sm:mb-4">
+              <span className="h-px w-8 bg-[#E96C35] sm:w-9" />
+              <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#F2A57C] sm:text-[11px]">
+                About Thai Shipping
+              </span>
             </motion.div>
-          </div>
+
+            <motion.h1
+              variants={heroItem}
+              id="about-heading"
+              className="text-2xl font-bold leading-[1.1] tracking-[-0.03em] text-white drop-shadow-md sm:text-4xl lg:text-[44px]"
+            >
+              Connecting Thailand to the World
+            </motion.h1>
+
+            <motion.p
+              variants={heroItem}
+              className="mt-3 max-w-xl text-[13px] leading-6 text-white/85 drop-shadow sm:mt-4 sm:text-sm"
+            >
+              Thai Shipping is a dedicated information platform for Thailand&apos;s
+              import, export, food shipping, logistics, and trade regulations —
+              built to make global trade simpler and more transparent.
+            </motion.p>
+
+            <motion.div variants={heroItem} className="mt-4 flex flex-wrap gap-2.5 sm:mt-5">
+              <a
+                href="#our-purpose"
+                className="group inline-flex items-center gap-2 rounded-md bg-[#E96C35] px-4 py-2 text-[10.5px] font-bold uppercase tracking-[0.14em] text-white shadow-lg shadow-[#E96C35]/30 transition-all duration-300 hover:bg-[#d55f2b] hover:shadow-[#E96C35]/40 sm:px-5 sm:py-2.5 sm:text-[11px]"
+              >
+                Our Purpose
+                <ArrowRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-1 sm:h-3.5 sm:w-3.5" />
+              </a>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 rounded-md border border-white/25 bg-white/5 px-4 py-2 text-[10.5px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-sm transition-colors duration-300 hover:bg-white/10 sm:px-5 sm:py-2.5 sm:text-[11px]"
+              >
+                Get in Touch
+              </Link>
+            </motion.div>
+          </motion.div>
         </div>
-        
-        {/* Animated Scroll Indicator - Hidden on mobile */}
+
+        {/* Stats bar */}
         <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-          className="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 z-20 hidden md:block"
+          ref={statsRef}
+          variants={heroContainer}
+          initial="hidden"
+          animate="visible"
+          className="relative border-t border-white/10 bg-gradient-to-b from-[#041B30]/95 to-[#041B30]/85 backdrop-blur-md"
         >
-          <div className="w-6 h-10 md:w-7 md:h-11 border-2 border-white/40 rounded-full flex justify-center">
-            <motion.div 
-              animate={{ y: [0, 15, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className="w-1 h-2 md:w-1.5 md:h-3 bg-white/60 rounded-full mt-2"
-            />
+          <div
+            className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#E96C35]/60 to-transparent"
+            aria-hidden="true"
+          />
+
+          <div className="mx-auto w-full max-w-7xl px-4 sm:px-8 lg:px-12">
+            <div className="grid grid-cols-2 divide-white/10 sm:grid-cols-4 sm:divide-x">
+              {heroStats.map((stat, index) => {
+                const Icon = stat.icon;
+                return (
+                  <motion.div
+                    key={stat.label.join("-")}
+                    variants={heroItem}
+                    className="group relative flex items-center gap-3 py-3.5 sm:justify-center sm:gap-3.5 sm:py-5"
+                  >
+                    <span className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#E96C35]/40 bg-gradient-to-br from-[#E96C35]/20 to-[#E96C35]/5 text-[#F2A57C] transition-all duration-300 group-hover:border-[#E96C35] sm:h-10 sm:w-10">
+                      <Icon className="h-[16px] w-[16px] sm:h-[18px] sm:w-[18px]" strokeWidth={1.9} />
+                    </span>
+
+                    <div className="min-w-0">
+                      <p className="flex items-baseline gap-0.5 text-base font-bold leading-none text-white tabular-nums sm:text-xl">
+                        <Counter
+                          target={stat.value}
+                          suffix={stat.suffix}
+                          duration={1400 + index * 150}
+                          start={statsInView && !reduceMotion}
+                        />
+                      </p>
+                      <p className="mt-1 text-[9.5px] font-medium uppercase leading-tight tracking-[0.06em] text-white/55 sm:text-[10.5px]">
+                        {stat.label[0]}
+                        <br />
+                        {stat.label[1]}
+                      </p>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
           </div>
+
+          <div
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"
+            aria-hidden="true"
+          />
         </motion.div>
       </section>
 
-      {/* Company Overview Section 1 - Company Background */}
-      <section ref={sectionRef} className="py-12 md:py-20 bg-white relative">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-[#041367]/5 rounded-full blur-3xl" />
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl" />
-        </div>
+      {/* ============================================================
+          OUR PURPOSE
+      ============================================================ */}
+      <section id="our-purpose" className="py-10 sm:py-12 lg:py-14">
+        <div className="mx-auto max-w-7xl px-4 sm:px-8 lg:px-12">
+          <motion.div
+            variants={container}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            className="grid items-stretch gap-8 lg:grid-cols-[1fr_1.2fr] lg:gap-12"
+          >
+            <motion.div variants={item} className="flex h-full flex-col">
+              <SectionHeading
+                eyebrow="Who We Are"
+                title="A clear guide to Thailand's global trade"
+              />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 -mt-8 md:-mt-12">
-          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
-            <motion.div
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              variants={fadeInUp}
-            >
-              <div className="flex items-center gap-2 mb-3 md:mb-4">
-                <div className="w-8 md:w-10 h-0.5 bg-[#041367] rounded-full"></div>
-                <span className="text-[#041367] font-semibold text-xs md:text-sm uppercase tracking-wider">Company Profile</span>
-              </div>
-              <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 md:mb-5 leading-tight">
-                Global <span className="text-[#041367]">Shipping Excellence</span>
-              </h2>
-              <div className="space-y-3 md:space-y-4 text-gray-600 leading-relaxed text-sm md:text-base">
-                <p>
-                  <span className="font-semibold text-gray-800">Hanjin Shipping</span> is a member of the Hanjin Group and has 
-                  several subsidiaries including <span className="font-semibold text-gray-800">Keoyang Shipping</span> and 
-                  <span className="font-semibold text-gray-800"> Senator Lines GmbH</span>, and affiliates including 
-                  <span className="font-semibold text-gray-800"> CyberLogitec</span>, a logistics IT specialist, and 
-                  <span className="font-semibold text-gray-800"> Pyeongtaek Container Terminal Co., Ltd.</span>, a new addition in 2004.
-                </p>
-                <p>
-                  Hanjin Shipping has a comprehensive global business network with 
-                  <span className="font-semibold text-gray-800"> five regional headquarters</span>, 
-                  <span className="font-semibold text-gray-800"> 200 overseas branch offices</span>, and 
-                  <span className="font-semibold text-gray-800"> 20 local corporations</span>, earning about 
-                  <span className="font-semibold text-gray-800"> 90% of its total revenue</span> from third-party business overseas.
-                </p>
-              </div>
-            </motion.div>
-            
-            <motion.div
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              variants={fadeInUp}
-              className="relative"
-            >
-              <div className="grid grid-cols-2 gap-3 md:gap-4">
-                <div className="bg-gradient-to-br from-[#041367]/5 to-transparent rounded-xl md:rounded-2xl p-4 md:p-6 text-center">
-                  <div className="text-2xl md:text-3xl font-bold text-[#041367]">30+</div>
-                  <div className="text-xs md:text-sm text-gray-600">Years of Excellence</div>
-                  <div className="text-[10px] md:text-xs text-gray-400 mt-1">Since 1988</div>
+              <div className="mt-6 grid flex-1 grid-cols-2 gap-2.5 sm:gap-4">
+                <div className="relative min-h-[220px] overflow-hidden rounded-2xl sm:min-h-[340px]">
+                  <img
+                    src="/images/trans.jpg"
+                    alt="Cargo ship transporting goods"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                  />
                 </div>
-                <div className="bg-gradient-to-br from-[#041367]/5 to-transparent rounded-xl md:rounded-2xl p-4 md:p-6 text-center">
-                  <div className="text-2xl md:text-3xl font-bold text-[#041367]">90%</div>
-                  <div className="text-xs md:text-sm text-gray-600">Overseas Revenue</div>
-                  <div className="text-[10px] md:text-xs text-gray-400 mt-1">Global Operations</div>
-                </div>
-                <div className="bg-gradient-to-br from-[#041367]/5 to-transparent rounded-xl md:rounded-2xl p-4 md:p-6 text-center">
-                  <div className="text-2xl md:text-3xl font-bold text-[#041367]">200+</div>
-                  <div className="text-xs md:text-sm text-gray-600">Global Offices</div>
-                  <div className="text-[10px] md:text-xs text-gray-400 mt-1">Worldwide Presence</div>
-                </div>
-                <div className="bg-gradient-to-br from-[#041367]/5 to-transparent rounded-xl md:rounded-2xl p-4 md:p-6 text-center">
-                  <div className="text-2xl md:text-3xl font-bold text-[#041367]">50+</div>
-                  <div className="text-xs md:text-sm text-gray-600">Countries</div>
-                  <div className="text-[10px] md:text-xs text-gray-400 mt-1">Global Network</div>
+
+                <div className="grid min-h-[220px] grid-rows-2 gap-2.5 sm:min-h-[340px] sm:gap-4">
+                  <div className="relative overflow-hidden rounded-2xl">
+                    <img
+                      src="/images/container.jpg"
+                      alt="Shipping container"
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                    />
+                  </div>
+
+                  <div className="relative overflow-hidden rounded-2xl">
+                    <img
+                      src="/images/on port.jpg"
+                      alt="Cargo containers at port"
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                    />
+                  </div>
                 </div>
               </div>
             </motion.div>
-          </div>
+
+            <motion.div variants={item} className="flex h-full flex-col">
+              <div className="hidden lg:block">
+                <div className="h-[105px]" />
+              </div>
+
+              <div className="flex flex-1 flex-col justify-between">
+                <div className="space-y-4 sm:space-y-5">
+                  <p className="text-[13.5px] leading-6 text-[#4A5568] sm:text-[15px] sm:leading-7">
+                    Thailand plays an important role in international trade —
+                    connecting businesses and markets through imports, exports,
+                    logistics, and shipping. Yet understanding how the pieces fit
+                    together is often harder than it should be.
+                  </p>
+
+                  <p className="text-[13.5px] leading-6 text-[#4A5568] sm:text-[15px] sm:leading-7">
+                    <span className="font-semibold text-[#073155]">
+                      Thai Shipping
+                    </span>{" "}
+                    was built to change that. We bring together practical,
+                    easy-to-read information about Thailand&apos;s trade activity —
+                    from the goods flowing in and out of the country, to the
+                    regulations that govern them, to the shipping providers that
+                    move them.
+                  </p>
+
+                  <p className="text-[13.5px] leading-6 text-[#4A5568] sm:text-[15px] sm:leading-7">
+                    Whether you&apos;re an exporter, importer, food shipper,
+                    logistics professional, or simply exploring Thailand&apos;s
+                    role in global commerce, our goal is to give you the clarity
+                    you need to make informed decisions.
+                  </p>
+                </div>
+
+                <div className="mt-6 border-t border-[#E5E9EF] pt-5 sm:mt-8 sm:pt-6">
+                  <div className="flex items-center gap-3">
+                    <CheckCircle2 className="h-4 w-4 shrink-0 text-[#E96C35] sm:h-5 sm:w-5" />
+                    <p className="text-[12.5px] font-medium text-[#5A6B7B] sm:text-[13.5px]">
+                      Trusted information, organized for real-world shipping.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Company Overview Section 2 - Logistics Network with Rotating Images */}
-      <section className="py-12 md:py-20 bg-gray-50 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
-            {/* Left Side - Text Content */}
-            <motion.div
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              variants={fadeInUp}
-              className="order-2 lg:order-1"
-            >
-              <div className="flex items-center gap-2 mb-3 md:mb-4">
-                <div className="w-8 md:w-10 h-0.5 bg-[#041367] rounded-full"></div>
-                <span className="text-[#041367] font-semibold text-xs md:text-sm uppercase tracking-wider">Global Infrastructure</span>
-              </div>
-              <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 md:mb-5 leading-tight">
-                World-Class <span className="text-[#041367]">Logistics Network</span>
-              </h2>
-              <div className="space-y-3 md:space-y-4 text-gray-600 leading-relaxed text-sm md:text-base">
-                <p>
-                  Hanjin Shipping's world-class logistics network includes 
-                  <span className="font-semibold text-gray-800"> 11 dedicated terminals</span> in Long Beach, Tokyo, Kaohsiung, 
-                  and Busan among others and <span className="font-semibold text-gray-800"> six inland logistic bases</span> in such 
-                  locations as Shanghai, Qingdao, and Port Kelang.
-                </p>
-                <p>
-                  An additional dedicated container terminal in Busan New Port of the development phase 2-1 is 
-                  scheduled to open for business in <span className="font-semibold text-gray-800">2009</span>.
-                </p>
-              </div>
-              
-              {/* Key Terminals Highlight */}
-              <div className="mt-4 md:mt-6 grid grid-cols-2 gap-2 md:gap-3">
-                {["Long Beach, USA", "Tokyo, Japan", "Kaohsiung, Taiwan", "Busan, South Korea", "Shanghai, China", "Port Kelang, Malaysia"].map((terminal, idx) => (
-                  <div key={idx} className="flex items-center gap-1.5 md:gap-2 text-xs md:text-sm text-gray-600">
-                    <MapPin className="w-2.5 h-2.5 md:w-3 md:h-3 text-[#041367]" />
-                    <span>{terminal}</span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-            
-            {/* Right Side - Rotating Images */}
-            <motion.div
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              variants={fadeInUp}
-              className="order-1 lg:order-2"
-            >
-              <motion.div 
-                whileHover={{ scale: 1.02 }}
-                className="relative h-[250px] md:h-[380px] rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
-              >
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={currentImageIndex}
-                    initial={{ opacity: 0, scale: 1.1 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.5 }}
-                    className="absolute inset-0"
-                  >
-                    <Image
-                      src={rotatingImages[currentImageIndex].src}
-                      alt={rotatingImages[currentImageIndex].alt}
-                      fill
-                      className="object-cover transition-transform duration-700 hover:scale-110"
-                    />
-                  </motion.div>
-                </AnimatePresence>
-                <div className="absolute inset-0 bg-gradient-to-t from-[#041367]/30 to-transparent" />
-                
-                {/* Image Label Badge */}
-                <motion.div 
-                  animate={floatingAnimation}
-                  className="absolute bottom-3 left-3 md:bottom-4 md:left-4 bg-white/90 backdrop-blur rounded-lg px-2 py-1 md:px-3 md:py-1.5 shadow-lg"
+      {/* ============================================================
+          FIVE PILLARS — 2 cards per row on mobile
+      ============================================================ */}
+      <section className="relative overflow-hidden bg-[#F7F9FB] py-10 sm:py-12 lg:py-14">
+        <div className="pointer-events-none absolute -left-32 top-1/3 h-72 w-72 rounded-full bg-[#E96C35]/5 blur-[100px]" />
+
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-8 lg:px-12">
+          <SectionHeading
+            eyebrow="What We Cover"
+            title="Five pillars of Thai trade and shipping"
+            description="Explore the key areas of Thailand's global trade, from imports and exports to food shipping, regulations, and transportation services."
+            centered
+          />
+
+          <motion.div
+            variants={container}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            className="mt-8 grid grid-cols-2 gap-3 sm:mt-10 sm:gap-6 lg:grid-cols-3"
+          >
+            {pillars.map((pillar) => {
+              const Icon = pillar.icon;
+              return (
+                <motion.div
+                  key={pillar.title}
+                  variants={item}
+                  className="group"
                 >
-                  <div className="flex items-center gap-1.5 md:gap-2">
-                    <Ship className="w-3 h-3 md:w-4 md:h-4 text-[#041367]" />
-                    <span className="text-[10px] md:text-xs font-semibold text-gray-800">{rotatingImages[currentImageIndex].label}</span>
-                  </div>
+                  <Link
+                    href={pillar.href}
+                    className="relative block overflow-hidden rounded-[14px] bg-white shadow-[0_8px_30px_-15px_rgba(7,49,85,0.18)] transition-all duration-400 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_-18px_rgba(7,49,85,0.28)] sm:rounded-[18px]"
+                  >
+                    <div className="relative h-[140px] overflow-hidden sm:h-[230px]">
+                      <img
+                        src={pillar.image}
+                        alt={pillar.title}
+                        className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                      />
+
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#073155]/45 via-transparent to-transparent opacity-70" />
+
+                      <div className="absolute left-2.5 top-2.5 sm:left-4 sm:top-4">
+                        <span className="rounded-full bg-white/90 px-2 py-1 text-[8px] font-bold uppercase tracking-[0.14em] text-[#073155] backdrop-blur-sm sm:px-3 sm:py-1.5 sm:text-[9px] sm:tracking-[0.16em]">
+                          Thailand
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="relative mx-2 -mt-7 rounded-lg bg-white px-3 pb-3.5 pt-3 shadow-[0_8px_25px_-15px_rgba(7,49,85,0.35)] sm:mx-3 sm:-mt-10 sm:rounded-xl sm:px-5 sm:pb-5 sm:pt-4">
+                      <div className="flex items-start gap-2 sm:gap-3">
+                        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-[#073155] text-white transition-colors duration-300 group-hover:bg-[#E96C35] sm:h-10 sm:w-10 sm:rounded-lg">
+                          <Icon className="h-[14px] w-[14px] sm:h-[18px] sm:w-[18px]" strokeWidth={1.8} />
+                        </div>
+
+                        <div className="min-w-0">
+                          <h3 className="pt-0.5 text-[12.5px] font-semibold leading-tight text-[#073155] sm:pt-1 sm:text-[17px]">
+                            {pillar.title}
+                          </h3>
+                        </div>
+                      </div>
+
+                      <p className="mt-2.5 line-clamp-3 pr-6 text-[10.5px] leading-4 text-[#687583] sm:mt-4 sm:line-clamp-none sm:pr-8 sm:text-[13px] sm:leading-5.5">
+                        {pillar.description}
+                      </p>
+
+                      <div className="mt-3 flex items-center justify-between border-t border-[#E8ECF0] pt-2.5 sm:mt-5 sm:pt-4">
+                        <span className="text-[8.5px] font-bold uppercase tracking-[0.14em] text-[#073155]/55 transition-colors duration-300 group-hover:text-[#E96C35] sm:text-[10px] sm:tracking-[0.16em]">
+                          Explore
+                        </span>
+
+                        <div className="absolute bottom-0 right-0 flex h-8 w-8 items-center justify-center rounded-tl-lg bg-[#073155] text-white transition-all duration-300 group-hover:bg-[#E96C35] sm:h-11 sm:w-11 sm:rounded-tl-xl">
+                          <ArrowUpRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 sm:h-4 sm:w-4" />
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
                 </motion.div>
-                
-                {/* Image Indicators */}
-                <div className="absolute bottom-3 right-3 md:bottom-4 md:right-4 flex gap-1.5 md:gap-2 z-10">
-                  {rotatingImages.map((_, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => setCurrentImageIndex(idx)}
-                      className={`transition-all duration-300 rounded-full ${
-                        currentImageIndex === idx 
-                          ? 'w-4 md:w-6 h-1 bg-white' 
-                          : 'w-1 h-1 md:w-1.5 md:h-1.5 bg-white/50 hover:bg-white/80'
-                      }`}
-                    />
-                  ))}
-                </div>
-              </motion.div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+              );
+            })}
 
-      {/* Stats Section */}
-      <section className="py-10 md:py-16 relative overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[url('/images/about1.jpg')] bg-cover bg-center bg-fixed" />
-          <div className="absolute inset-0 bg-black/70" />
-        </div>
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 z-10">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ delay: index * 0.1 }}
-               whileHover={{ y: -5, scale: 1.02 }}
-                className="text-center text-white group cursor-pointer bg-white/5 backdrop-blur-md rounded-xl md:rounded-2xl p-3 md:p-4 hover:bg-white/10 transition-all duration-300 border border-white/10"
-              >
-                <div className={`w-8 h-8 md:w-12 md:h-12 bg-gradient-to-br ${stat.color} rounded-lg md:rounded-xl flex items-center justify-center mx-auto mb-2 md:mb-3 group-hover:scale-110 transition-all duration-300 shadow-lg`}>
-                  {stat.icon}
-                </div>
-                <div className="text-lg md:text-2xl lg:text-3xl font-bold">{stat.value}</div>
-                <div className="text-[10px] md:text-xs text-white/80 mt-1 font-medium">{stat.label}</div>
-                <div className="hidden md:block text-[8px] md:text-[10px] text-white/50 mt-0.5">{stat.desc}</div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+            {/* ================= CTA CARD (6th slot) ================= */}
+            <motion.div variants={item} className="group">
+              <div className="relative flex h-full flex-col overflow-hidden rounded-[14px] bg-gradient-to-br from-[#073155] via-[#0A2A4A] to-[#041B30] shadow-[0_8px_30px_-15px_rgba(7,49,85,0.35)] transition-all duration-400 hover:-translate-y-1.5 hover:shadow-[0_20px_45px_-18px_rgba(7,49,85,0.45)] sm:rounded-[18px]">
+                <div
+                  className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[#E96C35]/20 blur-3xl"
+                  aria-hidden="true"
+                />
+                <div
+                  className="pointer-events-none absolute inset-0 opacity-[0.06]"
+                  style={{
+                    backgroundImage:
+                      "radial-gradient(rgba(255,255,255,0.9) 1px, transparent 1px)",
+                    backgroundSize: "20px 20px",
+                  }}
+                  aria-hidden="true"
+                />
+                <span
+                  className="absolute left-0 top-0 h-[3px] w-0 bg-[#E96C35] transition-all duration-500 group-hover:w-full"
+                  aria-hidden="true"
+                />
 
-      {/* Company Overview Section 3 - Awards & Recognition */}
-      <section className="py-12 md:py-20 bg-white relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
-            <motion.div
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              variants={fadeInUp}
-            >
-              <div className="flex items-center gap-2 mb-3 md:mb-4">
-                <div className="w-8 md:w-10 h-0.5 bg-[#041367] rounded-full"></div>
-                <span className="text-[#041367] font-semibold text-xs md:text-sm uppercase tracking-wider">Recognition</span>
-              </div>
-              <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 md:mb-5 leading-tight">
-                Awards & <span className="text-[#041367]">Achievements</span>
-              </h2>
-              <div className="space-y-3 md:space-y-4 text-gray-600 leading-relaxed text-sm md:text-base">
-                <p>
-                  Hanjin Shipping's seamless international shipping service is recognized by the 
-                  <span className="font-semibold text-gray-800"> Best Carrier Awards</span> by Global Shippers Association in 2003 
-                  and by Fred Meyer in 2004.
-                </p>
-                <p>
-                  In addition, Hanjin Shipping won <span className="font-semibold text-gray-800">Good Partner Awards</span> by Target Store 
-                  and Best Buy in 2005 and was named the <span className="font-semibold text-gray-800">Ocean Carrier of the Year</span> by 
-                  Owens Corning for <span className="font-semibold text-gray-800">four consecutive years in 2006</span>.
-                </p>
-              </div>
-            </motion.div>
-            
-            <motion.div
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              variants={fadeInUp}
-              className="grid grid-cols-2 gap-3 md:gap-4"
-            >
-              {achievements.map((award, idx) => (
-                <div key={idx} className="bg-gradient-to-br from-gray-50 to-white rounded-lg md:rounded-xl p-3 md:p-4 text-center shadow-md">
-                  <div className={`w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br ${award.color} rounded-lg md:rounded-xl flex items-center justify-center mx-auto mb-2 md:mb-3`}>
-                    <div className="text-white">{award.icon}</div>
+                <div className="relative flex flex-1 flex-col justify-between p-4 sm:p-6 md:p-7">
+                  <div>
+                    <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#E96C35] text-white shadow-lg shadow-[#E96C35]/30 md:h-12 md:w-12 sm:rounded-xl -mb-2">
+                      <Handshake className="h-4 w-4 md:h-5 md:w-5" strokeWidth={1.9} />
+                    </div>
+
+                    <p className="mt-4 text-[9px] font-bold uppercase tracking-[0.18em] text-[#F2A57C] sm:mt-6 sm:text-[10px] sm:tracking-[0.2em] -mb-1">
+                      Ready to Ship?
+                    </p>
+
+                    <h3 className="mt-2 text-[14px] font-semibold leading-snug text-white sm:mt-3 sm:text-xl -mb-8">
+                      Talk to our team
+                      <br />
+                      about your shipment.
+                    </h3>
                   </div>
-                  <div className="text-lg md:text-xl font-bold text-[#041367]">{award.year}</div>
-                  <div className="text-[10px] md:text-xs font-semibold text-gray-800">{award.title}</div>
-                  <div className="hidden md:block text-[8px] md:text-[10px] text-gray-500 mt-1">{award.by.split(' ').slice(0, 2).join(' ')}</div>
+
+                  <div className="mt-5 sm:mt-8">
+                    <ul className="space-y-2 border-t border-white/10 pt-4 sm:space-y-2.5 sm:pt-5">
+                      <li className="flex items-center gap-2 text-[10.5px] text-white/75 sm:gap-2.5 sm:text-[12.5px]">
+                        <span className="flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full bg-[#E96C35]/20 sm:h-4 sm:w-4">
+                          <CheckCircle2 className="h-2.5 w-2.5 text-[#F2A57C] sm:h-3 sm:w-3" />
+                        </span>
+                        Free consultation
+                      </li>
+                      <li className="flex items-center gap-2 text-[10.5px] text-white/75 sm:gap-2.5 sm:text-[12.5px]">
+                        <span className="flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full bg-[#E96C35]/20 sm:h-4 sm:w-4">
+                          <CheckCircle2 className="h-2.5 w-2.5 text-[#F2A57C] sm:h-3 sm:w-3" />
+                        </span>
+                        2–4 hour response
+                      </li>
+                      <li className="flex items-center gap-2 text-[10.5px] text-white/75 sm:gap-2.5 sm:text-[12.5px]">
+                        <span className="flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full bg-[#E96C35]/20 sm:h-4 sm:w-4">
+                          <CheckCircle2 className="h-2.5 w-2.5 text-[#F2A57C] sm:h-3 sm:w-3" />
+                        </span>
+                        Expert guidance
+                      </li>
+                    </ul>
+
+                    <Link
+                      href="/contact"
+                      className="group/btn mt-4 inline-flex w-full items-center justify-between gap-2 rounded-lg bg-[#E96C35] px-3.5 py-2.5 text-[11px] font-semibold text-white transition-colors duration-300 hover:bg-[#d55f2b] sm:mt-6 sm:gap-3 sm:rounded-xl sm:px-5 sm:py-3.5 sm:text-[13px]"
+                    >
+                      Contact Us
+                      <ArrowUpRight className="h-3 w-3 transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 sm:h-4 sm:w-4" />
+                    </Link>
+                  </div>
                 </div>
-              ))}
+              </div>
             </motion.div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Vision & Future Section */}
-      <section className="py-12 md:py-20 bg-gradient-to-br from-black to-black/75 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0 bg-[url('/images/about1.jpg')] bg-cover bg-center" />
+      <Shipping />
+
+      {/* ============================================================
+          TRANSPORTATION MODES
+      ============================================================ */}
+      <section className="relative overflow-hidden bg-[#F7F9FB] py-10 sm:py-12 lg:py-14">
+        <div className="pointer-events-none absolute -right-32 bottom-0 h-72 w-72 rounded-full bg-[#073155]/5 blur-[100px]" />
+
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-8 lg:px-12">
+          <SectionHeading
+            eyebrow="How Goods Move"
+            title="Three ways Thailand ships the world"
+            description="Thailand uses many different modes of transportation for its shipping services — air, sea, and road. Each mode serves a different part of Thailand's trade economy."
+            centered
+          />
+
+          <motion.div
+            variants={container}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            className="mt-8 grid grid-cols-1 gap-4 sm:mt-10 sm:grid-cols-3 sm:gap-5"
+          >
+            {transportationModes.map((mode) => {
+              const Icon = mode.icon;
+              return (
+                <motion.div
+                  key={mode.title}
+                  variants={item}
+                  className="group relative overflow-hidden rounded-2xl border border-[#E5E9EF] bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#E96C35]/40 hover:shadow-[0_20px_45px_-20px_rgba(7,49,85,0.3)] sm:p-7"
+                >
+                  <span className="absolute left-0 top-0 h-[3px] w-0 bg-[#E96C35] transition-all duration-500 group-hover:w-full" />
+
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#073155] text-white transition-all duration-300 group-hover:bg-[#E96C35] sm:h-12 sm:w-12">
+                    <Icon className="h-5 w-5" strokeWidth={1.8} />
+                  </div>
+
+                  <p className="mt-4 text-[10.5px] font-bold uppercase tracking-[0.18em] text-[#E96C35] sm:mt-5">
+                    {mode.tagline}
+                  </p>
+
+                  <h3 className="mt-2 text-base font-semibold text-[#073155] sm:text-xl">
+                    {mode.title}
+                  </h3>
+
+                  <p className="mt-2.5 text-[12.5px] leading-6 text-[#5A6B7B] sm:text-[13.5px]">
+                    {mode.description}
+                  </p>
+                </motion.div>
+              );
+            })}
+          </motion.div>
         </div>
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 z-10">
-          <div className="text-center mb-6 md:mb-10">
-            <div className="inline-flex items-center gap-2 mb-3 md:mb-4 bg-white/10 backdrop-blur px-3 py-1.5 md:px-4 md:py-2 rounded-full">
-              <Compass className="w-3 h-3 md:w-4 md:h-4 text-white" />
-              <span className="text-white/90 text-[10px] md:text-xs uppercase tracking-wider">Our Vision & Future</span>
-            </div>
-            <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-white mb-2 md:mb-4">
-              "The Premier Logistics Company
-            </h2>
-            <p className="text-white/80 text-sm md:text-lg italic">
-              Recognized, Respected & Trusted by the Global Community
-            </p>
-          </div>
-          
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-white/10 backdrop-blur rounded-xl md:rounded-2xl p-5 md:p-8 text-center">
-              <p className="text-white/90 leading-relaxed text-xs md:text-base mb-4 md:mb-6">
-                To achieve its goal, Hanjin Shipping will continue to enlarge and efficiently operate its fleet, 
-                acquire more dedicated terminals, and reinforce its core businesses including container and bulk shipping. 
-                In addition, Hanjin is bringing <span className="font-semibold">3PL business</span> on track and building a 
-                <span className="font-semibold"> ship-repair yard</span> as part of its business diversification efforts.
+      </section>
+
+      {/* ============================================================
+          PROVIDERS
+      ============================================================ */}
+      <section className="py-10 sm:py-12 lg:py-14">
+        <div className="mx-auto max-w-7xl px-4 sm:px-8 lg:px-12">
+          <motion.div
+            variants={container}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            className="grid items-center gap-8 lg:grid-cols-[1.1fr_1fr] lg:gap-12"
+          >
+            <motion.div variants={item}>
+              <SectionHeading
+                eyebrow="Trusted Providers"
+                title="The shipping companies moving Thailand's trade"
+              />
+
+              <p className="mt-4 text-[13.5px] leading-6 text-[#4A5568] sm:mt-6 sm:text-[15px] sm:leading-7">
+                Thai Shipping features some of Thailand&apos;s most established
+                shipping companies — spanning air, sea, land, moving,
+                worldwide logistics, and heavy transportation.
               </p>
-              <div className="flex flex-wrap justify-center gap-2 md:gap-3 mt-3 md:mt-4">
-                {[
-                  "Fleet Expansion",
-                  "Dedicated Terminals",
-                  "Container Shipping",
-                  "Bulk Shipping",
-                  "3PL Business",
-                  "Ship-Repair Yard"
-                ].map((item, idx) => (
-                  <span key={idx} className="px-2 py-1 md:px-3 md:py-1 bg-white/20 rounded-full text-[9px] md:text-xs text-white">
-                    {item}
+
+              <div className="mt-5 flex flex-wrap gap-2 sm:mt-7 sm:gap-2.5">
+                {providers.map((provider) => (
+                  <span
+                    key={provider}
+                    className="inline-flex items-center gap-1.5 rounded-full border border-[#E96C35]/25 bg-[#E96C35]/5 px-3 py-1.5 text-[11px] font-medium text-[#073155] sm:gap-2 sm:px-4 sm:py-2 sm:text-[12.5px]"
+                  >
+                    <Building2 className="h-3 w-3 text-[#E96C35] sm:h-3.5 sm:w-3.5" strokeWidth={2} />
+                    {provider}
                   </span>
                 ))}
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Global Network Section */}
-      <section className="py-12 md:py-20 bg-gray-50 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <motion.div
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-            variants={fadeInUp}
-            className="text-center mb-8 md:mb-12"
-          >
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              className="inline-flex mx-auto mb-2 md:mb-3"
-            >
-              <Globe className="w-5 h-5 md:w-6 md:h-6 text-[#041367]" />
-            </motion.div>
-            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-2 md:mb-3">
-              Our <span className="text-[#041367]">Global Network</span>
-            </h2>
-            <div className="w-16 md:w-20 h-0.5 bg-gradient-to-r from-[#041367] to-transparent mx-auto rounded-full"></div>
-          </motion.div>
-
-          <div className="grid lg:grid-cols-2 gap-6 md:gap-8">
-            {/* Subsidiaries */}
-            <motion.div
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              variants={staggerContainer}
-              className="bg-white rounded-xl md:rounded-2xl p-5 md:p-6 shadow-xl hover:shadow-2xl transition-all duration-300"
-            >
-              <div className="flex items-center gap-3 mb-4 md:mb-5">
-                <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-[#041367] to-[#041367]/80 rounded-lg md:rounded-xl flex items-center justify-center">
-                  <Building className="w-5 h-5 md:w-6 md:h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-base md:text-xl font-bold text-gray-900">Subsidiaries & Affiliates</h3>
-                  <p className="text-[10px] md:text-xs text-gray-500">Strategic business units worldwide</p>
-                </div>
-              </div>
-              <div className="space-y-2 md:space-y-3">
-                {[
-                  { name: "Keoyang Shipping", role: "Maritime Operations", year: "Est. 1995", icon: <Ship className="w-3 h-3 md:w-4 md:h-4" /> },
-                  { name: "Senator Lines GmbH", role: "Global Container Shipping", year: "Est. 1998", icon: <Container className="w-3 h-3 md:w-4 md:h-4" /> },
-                  { name: "CyberLogitec", role: "Logistics IT Specialist", year: "Est. 2000", icon: <Globe className="w-3 h-3 md:w-4 md:h-4" /> },
-                  { name: "Pyeongtaek Container Terminal", role: "Terminal Operations", year: "Joined 2004", icon: <Anchor className="w-3 h-3 md:w-4 md:h-4" /> }
-                ].map((item, idx) => (
-                  <motion.div 
-                    key={idx}
-                    variants={fadeInUp}
-                    whileHover={{ x: 5 }}
-                    className="flex items-center gap-2 md:gap-3 p-2 md:p-3 bg-gray-50 rounded-lg md:rounded-xl hover:bg-[#041367]/5 transition-all duration-300 group"
-                  >
-                    <div className="w-8 h-8 md:w-10 md:h-10 bg-white rounded-lg md:rounded-xl flex items-center justify-center text-[#041367] group-hover:bg-[#041367] group-hover:text-white transition-all duration-300 shadow-sm">
-                      {item.icon}
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="font-semibold text-gray-800 text-xs md:text-sm">{item.name}</h4>
-                      <div className="flex items-center gap-1 md:gap-2">
-                        <p className="text-[10px] md:text-xs text-gray-500">{item.role}</p>
-                        <span className="text-[8px] md:text-[10px] text-gray-400">{item.year}</span>
-                      </div>
-                    </div>
-                    <ChevronRight className="w-3 h-3 md:w-4 md:h-4 text-gray-400 group-hover:text-[#041367] transition-colors" />
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Terminals */}
-            <motion.div
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              variants={staggerContainer}
-              className="bg-white rounded-xl md:rounded-2xl p-5 md:p-6 shadow-xl hover:shadow-2xl transition-all duration-300"
-            >
-              <div className="flex items-center gap-3 mb-4 md:mb-5">
-                <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-[#041367] to-[#041367]/80 rounded-lg md:rounded-xl flex items-center justify-center">
-                  <Anchor className="w-5 h-5 md:w-6 md:h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-base md:text-xl font-bold text-gray-900">Dedicated Terminals</h3>
-                  <p className="text-[10px] md:text-xs text-gray-500">11 strategic locations worldwide</p>
-                </div>
-              </div>
-              <div className="grid grid-cols-1 gap-1.5 md:gap-2">
-                {[
-                  { name: "Long Beach, USA", volume: "2.5M TEU", type: "Major Hub" },
-                  { name: "Tokyo, Japan", volume: "1.8M TEU", type: "Regional Hub" },
-                  { name: "Kaohsiung, Taiwan", volume: "2.1M TEU", type: "Transshipment" },
-                  { name: "Busan, South Korea", volume: "3.2M TEU", type: "Main Hub" },
-                  { name: "Shanghai, China", volume: "4.5M TEU", type: "Mega Hub" },
-                  { name: "Qingdao, China", volume: "2.0M TEU", type: "Regional Hub" },
-                  { name: "Port Kelang, Malaysia", volume: "1.5M TEU", type: "Gateway Port" }
-                ].map((item, idx) => (
-                  <motion.div 
-                    key={idx}
-                    variants={fadeInUp}
-                    whileHover={{ x: 3 }}
-                    className="flex items-center justify-between p-2 md:p-2.5 bg-gray-50 rounded-lg hover:bg-[#041367]/5 transition-all duration-300"
-                  >
-                    <div className="flex items-center gap-1.5 md:gap-2">
-                      <MapPin className="w-2.5 h-2.5 md:w-3 md:h-3 text-[#041367]" />
-                      <span className="text-[11px] md:text-sm font-medium text-gray-700">{item.name}</span>
-                    </div>
-                    <div className="flex items-center gap-1.5 md:gap-2">
-                      <span className="text-[8px] md:text-[10px] text-gray-500">{item.volume}</span>
-                      <span className="text-[7px] md:text-[9px] px-1.5 md:px-2 py-0.5 bg-[#041367]/10 rounded-full text-[#041367] font-medium">{item.type}</span>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Core Businesses */}
-      <section className="py-10 md:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <motion.div
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-            variants={fadeInUp}
-            className="text-center mb-8 md:mb-12"
-          >
-            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-2 md:mb-3">
-              Core <span className="text-[#041367]">Businesses</span>
-            </h2>
-            <div className="w-16 md:w-20 h-0.5 bg-gradient-to-r from-[#041367] to-transparent mx-auto rounded-full"></div>
-            <p className="text-gray-600 text-xs md:text-sm max-w-2xl mx-auto mt-3 md:mt-4">
-              Diversified operations driving our global success
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-            {[
-              { title: "Container Shipping", desc: "Global container transportation services", icon: <Container className="w-6 h-6 md:w-8 md:h-8" />, stats: "500K+ TEU annually", color: "from-blue-500 to-cyan-500" },
-              { title: "Bulk Shipping", desc: "Dry bulk and liquid bulk cargo", icon: <Ship className="w-6 h-6 md:w-8 md:h-8" />, stats: "10M+ tons", color: "from-emerald-500 to-teal-500" },
-              { title: "3PL Business", desc: "Third-party logistics solutions", icon: <Warehouse className="w-6 h-6 md:w-8 md:h-8" />, stats: "98% satisfaction", color: "from-purple-500 to-pink-500" },
-              { title: "Ship Repair Yard", desc: "Vessel maintenance and repair", icon: <Briefcase className="w-6 h-6 md:w-8 md:h-8" />, stats: "50+ vessels/year", color: "from-amber-500 to-orange-500" }
-            ].map((business, index) => (
-              <motion.div
-                key={index}
-                initial="hidden"
-                animate={isInView ? "visible" : "hidden"}
-                variants={fadeInUp}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -5, scale: 1.02 }}
-                className="bg-gradient-to-br from-gray-50 to-white rounded-xl md:rounded-2xl p-4 md:p-6 text-center shadow-lg hover:shadow-2xl transition-all duration-300 group"
+              <Link
+                href="/shipping-services"
+                className="group mt-6 inline-flex items-center gap-2 rounded-lg bg-[#073155] px-4 py-2.5 text-[12px] font-semibold text-white transition-all duration-300 hover:bg-[#E96C35] sm:mt-8 sm:gap-2.5 sm:px-5 sm:py-3 sm:text-[13px]"
               >
-                <div className={`w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br ${business.color} rounded-xl md:rounded-2xl flex items-center justify-center mx-auto mb-3 md:mb-4 group-hover:scale-110 transition-all duration-300 shadow-lg`}>
-                  <div className="text-white">
-                    {business.icon}
-                  </div>
-                </div>
-                <h3 className="text-sm md:text-lg font-bold text-gray-900 mb-1 md:mb-2">{business.title}</h3>
-                <p className="text-[10px] md:text-sm text-gray-500 mb-2 md:mb-3">{business.desc}</p>
-                <div className="inline-block px-2 md:px-3 py-0.5 md:py-1 bg-[#041367]/10 rounded-full">
-                  <span className="text-[8px] md:text-xs font-semibold text-[#041367]">{business.stats}</span>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Office Location */}
-      <section className="py-12 md:py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-start">
-            <motion.div
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              variants={fadeInUp}
-            >
-              <div className="flex items-center gap-2 mb-3 md:mb-4">
-                <div className="w-8 md:w-10 h-0.5 bg-[#041367] rounded-full"></div>
-                <span className="text-[#041367] font-semibold text-xs md:text-sm uppercase tracking-wider">Visit Us</span>
-              </div>
-              <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 md:mb-4">
-                Our Headquarters
-                <span className="text-[#041367] block">in Bangkok</span>
-              </h2>
-              <p className="text-gray-600 text-sm md:text-base mb-4 md:mb-6 leading-relaxed">
-                Located in the heart of Bangkok's business district, our headquarters serves as the 
-                central hub for our operations across Thailand and Southeast Asia.
-              </p>
-              <motion.div 
-                whileHover={{ y: -3 }}
-                className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-xl border border-gray-100 mb-5 md:mb-6"
-              >
-                <div className="flex items-start gap-3 md:gap-4">
-                  <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-[#041367] to-[#041367]/80 rounded-lg md:rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
-                    <Building className="w-5 h-5 md:w-6 md:h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-gray-900 text-base md:text-lg mb-1 md:mb-2">Hanjin Shipping (Thailand) Co., Ltd.</h3>
-                    <p className="text-gray-600 text-xs md:text-sm leading-relaxed">
-                      6th Floor, Sirinrat Building<br />
-                      3388/17-18 Rama IV Road, Khlong Tan<br />
-                      Khlong Toei, Bangkok 10110<br />
-                      Thailand
-                    </p>
-                    <div className="flex flex-wrap gap-3 md:gap-4 mt-3 md:mt-4">
-                      <div className="flex items-center gap-1.5 md:gap-2">
-                        <Phone className="w-3 h-3 md:w-4 md:h-4 text-[#041367]" />
-                        <span className="text-xs md:text-sm text-gray-600">+66 2 123 4567</span>
-                      </div>
-                      <div className="flex items-center gap-1.5 md:gap-2">
-                        <Mail className="w-3 h-3 md:w-4 md:h-4 text-[#041367]" />
-                        <span className="text-xs md:text-sm text-gray-600">contact@hanjinthailand.com</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-              <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
-                <Link href="/contact">
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="inline-flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-[#041367] to-[#041367]/90 text-white rounded-lg md:rounded-xl font-semibold text-sm md:text-base hover:shadow-xl transition-all duration-300 justify-center"
-                  >
-                    Contact Us
-                    <ArrowRight className="w-3 h-3 md:w-4 md:h-4" />
-                  </motion.button>
-                </Link>
-                <a href="https://maps.google.com/?q=Sirinrat+Building+Rama+IV+Road+Khlong+Toei+Bangkok" target="_blank" rel="noopener noreferrer">
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="inline-flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 border-2 border-[#041367] text-[#041367] rounded-lg md:rounded-xl font-semibold text-sm md:text-base hover:bg-[#041367] hover:text-white transition-all duration-300 justify-center"
-                  >
-                    Get Directions
-                    <MapPin className="w-3 h-3 md:w-4 md:h-4" />
-                  </motion.button>
-                </a>
-              </div>
+                Explore Shipping Services
+                <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 sm:h-4 sm:w-4" />
+              </Link>
             </motion.div>
 
-            <motion.div
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              variants={fadeInUp}
-              whileHover={{ scale: 1.01 }}
-              className="rounded-xl md:rounded-2xl overflow-hidden shadow-2xl"
-            >
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3876.021038203981!2d100.56866517368576!3d13.717175598097086!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29f3bc7cca4ab%3A0x5808503cfa6cbfa0!2sClariant%20(Thailand)%20Ltd.!5e0!3m2!1sen!2sbd!4v1780829767043!5m2!1sen!2sbd" 
-                width="100%" 
-                height="250" 
-                style={{ border: 0 }} 
-                allowFullScreen 
-                loading="lazy" 
-                referrerPolicy="no-referrer-when-downgrade"
-                className="w-full h-[250px] md:h-[400px]"
+            <motion.div variants={item} className="relative">
+              <div className="relative overflow-hidden rounded-2xl shadow-[0_25px_60px_-30px_rgba(7,49,85,0.45)]">
+                <img
+                  src="/images/all.jpg"
+                  alt="Thai shipping partners"
+                  loading="lazy"
+                  className="h-64 w-full object-cover sm:h-80 lg:h-[400px]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#073155]/60 via-transparent to-transparent" />
+
+                <div className="absolute bottom-4 left-4 rounded-xl border border-white/20 bg-white/10 px-3 py-2 backdrop-blur-md sm:bottom-5 sm:left-5 sm:px-4 sm:py-2.5">
+                  <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-[#F2A57C] sm:text-[10px] sm:tracking-[0.18em]">
+                    Featured Providers
+                  </p>
+                  <p className="mt-0.5 text-[11.5px] font-semibold text-white sm:text-[13px]">
+                    Air · Sea · Land · Heavy Cargo
+                  </p>
+                </div>
+              </div>
+
+              <span
+                className="pointer-events-none absolute -left-3 -top-3 h-16 w-16 rounded-tl-2xl border-l-2 border-t-2 border-[#E96C35]/50"
+                aria-hidden="true"
+              />
+              <span
+                className="pointer-events-none absolute -bottom-3 -right-3 h-16 w-16 rounded-br-2xl border-b-2 border-r-2 border-[#E96C35]/50"
+                aria-hidden="true"
               />
             </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ============================================================
+          PRINCIPLES — 2 cards per row on mobile
+      ============================================================ */}
+      <section className="relative isolate overflow-hidden py-10 text-white sm:py-12 lg:py-14">
+        <div
+          className="absolute inset-0 -z-20 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: "url('/images/abo.jpg')" }}
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-0 -z-10 bg-[#041B30]/90"
+          aria-hidden="true"
+        />
+        <div
+          className="pointer-events-none absolute -right-32 top-1/4 -z-10 h-80 w-80 rounded-full bg-[#E96C35]/15 blur-[100px]"
+          aria-hidden="true"
+        />
+
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-8 lg:px-12">
+          <div className="mx-auto max-w-2xl text-center">
+            <div className="mb-3 flex items-center justify-center gap-3 sm:mb-4">
+              <span className="h-[2px] w-8 bg-[#E96C35]" />
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#F2A57C] sm:text-xs">
+                Our Principles
+              </span>
+              <span className="h-[2px] w-8 bg-[#E96C35]" />
+            </div>
+
+            <h2 className="text-xl font-semibold leading-[1.15] tracking-tight sm:text-3xl lg:text-[38px]">
+              What guides everything we publish
+            </h2>
+
+            <p className="mt-3 text-[13px] leading-6 text-white/75 sm:mt-4 sm:text-base sm:leading-7">
+              These are the principles we apply when organizing, presenting,
+              and updating the information across Thai Shipping.
+            </p>
+          </div>
+
+          <motion.div
+            variants={container}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            className="mt-8 grid grid-cols-2 gap-3 sm:mt-10 sm:gap-4 lg:grid-cols-4 sm:gap-5"
+          >
+            {principles.map((principle) => {
+              const Icon = principle.icon;
+              return (
+                <motion.div
+                  key={principle.title}
+                  variants={item}
+                  className="group rounded-xl border border-white/15 bg-white/[0.06] p-4 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#E96C35]/50 hover:bg-white/[0.1] sm:rounded-2xl sm:p-6"
+                >
+                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#E96C35]/20 text-[#F2A57C] transition-all duration-300 group-hover:bg-[#E96C35] group-hover:text-white sm:h-11 sm:w-11 sm:rounded-xl">
+                    <Icon className="h-4 w-4 sm:h-5 sm:w-5" strokeWidth={1.8} />
+                  </div>
+
+                  <h3 className="mt-3.5 text-[13.5px] font-semibold text-white sm:mt-5 sm:text-base">
+                    {principle.title}
+                  </h3>
+
+                  <p className="mt-1.5 text-[11px] leading-5 text-white/70 sm:mt-2 sm:text-[13px] sm:leading-6">
+                    {principle.description}
+                  </p>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ============================================================
+          CTA
+      ============================================================ */}
+      <section className="bg-[#F7F9FB] py-10 sm:py-12 lg:py-14 mb-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-8 lg:px-12">
+          <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between md:gap-6">
+            <div className="flex items-start gap-4">
+              <div className="hidden h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#073155] text-white sm:flex">
+                <Handshake size={24} />
+              </div>
+
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#E96C35]">
+                  Let&apos;s Work Together
+                </p>
+
+                <h2 className="mt-2 text-lg font-semibold text-[#073155] sm:text-2xl">
+                  Ready to explore Thai trade and shipping?
+                </h2>
+
+                <p className="mt-2 max-w-xl text-[13px] leading-6 text-[#5A6B7B] sm:text-sm">
+                  Browse our shipping resources or get in touch — we&apos;re
+                  here to help you make the most of Thailand&apos;s global trade
+                  network.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-3">
+              <Link
+                href="/shipping-services"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-[#073155]/25 px-4 py-2.5 text-[12px] font-semibold text-[#073155] transition-colors hover:border-[#073155] hover:bg-[#073155] hover:text-white sm:px-5 sm:py-3 sm:text-sm"
+              >
+                Shipping Services
+                <ArrowUpRight size={15} />
+              </Link>
+
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#E96C35] px-4 py-2.5 text-[12px] font-semibold text-white transition-colors hover:bg-[#D95C27] sm:px-5 sm:py-3 sm:text-sm"
+              >
+                Contact Us
+                <ArrowRight size={15} />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-10 md:py-16 bg-gradient-to-r from-[#041367] to-[#041367]/90 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?q=80&w=2070&auto=format')] bg-cover bg-center" />
-        </div>
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 text-center z-10">
-          <motion.div
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-            variants={fadeInUp}
-          >
-            <motion.div
-              animate={{ y: [0, -5, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="inline-flex mx-auto mb-3 md:mb-4"
-            >
-              <Rocket className="w-8 h-8 md:w-12 md:h-12 text-white/80" />
-            </motion.div>
-            <h3 className="text-xl md:text-3xl lg:text-4xl font-bold text-white mb-2 md:mb-3">
-              Ready to Ship with Hanjin?
-            </h3>
-            <p className="text-white/80 mb-4 md:mb-6 text-sm md:text-lg max-w-2xl mx-auto">
-              Contact our team for a customized shipping solution tailored to your needs
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
-              <Link href="/contact">
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="inline-flex items-center gap-2 px-5 md:px-8 py-2 md:py-3 bg-white text-[#041367] rounded-lg md:rounded-xl font-bold text-sm md:text-base hover:shadow-2xl transition-all duration-300 justify-center"
-                >
-                  Get a Quote
-                  <ArrowRight className="w-3 h-3 md:w-4 md:h-4" />
-                </motion.button>
-              </Link>
-              <Link href="/services">
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="inline-flex items-center gap-2 px-5 md:px-8 py-2 md:py-3 bg-white/10 backdrop-blur border-2 border-white/30 text-white rounded-lg md:rounded-xl font-bold text-sm md:text-base hover:bg-white/20 transition-all duration-300 justify-center"
-                >
-                  Explore Services
-                </motion.button>
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-    </div>
+    </main>
   );
 }

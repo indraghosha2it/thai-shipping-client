@@ -237,7 +237,6 @@ import History from '@/components/home/history';
 import LogisticTimeline from '@/components/home/logiaticTimeline';
 import Service from '@/components/home/service';
 import Ecommerce from '@/components/home/ecommerce';
-import Shipping from '@/components/home/shipping';
 import Warehouse from '@/components/home/warehouse';
 import Facts from '@/components/home/facts';
 
@@ -320,7 +319,7 @@ export default function Page() {
        <GlobalTradeSection />
    
      
-      {/* <Shipping /> */}
+  
    
       <Facts />
   
