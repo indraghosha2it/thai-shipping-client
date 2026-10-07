@@ -2,47 +2,53 @@ import ToastProvider from "@/components/common/ToastProvider";
 import ShipmentsPage from "@/components/myShipping/myShipping";
 import React, { Suspense } from "react";
 
-// 🔹 SEO metadata for My Shipments
+// 🔹 SEO metadata for My Shipments - Thai Shipping Services
 export const metadata = {
-  title: "My Shipments | Samudera Traffic Co., Ltd. Group",
+  title: "My Shipments",
   description:
-    "Track and manage your shipments with Samudera Traffic Co., Ltd. Group. View real-time shipment status, track packages, monitor transit progress, and manage your logistics operations from one dashboard.",
+    "Track and manage your shipments with Thai Shipping Services. View real-time shipment status, track air, sea, and land cargo, monitor transit progress, and manage your shipping operations from one dashboard.",
   keywords: [
-    "Samudera Traffic Co., Ltd.",
+    "Thai Shipping Services",
     "My Shipments",
     "Track Shipment",
-    "Shipment Tracking",
+    "Shipment Tracking Thailand",
     "Package Tracking",
     "Freight Tracking",
     "Cargo Tracking",
-    "Logistics Dashboard",
+    "Thai Logistics Dashboard",
     "Shipment Status",
     "Real-time Tracking",
+    "Air Freight Tracking",
+    "Sea Freight Tracking",
+    "Land Transport Tracking",
+    "Thai Import Tracking",
+    "Thai Export Tracking",
+    "Bangkok Shipment Tracking",
   ],
   alternates: {
-    canonical: "https://samuderathai.com/shipments",
+    canonical: "https://thaishipping.com/shipments",
   },
   openGraph: {
-    title: "My Shipments | Samudera Traffic Co., Ltd. Group",
+    title: "My Shipments | Thai Shipping Services",
     description:
-      "Track and manage your shipments with Samudera Traffic Co., Ltd. Group. View real-time shipment status, track packages, monitor transit progress, and manage your logistics operations from one dashboard.",
-    url: "https://samuderathai.com/shipments",
-    siteName: "Samudera Traffic Co., Ltd. Group",
+      "Track and manage your shipments with Thai Shipping Services. View real-time shipment status, track cargo, monitor transit progress, and manage your shipping operations from one dashboard.",
+    url: "https://thaishipping.com/shipments",
+    siteName: "Thai Shipping Services",
     images: [
       {
         url: "/og-shipments.jpg",
         width: 1200,
         height: 630,
-        alt: "Samudera Traffic Co., Ltd. Group - My Shipments",
+        alt: "Thai Shipping Services - My Shipments",
       },
     ],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "My Shipments | Samudera Traffic Co., Ltd. Group",
+    title: "My Shipments | Thai Shipping Services",
     description:
-      "Track and manage your shipments with Samudera Traffic Co., Ltd. Group. View real-time shipment status and track packages.",
+      "Track and manage your shipments with Thai Shipping Services. View real-time shipment status and track cargo.",
     images: ["/og-shipments.jpg"],
   },
   robots: {
@@ -55,11 +61,11 @@ export default function Page() {
   return (
     <>
       <Suspense>
-          <ToastProvider />
-        </Suspense>
+        <ToastProvider />
+      </Suspense>
       <ShipmentsPage />
 
-      {/* 🔹 Schema Markup for Shipments Page */}
+      {/* 🔹 Schema Markup for Shipments Page - Thai Shipping Services */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -68,18 +74,19 @@ export default function Page() {
             "@type": "WebPage",
             name: "My Shipments Dashboard",
             description:
-              "Track and manage your shipments with Samudera Traffic Co., Ltd. Group. View real-time shipment status, track packages, monitor transit progress, and manage your logistics operations.",
-            url: "https://samuderathai.com/shipments",
+              "Track and manage your shipments with Thai Shipping Services. View real-time shipment status, track air, sea, and land cargo, monitor transit progress, and manage your shipping operations.",
+            url: "https://thaishipping.com/shipments",
             publisher: {
               "@type": "Organization",
-              name: "Samudera Traffic Co., Ltd. Group",
-              url: "https://samuderathai.com",
-              logo: "https://samuderathai.com/logo.png",
+              name: "Thai Shipping Services",
+              url: "https://thaishipping.com",
+              logo: "https://thaishipping.com/logo.png",
             },
             mainEntity: {
               "@type": "ItemList",
               name: "Customer Shipments",
-              description: "List of all customer shipments with tracking information",
+              description:
+                "List of all customer shipments with tracking information",
             },
           }),
         }}
@@ -97,19 +104,19 @@ export default function Page() {
                 "@type": "ListItem",
                 position: 1,
                 name: "Home",
-                item: "https://samuderathai.com",
+                item: "https://thaishipping.com",
               },
               {
                 "@type": "ListItem",
                 position: 2,
                 name: "Customer Dashboard",
-                item: "https://samuderathai.com/customer/dashboard",
+                item: "https://thaishipping.com/customer/dashboard",
               },
               {
                 "@type": "ListItem",
                 position: 3,
                 name: "My Shipments",
-                item: "https://samuderathai.com/shipments",
+                item: "https://thaishipping.com/shipments",
               },
             ],
           }),
@@ -123,20 +130,21 @@ export default function Page() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
-            name: "Samudera Traffic Co., Ltd. Group",
-            url: "https://client.cargologisticscompany.com",
-            logo: "https://client.cargologisticscompany.com/logo.png",
-            description: "Leading logistics and supply chain solutions provider",
+            name: "Thai Shipping Services",
+            url: "https://thaishipping.com",
+            logo: "https://thaishipping.com/logo.png",
+            description:
+              "Air, sea, and land shipping services in Thailand — your guide to Thai imports, exports, food shipping, and shipping regulations.",
             areaServed: {
               "@type": "Country",
               name: "Worldwide",
             },
             contactPoint: {
               "@type": "ContactPoint",
-              telephone: "+66977830395",
+              telephone: "+66-2-123-4567",
               contactType: "customer support",
-              email: "info@samuderathai.com",
-              availableLanguage: ["English"],
+              email: "info@thaishipping.com",
+              availableLanguage: ["English", "Thai"],
             },
           }),
         }}

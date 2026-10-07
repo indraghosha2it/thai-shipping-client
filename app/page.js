@@ -1,57 +1,66 @@
+
+
 // import Banner from '@/components/home/banner';
 // import History from '@/components/home/history';
 // import LogisticTimeline from '@/components/home/logiaticTimeline';
 // import Service from '@/components/home/service';
 // import Ecommerce from '@/components/home/ecommerce';
-// import Shipping from '@/components/home/shipping';
 // import Warehouse from '@/components/home/warehouse';
 // import Facts from '@/components/home/facts';
 
 // import Quote from '@/components/home/quote';
+// import GlobalTradeSection from '@/components/home/GlobalTradeSection';
+// import TrustedSection from '@/components/home/TrustedSection';
 
 // import React from "react";
+// import TransportationModes from '@/components/home/TransportationModes';
 
-// // 🔹 SEO metadata for Home Page
+// // 🔹 SEO metadata for Home Page - Hanjin Shipping Thailand
 // export const metadata = {
-//   title: "Samudera Traffic Co., Ltd. Group | Global Freight Forwarding & Supply Chain Solutions",
+//   title: "Hanjin Shipping Thailand | Global Ocean Freight & Container Shipping Solutions",
 //   description:
-//     "Samudera Traffic Co., Ltd. Group provides international freight forwarding, sea freight, air freight, warehousing, customs clearance, and supply chain solutions worldwide. Trusted logistics partner for businesses across USA, UK, Canada, China, and Thailand.",
+//     "Hanjin Shipping Thailand provides reliable ocean freight services, container shipping, global logistics solutions, and supply chain management across Asia, America, and Europe. Trusted shipping partner since 1988.",
 //   keywords: [
-//     "Samudera Traffic Co., Ltd.",
-//     "Freight Forwarding",
+//     "Hanjin Shipping Thailand",
+//     "Ocean Freight",
+//     "Container Shipping",
 //     "Sea Freight",
-//     "Air Freight",
-//     "Warehousing",
-//     "Supply Chain Solutions",
-//     "Logistics Company",
-//     "International Shipping",
-//     "Customs Clearance",
 //     "Global Logistics",
+//     "Supply Chain Management",
+//     "Cargo Shipping",
+//     "International Shipping",
+//     "Freight Forwarding",
+//     "Thailand Shipping",
+//     "Bangkok Freight",
+//     "Asia Shipping",
+//     "America Shipping",
+//     "Europe Shipping",
+//     "Hanjin Group",
 //   ],
 //   alternates: {
-//     canonical: "https://samuderathai.com",
+//     canonical: "https://hanjinthailand.com",
 //   },
 //   openGraph: {
-//     title: "Samudera Traffic Co., Ltd. Group | Global Freight Forwarding & Supply Chain Solutions",
+//     title: "Hanjin Shipping Thailand | Global Ocean Freight & Container Shipping Solutions",
 //     description:
-//       "Samudera Traffic Co., Ltd. Group provides international freight forwarding, sea freight, air freight, warehousing, customs clearance, and supply chain solutions worldwide.",
-//     url: "https://samuderathai.com",
-//     siteName: "Samudera Traffic Co., Ltd. Group",
+//       "Hanjin Shipping Thailand provides reliable ocean freight services, container shipping, global logistics solutions, and supply chain management across Asia, America, and Europe.",
+//     url: "https://hanjinthailand.com",
+//     siteName: "Hanjin Shipping Thailand",
 //     images: [
 //       {
 //         url: "/og-home.jpg",
 //         width: 1200,
 //         height: 630,
-//         alt: "Samudera Traffic Co., Ltd. Group - Global Logistics Solutions",
+//         alt: "Hanjin Shipping Thailand - Global Ocean Freight Solutions",
 //       },
 //     ],
 //     type: "website",
 //   },
 //   twitter: {
 //     card: "summary_large_image",
-//     title: "Samudera Traffic Co., Ltd. Group | Global Logistics Solutions",
+//     title: "Hanjin Shipping Thailand | Global Ocean Freight Solutions",
 //     description:
-//       "International freight forwarding and supply chain solutions from Samudera Traffic Co., Ltd. Group.",
+//       "Reliable ocean freight and container shipping services across Asia, America, and Europe.",
 //     images: ["/og-home.jpg"],
 //   },
 //   robots: {
@@ -64,11 +73,21 @@
 //   return (
 //     <>
 //       <Banner />
-//       <History />
+//          <History />
+     
+//         <TransportationModes />
+//             <TrustedSection />
+
+       
+   
+    
+      
 //       <Service />
+
+//        <GlobalTradeSection />
    
      
-//       <Shipping />
+  
    
 //       <Facts />
   
@@ -77,138 +96,168 @@
 
       
 
-//       {/* 🔹 Schema Markup for Home Page */}
+//       {/* 🔹 Schema Markup for Home Page - Hanjin Shipping Thailand */}
 //       <script
 //         type="application/ld+json"
 //         dangerouslySetInnerHTML={{
 //           __html: JSON.stringify({
 //             "@context": "https://schema.org",
 //             "@type": "WebPage",
-//             name: "Samudera Traffic Co., Ltd. Group",
+//             name: "Hanjin Shipping Thailand",
 //             description:
-//               "Samudera Traffic Co., Ltd. Group provides international freight forwarding, sea freight, air freight, warehousing, customs clearance, and supply chain solutions worldwide.",
-//             url: "https://samuderathai.com",
+//               "Hanjin Shipping Thailand provides reliable ocean freight services, container shipping, global logistics solutions, and supply chain management across Asia, America, and Europe.",
+//             url: "https://hanjinthailand.com",
 //             publisher: {
 //               "@type": "Organization",
-//               name: "Samudera Traffic Co., Ltd. Group",
-//               url: "https://samuderathai.com",
-//               logo: "https://samuderathai.com/logo.png",
+//               name: "Hanjin Shipping Thailand",
+//               url: "https://hanjinthailand.com",
+//               logo: "https://hanjinthailand.com/logo.png",
 //             },
 //           }),
 //         }}
 //       />
 
-//       {/* 🔹 Organization Schema */}
+//       {/* 🔹 Organization Schema - Hanjin Shipping Thailand */}
 //       <script
 //         type="application/ld+json"
 //         dangerouslySetInnerHTML={{
 //           __html: JSON.stringify({
 //             "@context": "https://schema.org",
 //             "@type": "Organization",
-//             name: "Samudera Traffic Co., Ltd. Group",
-//             url: "https://samuderathai.com",
-//             logo: "https://samuderathai.com/logo.png",
-//             description: "Leading logistics and supply chain solutions provider",
-//             foundingDate: "2009",
+//             name: "Hanjin Shipping Thailand",
+//             url: "https://hanjinthailand.com",
+//             logo: "https://hanjinthailand.com/logo.png",
+//             description: "Leading ocean freight and container shipping solutions provider in Thailand",
+//             foundingDate: "1988",
+//             foundingLocation: "Seoul, South Korea",
 //             address: {
 //               "@type": "PostalAddress",
-//               streetAddress: "Green Tower, 9th floor, 3656/27-28 Rama IV Road",
-//               addressLocality: "Klongton-Klong Toey",
+//               streetAddress: "6th Floor, Sirinrat Building, 3388/17-18 Rama IV Road, Khlong Tan",
+//               addressLocality: "Khlong Toei",
 //               addressRegion: "Bangkok",
 //               postalCode: "10110",
 //               addressCountry: "Thailand",
 //             },
 //             contactPoint: {
 //               "@type": "ContactPoint",
-//               telephone: "+66977830395",
+//               telephone: "+66-2-123-4567",
 //               contactType: "customer service",
-//               email: "info@samuderathai.com",
-//               availableLanguage: ["English"],
+//               email: "contact@hanjinthailand.com",
+//               availableLanguage: ["English", "Thai"],
 //             },
 //             sameAs: [
-//               "https://www.facebook.com/cargologistics",
-//               "https://www.linkedin.com/company/cargo-logistics-group",
-//               "https://twitter.com/cargologistics",
+//               "https://www.facebook.com/HanjinShipping",
+//               "https://www.linkedin.com/company/hanjin-shipping",
+//               "https://twitter.com/HanjinShipping",
 //             ],
 //           }),
 //         }}
 //       />
 
-//       {/* 🔹 LocalBusiness Schema */}
+//       {/* 🔹 LocalBusiness Schema - Hanjin Shipping Thailand */}
 //       <script
 //         type="application/ld+json"
 //         dangerouslySetInnerHTML={{
 //           __html: JSON.stringify({
 //             "@context": "https://schema.org",
 //             "@type": "LocalBusiness",
-//             name: "Samudera Traffic Co., Ltd. Group",
-//             image: "https://samuderathai.com/logo.png",
+//             name: "Hanjin Shipping Thailand",
+//             image: "https://hanjinthailand.com/logo.png",
+//             description: "Global ocean freight and container shipping services",
 //             address: {
 //               "@type": "PostalAddress",
-//               streetAddress: "Green Tower, 9th floor, 3656/27-28 Rama IV Road",
-//               addressLocality: "Klongton-Klong Toey",
+//               streetAddress: "6th Floor, Sirinrat Building, 3388/17-18 Rama IV Road, Khlong Tan",
+//               addressLocality: "Khlong Toei",
 //               addressRegion: "Bangkok",
 //               postalCode: "10110",
 //               addressCountry: "Thailand",
 //             },
-//             telephone: "+66977830395",
-//             email: "info@samuderathai.com",
+//             telephone: "+66-2-123-4567",
+//             email: "contact@hanjinthailand.com",
 //             openingHoursSpecification: [
 //               {
 //                 "@type": "OpeningHoursSpecification",
-//                 dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-//                 opens: "07:00",
-//                 closes: "22:00",
+//                 dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+//                 opens: "08:30",
+//                 closes: "17:30",
 //               },
 //             ],
-//             priceRange: "$$",
-//             areaServed: {
-//               "@type": "Country",
-//               name: "Worldwide",
-//             },
+//             priceRange: "$$$",
+//             areaServed: [
+//               {
+//                 "@type": "Country",
+//                 name: "Thailand",
+//               },
+//               {
+//                 "@type": "Country",
+//                 name: "China",
+//               },
+//               {
+//                 "@type": "Country",
+//                 name: "United States",
+//               },
+//               {
+//                 "@type": "Country",
+//                 name: "United Kingdom",
+//               },
+//               {
+//                 "@type": "Country",
+//                 name: "Japan",
+//               },
+//               {
+//                 "@type": "Country",
+//                 name: "South Korea",
+//               },
+//               {
+//                 "@type": "Country",
+//                 name: "Germany",
+//               },
+//             ],
 //             hasOfferCatalog: {
 //               "@type": "OfferCatalog",
-//               name: "Logistics Services",
+//               name: "Shipping & Logistics Services",
 //               itemListElement: [
 //                 {
 //                   "@type": "Offer",
 //                   itemOffered: {
 //                     "@type": "Service",
-//                     name: "Sea Freight",
-//                     description: "FCL and LCL container shipping",
+//                     name: "Ocean Freight",
+//                     description: "FCL and LCL container shipping worldwide",
 //                   },
 //                 },
 //                 {
 //                   "@type": "Offer",
 //                   itemOffered: {
 //                     "@type": "Service",
-//                     name: "Air Freight",
-//                     description: "Express air cargo delivery",
+//                     name: "Container Shipping",
+//                     description: "Dry, reefer, open top, and flat rack containers",
 //                   },
 //                 },
 //                 {
 //                   "@type": "Offer",
 //                   itemOffered: {
 //                     "@type": "Service",
-//                     name: "Warehousing",
-//                     description: "Strategic storage solutions",
+//                     name: "Supply Chain Management",
+//                     description: "End-to-end logistics solutions",
 //                   },
 //                 },
 //                 {
 //                   "@type": "Offer",
 //                   itemOffered: {
 //                     "@type": "Service",
-//                     name: "Customs Clearance",
-//                     description: "Professional customs brokerage",
+//                     name: "Global Logistics",
+//                     description: "International freight and cargo services",
 //                   },
 //                 },
 //               ],
 //             },
+//             globalLocationNumber: "THA-001",
+//             hasMap: "https://maps.google.com/?q=6th+Floor+Sirinrat+Building+Rama+IV+Road+Khlong+Tan+Khlong+Toei+Bangkok+10110",
 //           }),
 //         }}
 //       />
 
-//       {/* 🔹 Breadcrumb Schema */}
+//       {/* 🔹 Breadcrumb Schema - Home Page */}
 //       <script
 //         type="application/ld+json"
 //         dangerouslySetInnerHTML={{
@@ -220,9 +269,50 @@
 //                 "@type": "ListItem",
 //                 position: 1,
 //                 name: "Home",
-//                 item: "https://samuderathai.com",
+//                 item: "https://hanjinthailand.com",
 //               },
 //             ],
+//           }),
+//         }}
+//       />
+
+//       {/* 🔹 Shipping Service Schema */}
+//       <script
+//         type="application/ld+json"
+//         dangerouslySetInnerHTML={{
+//           __html: JSON.stringify({
+//             "@context": "https://schema.org",
+//             "@type": "Service",
+//             name: "Ocean Freight Services",
+//             provider: {
+//               "@type": "Organization",
+//               name: "Hanjin Shipping Thailand",
+//             },
+//             areaServed: {
+//               "@type": "Country",
+//               name: "Worldwide",
+//             },
+//             hasOfferCatalog: {
+//               "@type": "OfferCatalog",
+//               name: "Shipping Routes",
+//               itemListElement: [
+//                 {
+//                   "@type": "Offer",
+//                   name: "Intra-Asia Service",
+//                   description: "Container shipping across Asian ports",
+//                 },
+//                 {
+//                   "@type": "Offer",
+//                   name: "America Service",
+//                   description: "Trans-Pacific shipping to USA and Canada",
+//                 },
+//                 {
+//                   "@type": "Offer",
+//                   name: "Europe Service",
+//                   description: "Asia to Europe container shipping",
+//                 },
+//               ],
+//             },
 //           }),
 //         }}
 //       />
@@ -247,52 +337,56 @@ import TrustedSection from '@/components/home/TrustedSection';
 import React from "react";
 import TransportationModes from '@/components/home/TransportationModes';
 
-// 🔹 SEO metadata for Home Page - Hanjin Shipping Thailand
+// 🔹 SEO metadata for Home Page - Thai Shipping Services
 export const metadata = {
-  title: "Hanjin Shipping Thailand | Global Ocean Freight & Container Shipping Solutions",
+  title: "Thai Shipping Services | Air, Sea & Land Freight Solutions in Thailand",
   description:
-    "Hanjin Shipping Thailand provides reliable ocean freight services, container shipping, global logistics solutions, and supply chain management across Asia, America, and Europe. Trusted shipping partner since 1988.",
+    "Thailand's trusted shipping services for air, sea, and land freight. Exporters and importers rely on professional Thai shipping companies for global and local deliveries. Learn about top Thai shipping providers, regulations, and food shipping.",
   keywords: [
-    "Hanjin Shipping Thailand",
-    "Ocean Freight",
-    "Container Shipping",
-    "Sea Freight",
-    "Global Logistics",
-    "Supply Chain Management",
-    "Cargo Shipping",
-    "International Shipping",
-    "Freight Forwarding",
+    "Thai Shipping Services",
     "Thailand Shipping",
-    "Bangkok Freight",
-    "Asia Shipping",
-    "America Shipping",
-    "Europe Shipping",
-    "Hanjin Group",
+    "Air Shipping Thailand",
+    "Sea Shipping Thailand",
+    "Thai Freight Services",
+    "Thai Exports",
+    "Thai Imports",
+    "Thai Food Shipping",
+    "Shipping Regulations Thailand",
+    "Kintetsu World Express Thailand",
+    "World Freight Co. Ltd.",
+    "Asian Tigers Transpo",
+    "Seaborne Logistics",
+    "V.A.S. Services",
+    "B and J Services",
+    "Heavy Transportation Thailand",
+    "Thai Logistics",
+    "Bangkok Shipping",
+    "International Shipping Thailand",
   ],
   alternates: {
-    canonical: "https://hanjinthailand.com",
+    canonical: "https://thaishipping.com",
   },
   openGraph: {
-    title: "Hanjin Shipping Thailand | Global Ocean Freight & Container Shipping Solutions",
+    title: "Thai Shipping Services | Air, Sea & Land Freight Solutions in Thailand",
     description:
-      "Hanjin Shipping Thailand provides reliable ocean freight services, container shipping, global logistics solutions, and supply chain management across Asia, America, and Europe.",
-    url: "https://hanjinthailand.com",
-    siteName: "Hanjin Shipping Thailand",
+      "Thailand's trusted shipping services for air, sea, and land freight. Exporters and importers rely on professional Thai shipping companies for global and local deliveries.",
+    url: "https://thaishipping.com",
+    siteName: "Thai Shipping Services",
     images: [
       {
         url: "/og-home.jpg",
         width: 1200,
         height: 630,
-        alt: "Hanjin Shipping Thailand - Global Ocean Freight Solutions",
+        alt: "Thai Shipping Services - Air, Sea & Land Freight Solutions",
       },
     ],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hanjin Shipping Thailand | Global Ocean Freight Solutions",
+    title: "Thai Shipping Services | Air, Sea & Land Freight Solutions",
     description:
-      "Reliable ocean freight and container shipping services across Asia, America, and Europe.",
+      "Reliable air, sea, and land shipping services across Thailand and worldwide.",
     images: ["/og-home.jpg"],
   },
   robots: {
@@ -305,67 +399,53 @@ export default function Page() {
   return (
     <>
       <Banner />
-         <History />
-     
-        <TransportationModes />
-            <TrustedSection />
-
-       
-   
-    
-      
+      <History />
+      <TransportationModes />
+      <TrustedSection />
       <Service />
-
-       <GlobalTradeSection />
-   
-     
-  
-   
+      <GlobalTradeSection />
       <Facts />
-  
       <Quote />
       {/* <Warehouse /> */}
 
-      
-
-      {/* 🔹 Schema Markup for Home Page - Hanjin Shipping Thailand */}
+      {/* 🔹 Schema Markup for Home Page - Thai Shipping Services */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebPage",
-            name: "Hanjin Shipping Thailand",
+            name: "Thai Shipping Services",
             description:
-              "Hanjin Shipping Thailand provides reliable ocean freight services, container shipping, global logistics solutions, and supply chain management across Asia, America, and Europe.",
-            url: "https://hanjinthailand.com",
+              "Thailand's trusted shipping services for air, sea, and land freight. Exporters and importers rely on professional Thai shipping companies for global and local deliveries.",
+            url: "https://thaishipping.com",
             publisher: {
               "@type": "Organization",
-              name: "Hanjin Shipping Thailand",
-              url: "https://hanjinthailand.com",
-              logo: "https://hanjinthailand.com/logo.png",
+              name: "Thai Shipping Services",
+              url: "https://thaishipping.com",
+              logo: "https://thaishipping.com/logo.png",
             },
           }),
         }}
       />
 
-      {/* 🔹 Organization Schema - Hanjin Shipping Thailand */}
+      {/* 🔹 Organization Schema - Thai Shipping Services */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
-            name: "Hanjin Shipping Thailand",
-            url: "https://hanjinthailand.com",
-            logo: "https://hanjinthailand.com/logo.png",
-            description: "Leading ocean freight and container shipping solutions provider in Thailand",
-            foundingDate: "1988",
-            foundingLocation: "Seoul, South Korea",
+            name: "Thai Shipping Services",
+            url: "https://thaishipping.com",
+            logo: "https://thaishipping.com/logo.png",
+            description: "Leading provider of air, sea, and land shipping services in Thailand",
+            foundingDate: "1990",
+            foundingLocation: "Bangkok, Thailand",
             address: {
               "@type": "PostalAddress",
-              streetAddress: "6th Floor, Sirinrat Building, 3388/17-18 Rama IV Road, Khlong Tan",
-              addressLocality: "Khlong Toei",
+              streetAddress: "Bangkok, Thailand",
+              addressLocality: "Bangkok",
               addressRegion: "Bangkok",
               postalCode: "10110",
               addressCountry: "Thailand",
@@ -374,38 +454,38 @@ export default function Page() {
               "@type": "ContactPoint",
               telephone: "+66-2-123-4567",
               contactType: "customer service",
-              email: "contact@hanjinthailand.com",
+              email: "contact@thaishipping.com",
               availableLanguage: ["English", "Thai"],
             },
             sameAs: [
-              "https://www.facebook.com/HanjinShipping",
-              "https://www.linkedin.com/company/hanjin-shipping",
-              "https://twitter.com/HanjinShipping",
+              "https://www.facebook.com/ThaiShipping",
+              "https://www.linkedin.com/company/thai-shipping",
+              "https://twitter.com/ThaiShipping",
             ],
           }),
         }}
       />
 
-      {/* 🔹 LocalBusiness Schema - Hanjin Shipping Thailand */}
+      {/* 🔹 LocalBusiness Schema - Thai Shipping Services */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
-            name: "Hanjin Shipping Thailand",
-            image: "https://hanjinthailand.com/logo.png",
-            description: "Global ocean freight and container shipping services",
+            name: "Thai Shipping Services",
+            image: "https://thaishipping.com/logo.png",
+            description: "Air, sea, and land shipping services in Thailand",
             address: {
               "@type": "PostalAddress",
-              streetAddress: "6th Floor, Sirinrat Building, 3388/17-18 Rama IV Road, Khlong Tan",
-              addressLocality: "Khlong Toei",
+              streetAddress: "Bangkok, Thailand",
+              addressLocality: "Bangkok",
               addressRegion: "Bangkok",
               postalCode: "10110",
               addressCountry: "Thailand",
             },
             telephone: "+66-2-123-4567",
-            email: "contact@hanjinthailand.com",
+            email: "contact@thaishipping.com",
             openingHoursSpecification: [
               {
                 "@type": "OpeningHoursSpecification",
@@ -422,15 +502,11 @@ export default function Page() {
               },
               {
                 "@type": "Country",
-                name: "China",
-              },
-              {
-                "@type": "Country",
                 name: "United States",
               },
               {
                 "@type": "Country",
-                name: "United Kingdom",
+                name: "China",
               },
               {
                 "@type": "Country",
@@ -438,53 +514,57 @@ export default function Page() {
               },
               {
                 "@type": "Country",
-                name: "South Korea",
-              },
-              {
-                "@type": "Country",
-                name: "Germany",
+                name: "Malaysia",
               },
             ],
             hasOfferCatalog: {
               "@type": "OfferCatalog",
-              name: "Shipping & Logistics Services",
+              name: "Shipping Services",
               itemListElement: [
                 {
                   "@type": "Offer",
                   itemOffered: {
                     "@type": "Service",
-                    name: "Ocean Freight",
-                    description: "FCL and LCL container shipping worldwide",
+                    name: "Air Shipping",
+                    description: "Air freight services for international and domestic deliveries",
                   },
                 },
                 {
                   "@type": "Offer",
                   itemOffered: {
                     "@type": "Service",
-                    name: "Container Shipping",
-                    description: "Dry, reefer, open top, and flat rack containers",
+                    name: "Sea Shipping",
+                    description: "Sea freight services for global exports and imports",
                   },
                 },
                 {
                   "@type": "Offer",
                   itemOffered: {
                     "@type": "Service",
-                    name: "Supply Chain Management",
-                    description: "End-to-end logistics solutions",
+                    name: "Land Shipping",
+                    description: "Local and regional land transportation services",
                   },
                 },
                 {
                   "@type": "Offer",
                   itemOffered: {
                     "@type": "Service",
-                    name: "Global Logistics",
-                    description: "International freight and cargo services",
+                    name: "Thai Food Shipping",
+                    description: "Frozen and canned Thai food shipping worldwide",
+                  },
+                },
+                {
+                  "@type": "Offer",
+                  itemOffered: {
+                    "@type": "Service",
+                    name: "Heavy Transportation",
+                    description: "Specialized heavy equipment shipping",
                   },
                 },
               ],
             },
             globalLocationNumber: "THA-001",
-            hasMap: "https://maps.google.com/?q=6th+Floor+Sirinrat+Building+Rama+IV+Road+Khlong+Tan+Khlong+Toei+Bangkok+10110",
+            hasMap: "https://maps.google.com/?q=Bangkok+Thailand",
           }),
         }}
       />
@@ -501,7 +581,7 @@ export default function Page() {
                 "@type": "ListItem",
                 position: 1,
                 name: "Home",
-                item: "https://hanjinthailand.com",
+                item: "https://thaishipping.com",
               },
             ],
           }),
@@ -515,10 +595,10 @@ export default function Page() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Service",
-            name: "Ocean Freight Services",
+            name: "Thai Shipping Services",
             provider: {
               "@type": "Organization",
-              name: "Hanjin Shipping Thailand",
+              name: "Thai Shipping Services",
             },
             areaServed: {
               "@type": "Country",
@@ -530,18 +610,18 @@ export default function Page() {
               itemListElement: [
                 {
                   "@type": "Offer",
-                  name: "Intra-Asia Service",
-                  description: "Container shipping across Asian ports",
+                  name: "Air Shipping",
+                  description: "Air freight services for international and domestic deliveries",
                 },
                 {
                   "@type": "Offer",
-                  name: "America Service",
-                  description: "Trans-Pacific shipping to USA and Canada",
+                  name: "Sea Shipping",
+                  description: "Sea freight services for global exports and imports",
                 },
                 {
                   "@type": "Offer",
-                  name: "Europe Service",
-                  description: "Asia to Europe container shipping",
+                  name: "Land Shipping",
+                  description: "Local and regional land transportation services",
                 },
               ],
             },

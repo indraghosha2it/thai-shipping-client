@@ -1730,20 +1730,40 @@ export default function CustomerBookingsPage() {
   };
 
   // Handle Accept Quote
-  const handleAcceptQuote = async (bookingId, notes) => {
-    try {
-      const result = await acceptQuote(bookingId, notes);
-      if (result.success) {
-        toast.success('Quote accepted successfully!');
-        fetchBookings();
-        fetchSummary();
-      } else {
-        toast.error(result.message);
-      }
-    } catch (error) {
-      toast.error('Failed to accept quote');
+  // const handleAcceptQuote = async (bookingId, notes) => {
+  //   try {
+  //     const result = await acceptQuote(bookingId, notes);
+  //     if (result.success) {
+  //       toast.success('Quote accepted successfully!');
+  //       fetchBookings();
+  //       fetchSummary();
+  //     } else {
+  //       toast.error(result.message);
+  //     }
+  //   } catch (error) {
+  //     toast.error('Failed to accept quote');
+  //   }
+  // };
+
+  // Handle Accept Quote
+const handleAcceptQuote = async (bookingId, notes) => {
+  try {
+    const result = await acceptQuote(bookingId, notes);
+    if (result.success) {
+      toast.success('Quote accepted successfully!');
+      
+      // 🔔 Notify admin Shipments page to refetch immediately
+      window.dispatchEvent(new Event('shipments-updated'));
+      
+      fetchBookings();
+      fetchSummary();
+    } else {
+      toast.error(result.message);
     }
-  };
+  } catch (error) {
+    toast.error('Failed to accept quote');
+  }
+};
 
   // Handle Reject Quote
   const handleRejectQuote = async (bookingId, reason) => {

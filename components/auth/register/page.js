@@ -10,6 +10,10 @@
 // import 'react-toastify/dist/ReactToastify.css';
 // import { registerCustomer } from '@/services/Authentication';
 
+// // ==========================================================
+// // AUTH HOOK (unchanged logic)
+// // ==========================================================
+
 // const useAuth = () => {
 //   const [loading, setLoading] = useState(false);
 //   const [user, setUser] = useState(null);
@@ -18,7 +22,7 @@
 //     setLoading(true);
 //     try {
 //       const response = await registerCustomer(userData);
-      
+
 //       toast.success('OTP sent to your email! Please check your inbox.', {
 //         position: 'top-right',
 //         autoClose: 5000,
@@ -27,13 +31,13 @@
 //         pauseOnHover: true,
 //         draggable: true,
 //       });
- 
+
 //       setTimeout(() => {
 //         window.location.href = '/auth/verify-otp?email=' + encodeURIComponent(userData.email);
 //       }, 2000);
 
 //       return response;
-//     } catch (error) { 
+//     } catch (error) {
 //       toast.error(error.message || 'Registration failed. Please try again.', {
 //         position: 'top-right',
 //         autoClose: 5000,
@@ -51,21 +55,24 @@
 //   return {
 //     loading,
 //     user,
-//     register: handleRegister
+//     register: handleRegister,
 //   };
 // };
 
-// // Animated Text Overlay Component for Right Side Image
+// // ==========================================================
+// // BRAND PANEL (rotating messages)
+// // ==========================================================
+
+// const messages = [
+//   { title: "Global Shipping Excellence", description: "Connecting Thailand to the world with reliable ocean freight services across Asia, America, and Europe." },
+//   { title: "30+ Years of Trust", description: "Serving the global community with excellence, recognized as Ocean Carrier of the Year for four consecutive years." },
+//   { title: "Advanced Fleet", description: "Modern container fleet with real-time tracking and temperature-controlled solutions for all cargo types." },
+//   { title: "24/7 Customer Support", description: "Dedicated support team available round the clock for all your shipping needs." },
+//   { title: "Global Network", description: "200+ overseas branch offices and 50+ countries connected through our comprehensive network." },
+// ];
+
 // const AnimatedImageOverlay = () => {
 //   const [currentIndex, setCurrentIndex] = useState(0);
-  
-//   const messages = [
-//     { title: "Global Shipping Excellence", description: "Connecting Thailand to the world with reliable ocean freight services across Asia, America, and Europe." },
-//     { title: "30+ Years of Trust", description: "Serving the global community with excellence, recognized as Ocean Carrier of the Year for four consecutive years." },
-//     { title: "Advanced Fleet", description: "Modern container fleet with real-time tracking and temperature-controlled solutions for all cargo types." },
-//     { title: "24/7 Customer Support", description: "Dedicated support team available round the clock for all your shipping needs." },
-//     { title: "Global Network", description: "200+ overseas branch offices and 50+ countries connected through our comprehensive network." }
-//   ];
 
 //   useEffect(() => {
 //     const interval = setInterval(() => {
@@ -75,49 +82,61 @@
 //   }, []);
 
 //   return (
-//     <div className="absolute inset-0 flex flex-col justify-center p-8 md:p-10">
-//       <AnimatePresence mode="wait">
-//         <motion.div
-//           key={currentIndex}
-//           initial={{ opacity: 0, y: 20 }}
-//           animate={{ opacity: 1, y: 0 }}
-//           exit={{ opacity: 0, y: -20 }}
-//           transition={{ duration: 0.5 }}
-//           className="space-y-4"
-//         >
-//           <div className="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full">
-//             <span className="text-white text-sm font-medium">✦ Since 1988</span>
-//           </div>
-//           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
-//             {messages[currentIndex].title}
-//           </h2>
-//           <p className="text-white/90 text-base md:text-lg leading-relaxed max-w-md">
-//             {messages[currentIndex].description}
-//           </p>
-//           <div className="flex items-center gap-2 pt-4">
-//             <div className="w-12 h-0.5 bg-white/60 rounded-full"></div>
-//             <span className="text-white/60 text-sm">Thai Shipping Thailand</span>
-//           </div>
-//         </motion.div>
-//       </AnimatePresence>
-      
-//       {/* Slide Indicators */}
-//       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-2">
-//         {messages.map((_, idx) => (
-//           <button
-//             key={idx}
-//             onClick={() => setCurrentIndex(idx)}
-//             className={`transition-all duration-300 rounded-full ${
-//               currentIndex === idx 
-//                 ? 'w-8 h-1.5 bg-white' 
-//                 : 'w-1.5 h-1.5 bg-white/40 hover:bg-white/60'
-//             }`}
-//           />
-//         ))}
+//     <div className="relative z-10 h-full flex flex-col justify-between p-8 lg:p-10">
+//       <div className="flex items-center gap-2.5">
+//         <div className="w-9 h-9 rounded-lg bg-white/15 border border-white/25 backdrop-blur-sm flex items-center justify-center">
+//           <svg width="18" height="18" className="text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M3 17l2-8h14l2 8M3 17h18M3 17l1 3h16l1-3M12 9V4m0 0H8m4 0h4" />
+//           </svg>
+//         </div>
+//         <span className="text-white font-semibold text-base tracking-tight">Thai Shipping Thailand</span>
+//       </div>
+
+//       <div>
+//         <div className="inline-flex items-center px-3 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm mb-5">
+//           <span className="text-white/90 text-xs font-medium">Serving customers since 1988</span>
+//         </div>
+
+//         <div className="min-h-[160px]">
+//           <AnimatePresence mode="wait">
+//             <motion.div
+//               key={currentIndex}
+//               initial={{ opacity: 0, y: 14 }}
+//               animate={{ opacity: 1, y: 0 }}
+//               exit={{ opacity: 0, y: -14 }}
+//               transition={{ duration: 0.45 }}
+//             >
+//               <h2 className="text-white text-2xl lg:text-[30px] font-semibold leading-tight tracking-tight">
+//                 {messages[currentIndex].title}
+//               </h2>
+//               <p className="mt-3 text-white/75 text-sm leading-relaxed max-w-sm">
+//                 {messages[currentIndex].description}
+//               </p>
+//             </motion.div>
+//           </AnimatePresence>
+//         </div>
+
+//         <div className="flex items-center gap-1.5">
+//           {messages.map((_, idx) => (
+//             <button
+//               key={idx}
+//               type="button"
+//               onClick={() => setCurrentIndex(idx)}
+//               aria-label={`Go to message ${idx + 1}`}
+//               className={`transition-all duration-300 rounded-full h-1.5 ${
+//                 currentIndex === idx ? 'w-6 bg-white' : 'w-1.5 bg-white/40 hover:bg-white/70'
+//               }`}
+//             />
+//           ))}
+//         </div>
 //       </div>
 //     </div>
 //   );
 // };
+
+// // ==========================================================
+// // INPUT
+// // ==========================================================
 
 // const Input = ({
 //   label,
@@ -131,20 +150,21 @@
 //   required = false,
 //   disabled = false,
 //   icon,
+//   rightElement,
 // }) => {
 //   const [isFocused, setIsFocused] = useState(false);
 
 //   return (
-//     <div className="mb-3">
+//     <div>
 //       {label && (
-//         <label className="block text-xs font-medium text-gray-700 mb-1">
+//         <label htmlFor={name} className="block text-[13px] font-medium text-slate-700 mb-1.5">
 //           {label}
-//           {required && <span className="text-red-500 ml-1">*</span>}
+//           {required && <span className="text-red-500 ml-0.5">*</span>}
 //         </label>
 //       )}
-//       <div className="relative group">
+//       <div className="relative">
 //         {icon && (
-//           <div className={`absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none transition-colors duration-300 ${isFocused ? 'text-[#041367]' : 'text-gray-400'}`}>
+//           <div className={`absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none transition-colors duration-200 ${isFocused ? 'text-[#041367]' : 'text-slate-400'}`}>
 //             {icon}
 //           </div>
 //         )}
@@ -161,20 +181,18 @@
 //           onFocus={() => setIsFocused(true)}
 //           placeholder={placeholder}
 //           disabled={disabled}
-//           className={`w-full px-3 py-2 border rounded-lg shadow-sm bg-white transition-all duration-300 focus:outline-none text-sm ${
-//             error 
-//               ? 'border-red-500 bg-red-50 focus:ring-red-500' 
-//               : isFocused 
-//                 ? 'border-[#041367] ring-2 ring-[#041367]/10' 
-//                 : 'border-gray-200 hover:border-[#041367]/50'
-//           } ${icon ? 'pl-8' : ''}`}
+//           className={`w-full h-10 rounded-lg border bg-white text-slate-900 text-sm placeholder:text-slate-400 transition-colors duration-200 focus:outline-none focus:ring-2 disabled:bg-slate-50 ${
+//             error
+//               ? 'border-red-400 focus:ring-red-100'
+//               : 'border-slate-300 hover:border-slate-400 focus:border-[#041367] focus:ring-[#041367]/15'
+//           } ${icon ? 'pl-10' : 'pl-3.5'} ${rightElement ? 'pr-11' : 'pr-3.5'}`}
 //         />
+//         {rightElement && (
+//           <div className="absolute inset-y-0 right-0 pr-1.5 flex items-center">{rightElement}</div>
+//         )}
 //       </div>
 //       {error && (
-//         <p className="mt-1 text-xs text-red-500 flex items-center gap-1">
-//           <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-//           </svg>
+//         <p className="mt-1 text-xs text-red-600" role="alert">
 //           {error}
 //         </p>
 //       )}
@@ -182,40 +200,64 @@
 //   );
 // };
 
+// // ==========================================================
+// // SELECT
+// // ==========================================================
+
+// const Select = ({ label, name, value, onChange, required = false, children }) => (
+//   <div>
+//     <label htmlFor={name} className="block text-[13px] font-medium text-slate-700 mb-1.5">
+//       {label}
+//       {required && <span className="text-red-500 ml-0.5">*</span>}
+//     </label>
+//     <div className="relative">
+//       <select
+//         id={name}
+//         name={name}
+//         value={value}
+//         onChange={onChange}
+//         className="w-full h-10 appearance-none rounded-lg border border-slate-300 hover:border-slate-400 bg-white pl-3.5 pr-9 text-sm text-slate-900 transition-colors focus:outline-none focus:border-[#041367] focus:ring-2 focus:ring-[#041367]/15"
+//       >
+//         {children}
+//       </select>
+//       <svg className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+//       </svg>
+//     </div>
+//   </div>
+// );
+
+// // ==========================================================
+// // BUTTON
+// // ==========================================================
+
 // const Button = ({
 //   children,
 //   type = 'button',
 //   variant = 'primary',
-//   size = 'sm',
 //   isLoading = false,
 //   disabled = false,
 //   onClick,
 //   className = '',
 // }) => {
-//   const baseClasses = 'rounded-lg font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 relative overflow-hidden group';
-  
+//   const baseClasses =
+//     'h-11 rounded-lg text-sm font-semibold transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2';
+
 //   const variants = {
-//     primary: 'bg-gradient-to-r from-[#041367] via-[#0f2b6e] to-[#041367] text-white hover:shadow-md hover:scale-[1.01] focus:ring-[#041367]',
-//     outline: 'border-2 border-[#041367] text-[#041367] hover:bg-[#041367] hover:text-white focus:ring-[#041367]'
+//     primary: 'bg-[#041367] text-white hover:bg-[#0a2080] focus-visible:ring-[#041367]',
+//     outline: 'bg-white border border-slate-300 text-slate-700 hover:bg-slate-50 hover:border-slate-400 focus-visible:ring-slate-400',
 //   };
-
-//   const sizes = {
-//     sm: 'px-3 py-1.5 text-sm',
-//     md: 'px-4 py-2 text-base',
-//     lg: 'px-5 py-2.5 text-lg'
-//   };
-
-//   const variantClass = variants[variant] || variants.primary;
-//   const sizeClass = sizes[size] || sizes.sm;
 
 //   return (
 //     <button
 //       type={type}
-//       className={`${baseClasses} ${variantClass} ${sizeClass} ${className} ${(disabled || isLoading) ? 'opacity-50 cursor-not-allowed' : ''}`}
+//       className={`${baseClasses} ${variants[variant] || variants.primary} ${className} ${
+//         disabled || isLoading ? 'opacity-60 cursor-not-allowed' : ''
+//       }`}
 //       disabled={disabled || isLoading}
 //       onClick={onClick}
 //     >
-//       <span className="relative z-10 flex items-center justify-center gap-1.5">
+//       <span className="flex items-center justify-center gap-2">
 //         {isLoading ? (
 //           <>
 //             <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
@@ -228,17 +270,13 @@
 //           children
 //         )}
 //       </span>
-//       {variant === 'primary' && (
-//         <motion.div
-//           className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-//           initial={{ x: '-100%' }}
-//           whileHover={{ x: '100%' }}
-//           transition={{ duration: 0.6 }}
-//         />
-//       )}
 //     </button>
 //   );
 // };
+
+// // ==========================================================
+// // REGISTER PAGE
+// // ==========================================================
 
 // export default function RegisterPage() {
 //   const router = useRouter();
@@ -246,7 +284,7 @@
 //   const [currentStep, setCurrentStep] = useState(1);
 //   const [showPassword, setShowPassword] = useState(false);
 //   const [passwordStrength, setPasswordStrength] = useState(0);
-  
+
 //   const [formData, setFormData] = useState({
 //     firstName: '',
 //     lastName: '',
@@ -260,20 +298,20 @@
 //     companyVAT: '',
 //     businessType: '',
 //     industry: '',
-//     acceptTerms: false
+//     acceptTerms: false,
 //   });
 
 //   const countryOptions = [
 //     { code: '+1', name: 'USA/Canada', example: '+1 555 123 4567' },
 //     { code: '+44', name: 'UK', example: '+44 20 7123 4567' },
-//     { code: '+66', name: 'Thailand', example: '+66 2 123 4567' },
-//     { code: '+86', name: 'China', example: '+86 10 1234 5678' }
+//     { code: '+66', name: 'Thailand', example: '+66 X XXX XXXX' },
+//     { code: '+86', name: 'China', example: '+86 10 1234 5678' },
 //   ];
 
 //   const handlePhoneChange = (e) => {
 //     const { value } = e.target;
 //     const cleaned = value.replace(/[^\d+]/g, '');
-//     setFormData(prev => ({ ...prev, phone: cleaned }));
+//     setFormData((prev) => ({ ...prev, phone: cleaned }));
 //   };
 
 //   const [touched, setTouched] = useState({});
@@ -282,8 +320,10 @@
 //   const businessTypes = ['Trader', 'Manufacturer', 'Distributor', 'Retailer', 'E-commerce', 'Other'];
 //   const industries = [
 //     'Textile and Apparel', 'Electronics', 'Automotive', 'Pharmaceuticals',
-//     'Food and Beverage', 'Furniture', 'Machinery', 'Chemicals', 'Other'
+//     'Food and Beverage', 'Furniture', 'Machinery', 'Chemicals', 'Other',
 //   ];
+
+//   const steps = ['Personal info', 'Security', 'Business'];
 
 //   useEffect(() => {
 //     validateForm();
@@ -343,19 +383,19 @@
 
 //   const handleChange = (e) => {
 //     const { name, value, type, checked } = e.target;
-//     setFormData(prev => ({
+//     setFormData((prev) => ({
 //       ...prev,
-//       [name]: type === 'checkbox' ? checked : value
+//       [name]: type === 'checkbox' ? checked : value,
 //     }));
 //   };
 
 //   const handleBlur = (field) => {
-//     setTouched(prev => ({ ...prev, [field]: true }));
+//     setTouched((prev) => ({ ...prev, [field]: true }));
 //   };
 
 //   const handleSubmit = async (e) => {
 //     e.preventDefault();
-    
+
 //     const allFields = Object.keys(formData).reduce((acc, key) => {
 //       acc[key] = true;
 //       return acc;
@@ -380,19 +420,19 @@
 //   const nextStep = () => {
 //     const stepFields = {
 //       1: ['firstName', 'lastName', 'email'],
-//       2: ['password', 'confirmPassword']
+//       2: ['password', 'confirmPassword'],
 //     };
 
 //     const stepErrors = {};
-//     stepFields[currentStep].forEach(field => {
+//     stepFields[currentStep].forEach((field) => {
 //       if (errors[field]) stepErrors[field] = errors[field];
 //     });
 
 //     if (Object.keys(stepErrors).length === 0) {
-//       setCurrentStep(prev => prev + 1);
+//       setCurrentStep((prev) => prev + 1);
 //     } else {
-//       stepFields[currentStep].forEach(field => {
-//         setTouched(prev => ({ ...prev, [field]: true }));
+//       stepFields[currentStep].forEach((field) => {
+//         setTouched((prev) => ({ ...prev, [field]: true }));
 //       });
 //       toast.warning('Please fill all required fields correctly', {
 //         position: 'top-right',
@@ -402,33 +442,34 @@
 //   };
 
 //   const prevStep = () => {
-//     setCurrentStep(prev => prev - 1);
+//     setCurrentStep((prev) => prev - 1);
 //   };
 
 //   const renderIcon = (type) => {
-//     switch(type) {
+//     const common = { className: 'w-[17px] h-[17px]', fill: 'none', stroke: 'currentColor', viewBox: '0 0 24 24' };
+//     switch (type) {
 //       case 'user':
 //         return (
-//           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+//           <svg {...common}>
+//             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.7" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
 //           </svg>
 //         );
 //       case 'email':
 //         return (
-//           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+//           <svg {...common}>
+//             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.7" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
 //           </svg>
 //         );
 //       case 'phone':
 //         return (
-//           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+//           <svg {...common}>
+//             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.7" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
 //           </svg>
 //         );
 //       case 'password':
 //         return (
-//           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+//           <svg {...common}>
+//             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.7" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
 //           </svg>
 //         );
 //       default:
@@ -436,351 +477,331 @@
 //     }
 //   };
 
+//   const eyeButton = (
+//     <button
+//       type="button"
+//       onClick={() => setShowPassword(!showPassword)}
+//       className="p-2 text-slate-400 hover:text-slate-700 transition-colors rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#041367]/40"
+//       aria-label={showPassword ? 'Hide password' : 'Show password'}
+//     >
+//       {showPassword ? (
+//         <svg className="w-[17px] h-[17px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.6" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+//         </svg>
+//       ) : (
+//         <svg className="w-[17px] h-[17px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.6" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+//           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.6" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+//         </svg>
+//       )}
+//     </button>
+//   );
+
+//   const arrowRight = (
+//     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+//     </svg>
+//   );
+
+//   const arrowLeft = (
+//     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
+//     </svg>
+//   );
+
+//   const stepAnim = {
+//     initial: { opacity: 0, y: 8 },
+//     animate: { opacity: 1, y: 0 },
+//     transition: { duration: 0.25 },
+//   };
+
 //   return (
 //     <>
 //       <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="colored" />
-      
-//       <div className="min-h-screen bg-white">
-//         {/* Top Logo - Matching Login page */}
-       
 
-//         {/* Main Content - Matching Login page dimensions */}
-//         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
-//           <div className="grid lg:grid-cols-2 gap-6 items-stretch min-h-[400px]">
-            
-//             {/* Left Side - Registration Form */}
-//             <motion.div
-//               initial={{ opacity: 0, x: -30 }}
-//               animate={{ opacity: 1, x: 0 }}
-//               transition={{ duration: 0.6 }}
-//               className="flex items-center"
-//             >
-//               <div className="w-full bg-white rounded-2xl shadow-xl p-5 border border-gray-100">
-//                 {/* Header */}
-//                 <div className="text-center mb-4">
-//                   <div className="w-12 h-12 bg-gradient-to-br from-[#041367] to-blue-700 rounded-xl flex items-center justify-center mx-auto mb-3 shadow-md">
-//                     <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
-//                     </svg>
-//                   </div>
-//                   <h2 className="text-xl font-bold text-gray-900">Create Account</h2>
-//                   <p className="text-gray-500 text-xs mt-1">
-//                     Already have an account?{' '}
-//                     <Link href="/auth/login" className="text-[#041367] font-semibold hover:underline">
-//                       Sign in
-//                     </Link>
-//                   </p>
-//                 </div>
+//       <main className="bg-slate-100 px-4 py-8 sm:py-10 -mt-5">
+//         <motion.div
+//           initial={{ opacity: 0, y: 10 }}
+//           animate={{ opacity: 1, y: 0 }}
+//           transition={{ duration: 0.45 }}
+//           className="mx-auto w-full max-w-[960px] overflow-hidden rounded-2xl bg-white shadow-[0_10px_40px_rgba(15,23,42,0.12)] ring-1 ring-slate-200 grid md:grid-cols-[0.9fr_1.1fr] md:min-h-[620px]"
+//         >
+//           {/* ==================================================
+//               LEFT: BRAND PANEL
+//           ================================================== */}
+//           <aside className="relative hidden md:block bg-[#041367]">
+//             <Image
+//               src="/images/cta.jpg"
+//               alt="Thai Shipping"
+//               fill
+//               priority
+//               sizes="(min-width: 768px) 430px, 0px"
+//               className="object-cover object-center"
+//             />
+//             <div className="absolute inset-0 bg-gradient-to-b from-[#041367]/80 via-[#041367]/60 to-[#041367]/90" />
+//             <AnimatedImageOverlay />
+//           </aside>
 
-//                 <form onSubmit={handleSubmit}>
-//                   {/* Progress Bar */}
-//                 {/* Progress Bar - Simple Version */}
-// <div className="mb-5">
-//   <div className="flex items-center justify-between gap-2">
-//     {[1, 2, 3].map((step) => (
-//       <React.Fragment key={step}>
-//         <div className={`w-8 h-8 rounded-full flex items-center justify-center font-semibold text-sm ${
-//           currentStep >= step ? 'bg-[#041367] text-white' : 'bg-gray-200 text-gray-600'
-//         }`}>
-//           {step}
-//         </div>
-//         {step < 3 && (
-//           <div className={`flex-1 h-0.5 rounded ${
-//             currentStep > step ? 'bg-[#041367]' : 'bg-gray-200'
-//           }`} />
-//         )}
-//       </React.Fragment>
-//     ))}
-//   </div>
-//   <div className="flex justify-between mt-2 text-xs text-gray-500">
-//     <span>Personal Info</span>
-//     <span>Security</span>
-//     <span>Business Details</span>
-//   </div>
-// </div>
+//           {/* ==================================================
+//               RIGHT: FORM PANEL
+//           ================================================== */}
+//           <section className="flex flex-col justify-center px-6 sm:px-10 py-8">
+//             <p className="md:hidden text-sm font-semibold text-[#041367] mb-5">Thai Shipping Thailand</p>
 
-//                   {/* Step 1: Personal Information */}
-//                   {currentStep === 1 && (
-//                     <div className="space-y-3 animate-fadeIn">
-//                       <div className="grid grid-cols-2 gap-3">
-//                         <Input
-//                           label="First Name"
-//                           name="firstName"
-//                           value={formData.firstName}
-//                           onChange={handleChange}
-//                           onBlur={() => handleBlur('firstName')}
-//                           placeholder="John"
-//                           error={touched.firstName && errors.firstName}
-//                           required
-//                           icon={renderIcon('user')}
-//                         />
-//                         <Input
-//                           label="Last Name"
-//                           name="lastName"
-//                           value={formData.lastName}
-//                           onChange={handleChange}
-//                           onBlur={() => handleBlur('lastName')}
-//                           placeholder="Doe"
-//                           error={touched.lastName && errors.lastName}
-//                           required
-//                         />
-//                       </div>
+//             <div className="mb-6">
+//               <h1 className="text-2xl font-semibold text-slate-900 tracking-tight">Create your account</h1>
+//               <p className="mt-1.5 text-sm text-slate-500">
+//                 Already have an account?{' '}
+//                 <Link href="/auth/login" className="font-medium text-[#041367] hover:underline underline-offset-4">
+//                   Sign in
+//                 </Link>
+//               </p>
+//             </div>
 
-//                       <Input
-//                         label="Email Address"
-//                         type="email"
-//                         name="email"
-//                         value={formData.email}
-//                         onChange={handleChange}
-//                         onBlur={() => handleBlur('email')}
-//                         placeholder="john.doe@company.com"
-//                         error={touched.email && errors.email}
-//                         required
-//                         icon={renderIcon('email')}
-//                       />
-
-//                       <div>
-//                         <label className="block text-xs font-medium text-gray-700 mb-1">
-//                           Country Code <span className="text-red-500">*</span>
-//                         </label>
-//                         <select
-//                           name="countryCode"
-//                           value={formData.countryCode}
-//                           onChange={handleChange}
-//                           className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#041367] focus:border-transparent"
+//             <form onSubmit={handleSubmit} noValidate>
+//               {/* Stepper */}
+//               <ol className="flex items-center mb-7" aria-label="Registration progress">
+//                 {steps.map((label, i) => {
+//                   const step = i + 1;
+//                   const done = currentStep > step;
+//                   const active = currentStep === step;
+//                   return (
+//                     <React.Fragment key={label}>
+//                       <li className="flex items-center gap-2" aria-current={active ? 'step' : undefined}>
+//                         <span
+//                           className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-semibold transition-colors ${
+//                             done || active ? 'bg-[#041367] text-white' : 'bg-slate-100 text-slate-500 ring-1 ring-slate-200'
+//                           } ${active ? 'ring-4 ring-[#041367]/15' : ''}`}
 //                         >
-//                           {countryOptions.map(country => (
-//                             <option key={country.code} value={country.code}>
-//                               {country.name} ({country.code})
-//                             </option>
-//                           ))}
-//                         </select>
-//                       </div>
-
-//                       <Input
-//                         label="Phone Number"
-//                         type="tel"
-//                         name="phone"
-//                         value={formData.phone}
-//                         onChange={handlePhoneChange}
-//                         onBlur={() => handleBlur('phone')}
-//                         placeholder={countryOptions.find(c => c.code === formData.countryCode)?.example || "Phone number"}
-//                         error={touched.phone && errors.phone}
-//                         icon={renderIcon('phone')}
-//                       />
-
-//                       <Button type="button" variant="primary" size="sm" onClick={nextStep} className="w-full mt-2">
-//                         Continue
-//                         <svg className="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-//                         </svg>
-//                       </Button>
-//                     </div>
-//                   )}
-
-//                   {/* Step 2: Password Setup */}
-//                   {currentStep === 2 && (
-//                     <div className="space-y-3 animate-fadeIn">
-//                       <div className="relative">
-//                         <Input
-//                           label="Password"
-//                           type={showPassword ? 'text' : 'password'}
-//                           name="password"
-//                           value={formData.password}
-//                           onChange={handleChange}
-//                           onBlur={() => handleBlur('password')}
-//                           placeholder="********"
-//                           error={touched.password && errors.password}
-//                           required
-//                           icon={renderIcon('password')}
-//                         />
-//                         <button
-//                           type="button"
-//                           onClick={() => setShowPassword(!showPassword)}
-//                           className="absolute right-2 top-[34px] text-gray-400 hover:text-[#041367] transition-colors"
-//                         >
-//                           {showPassword ? (
-//                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+//                           {done ? (
+//                             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
 //                             </svg>
 //                           ) : (
-//                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-//                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-//                             </svg>
+//                             step
 //                           )}
-//                         </button>
-//                       </div>
-
-//                       {/* Password Strength Meter */}
-//                       {formData.password && (
-//                         <div className="space-y-1">
-//                           <div className="flex items-center gap-2">
-//                             <div className="flex-1 h-1.5 bg-gray-200 rounded-full overflow-hidden">
-//                               <div className={`h-full ${getPasswordStrengthColor()} transition-all duration-300`} style={{ width: `${passwordStrength}%` }} />
-//                             </div>
-//                             <span className="text-[10px] font-medium text-gray-600">{getPasswordStrengthText()}</span>
-//                           </div>
-//                         </div>
+//                         </span>
+//                         <span className={`hidden sm:block text-xs font-medium ${active || done ? 'text-slate-900' : 'text-slate-400'}`}>
+//                           {label}
+//                         </span>
+//                       </li>
+//                       {step < steps.length && (
+//                         <div className={`flex-1 h-px mx-3 ${currentStep > step ? 'bg-[#041367]' : 'bg-slate-200'}`} />
 //                       )}
+//                     </React.Fragment>
+//                   );
+//                 })}
+//               </ol>
 
-//                       <Input
-//                         label="Confirm Password"
-//                         type="password"
-//                         name="confirmPassword"
-//                         value={formData.confirmPassword}
-//                         onChange={handleChange}
-//                         onBlur={() => handleBlur('confirmPassword')}
-//                         placeholder="********"
-//                         error={touched.confirmPassword && errors.confirmPassword}
-//                         required
-//                       />
+//               {/* Step 1: Personal Information */}
+//               {currentStep === 1 && (
+//                 <motion.div key="step1" {...stepAnim} className="space-y-3.5">
+//                   <div className="grid grid-cols-2 gap-3">
+//                     <Input
+//                       label="First name"
+//                       name="firstName"
+//                       value={formData.firstName}
+//                       onChange={handleChange}
+//                       onBlur={() => handleBlur('firstName')}
+//                       placeholder="Enter your firstname"
+//                       error={touched.firstName && errors.firstName}
+//                       required
+//                       icon={renderIcon('user')}
+//                     />
+//                     <Input
+//                       label="Last name"
+//                       name="lastName"
+//                       value={formData.lastName}
+//                       onChange={handleChange}
+//                       onBlur={() => handleBlur('lastName')}
+//                       placeholder="Enter your lastname"
+//                       error={touched.lastName && errors.lastName}
+//                       required
+//                     />
+//                   </div>
 
-//                       <div className="flex gap-3 mt-2">
-//                         <Button type="button" variant="outline" size="sm" onClick={prevStep} className="flex-1">
-//                           <svg className="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
-//                           </svg>
-//                           Back
-//                         </Button>
-//                         <Button type="button" variant="primary" size="sm" onClick={nextStep} className="flex-1">
-//                           Continue
-//                           <svg className="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-//                           </svg>
-//                         </Button>
-//                       </div>
-//                     </div>
-//                   )}
+//                   <Input
+//                     label="Email address"
+//                     type="email"
+//                     name="email"
+//                     value={formData.email}
+//                     onChange={handleChange}
+//                     onBlur={() => handleBlur('email')}
+//                     placeholder="name@company.com"
+//                     error={touched.email && errors.email}
+//                     required
+//                     icon={renderIcon('email')}
+//                   />
 
-//                   {/* Step 3: Business Information */}
-//                   {currentStep === 3 && (
-//                     <div className="space-y-3 animate-fadeIn">
-//                       <Input
-//                         label="Company Name"
-//                         name="companyName"
-//                         value={formData.companyName}
-//                         onChange={handleChange}
-//                         placeholder="Optional"
-//                       />
+//                   <div className="grid sm:grid-cols-[0.8fr_1.2fr] gap-3">
+//                     <Select label="Country code" name="countryCode" value={formData.countryCode} onChange={handleChange} required>
+//                       {countryOptions.map((country) => (
+//                         <option key={country.code} value={country.code}>
+//                           {country.name} ({country.code})
+//                         </option>
+//                       ))}
+//                     </Select>
 
-//                       <Input
-//                         label="Company Address"
-//                         name="companyAddress"
-//                         value={formData.companyAddress}
-//                         onChange={handleChange}
-//                         placeholder="Optional"
-//                       />
+//                     <Input
+//                       label="Phone number"
+//                       type="tel"
+//                       name="phone"
+//                       value={formData.phone}
+//                       onChange={handlePhoneChange}
+//                       onBlur={() => handleBlur('phone')}
+//                       placeholder={countryOptions.find((c) => c.code === formData.countryCode)?.example || 'Phone number'}
+//                       error={touched.phone && errors.phone}
+//                       icon={renderIcon('phone')}
+//                     />
+//                   </div>
 
-//                       <Input
-//                         label="VAT Number"
-//                         name="companyVAT"
-//                         value={formData.companyVAT}
-//                         onChange={handleChange}
-//                         placeholder="Optional"
-//                       />
+//                   <Button type="button" variant="primary" onClick={nextStep} className="w-full !mt-5">
+//                     Continue
+//                     {arrowRight}
+//                   </Button>
+//                 </motion.div>
+//               )}
 
-//                       <div className="grid grid-cols-2 gap-3">
-//                         <div>
-//                           <label className="block text-xs font-medium text-gray-700 mb-1">Business Type</label>
-//                           <select
-//                             name="businessType"
-//                             value={formData.businessType}
-//                             onChange={handleChange}
-//                             className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#041367]"
-//                           >
-//                             <option value="">Optional</option>
-//                             {businessTypes.map(type => <option key={type} value={type}>{type}</option>)}
-//                           </select>
-//                         </div>
-//                         <div>
-//                           <label className="block text-xs font-medium text-gray-700 mb-1">Industry</label>
-//                           <select
-//                             name="industry"
-//                             value={formData.industry}
-//                             onChange={handleChange}
-//                             className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#041367]"
-//                           >
-//                             <option value="">Optional</option>
-//                             {industries.map(industry => <option key={industry} value={industry}>{industry}</option>)}
-//                           </select>
-//                         </div>
-//                       </div>
+//               {/* Step 2: Password Setup */}
+//               {currentStep === 2 && (
+//                 <motion.div key="step2" {...stepAnim} className="space-y-3.5">
+//                   <Input
+//                     label="Password"
+//                     type={showPassword ? 'text' : 'password'}
+//                     name="password"
+//                     value={formData.password}
+//                     onChange={handleChange}
+//                     onBlur={() => handleBlur('password')}
+//                     placeholder="At least 6 characters"
+//                     error={touched.password && errors.password}
+//                     required
+//                     icon={renderIcon('password')}
+//                     rightElement={eyeButton}
+//                   />
 
-//                       <div className="flex items-start gap-2">
-//                         <input
-//                           type="checkbox"
-//                           name="acceptTerms"
-//                           checked={formData.acceptTerms}
-//                           onChange={handleChange}
-//                           className="mt-0.5 w-3.5 h-3.5 text-[#041367] rounded border-gray-300 focus:ring-[#041367]"
+//                   {formData.password && (
+//                     <div className="flex items-center gap-3">
+//                       <div className="flex-1 h-1.5 bg-slate-200 rounded-full overflow-hidden">
+//                         <div
+//                           className={`h-full ${getPasswordStrengthColor()} transition-all duration-300`}
+//                           style={{ width: `${passwordStrength}%` }}
 //                         />
-//                         <label className="text-xs text-gray-600">
-//                           I agree to the <a href="#" className="text-[#041367] hover:underline">Terms of Service</a> and <a href="#" className="text-[#041367] hover:underline">Privacy Policy</a>
-//                         </label>
 //                       </div>
-//                       {touched.acceptTerms && errors.acceptTerms && (
-//                         <p className="text-red-500 text-[10px]">{errors.acceptTerms}</p>
-//                       )}
-
-//                       <div className="flex gap-3 mt-2">
-//                         <Button type="button" variant="outline" size="sm" onClick={prevStep} className="flex-1">
-//                           <svg className="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
-//                           </svg>
-//                           Back
-//                         </Button>
-//                         <Button type="submit" variant="primary" size="sm" isLoading={loading} className="flex-1">
-//                           Create Account
-//                           <svg className="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-//                           </svg>
-//                         </Button>
-//                       </div>
+//                       <span className="text-xs font-medium text-slate-600 w-11 text-right">{getPasswordStrengthText()}</span>
 //                     </div>
 //                   )}
-//                 </form>
-//               </div>
-//             </motion.div>
 
-//             {/* Right Side - Image with Animated Text Overlay */}
-//             <motion.div
-//               initial={{ opacity: 0, x: 30 }}
-//               animate={{ opacity: 1, x: 0 }}
-//               transition={{ duration: 0.6, delay: 0.2 }}
-//               className="relative rounded-2xl overflow-hidden shadow-xl min-h-[400px]"
-//             >
-//               <Image
-//                 src="/images/building.avif"
-//                 alt="Thai Shipping"
-//                 fill
-//                 className="object-cover"
-//                 priority
-//               />
-//               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-black/40" />
-//               <AnimatedImageOverlay />
-//             </motion.div>
-//           </div>
-//         </div>
+//                   <Input
+//                     label="Confirm password"
+//                     type="password"
+//                     name="confirmPassword"
+//                     value={formData.confirmPassword}
+//                     onChange={handleChange}
+//                     onBlur={() => handleBlur('confirmPassword')}
+//                     placeholder="Re-enter your password"
+//                     error={touched.confirmPassword && errors.confirmPassword}
+//                     required
+//                     icon={renderIcon('password')}
+//                   />
 
-//         {/* Footer */}
-//         <div className="text-center py-4 border-t border-gray-100 mt-4">
-//           <p className="text-[10px] text-gray-400">© 2006 Thai Shipping (Thailand) Co., Ltd. All rights reserved.</p>
-//         </div>
-//       </div>
+//                   <div className="flex gap-3 !mt-5">
+//                     <Button type="button" variant="outline" onClick={prevStep} className="flex-1">
+//                       {arrowLeft}
+//                       Back
+//                     </Button>
+//                     <Button type="button" variant="primary" onClick={nextStep} className="flex-1">
+//                       Continue
+//                       {arrowRight}
+//                     </Button>
+//                   </div>
+//                 </motion.div>
+//               )}
 
-//       <style jsx>{`
-//         @keyframes fadeIn {
-//           from { opacity: 0; transform: translateY(5px); }
-//           to { opacity: 1; transform: translateY(0); }
-//         }
-//         .animate-fadeIn {
-//           animation: fadeIn 0.25s ease-out forwards;
-//         }
-//       `}</style>
+//               {/* Step 3: Business Information */}
+//               {currentStep === 3 && (
+//                 <motion.div key="step3" {...stepAnim} className="space-y-3.5">
+//                   <Input
+//                     label="Company name"
+//                     name="companyName"
+//                     value={formData.companyName}
+//                     onChange={handleChange}
+//                     placeholder="Optional"
+//                   />
+
+//                   <Input
+//                     label="Company address"
+//                     name="companyAddress"
+//                     value={formData.companyAddress}
+//                     onChange={handleChange}
+//                     placeholder="Optional"
+//                   />
+
+//                   <div className="grid grid-cols-2 gap-3">
+//                     <Input
+//                       label="VAT number"
+//                       name="companyVAT"
+//                       value={formData.companyVAT}
+//                       onChange={handleChange}
+//                       placeholder="Optional"
+//                     />
+//                     <Select label="Business type" name="businessType" value={formData.businessType} onChange={handleChange}>
+//                       <option value="">Optional</option>
+//                       {businessTypes.map((type) => (
+//                         <option key={type} value={type}>{type}</option>
+//                       ))}
+//                     </Select>
+//                   </div>
+
+//                   <Select label="Industry" name="industry" value={formData.industry} onChange={handleChange}>
+//                     <option value="">Optional</option>
+//                     {industries.map((industry) => (
+//                       <option key={industry} value={industry}>{industry}</option>
+//                     ))}
+//                   </Select>
+
+//                   <div>
+//                     <label className="flex items-start gap-2.5 cursor-pointer">
+//                       <input
+//                         type="checkbox"
+//                         name="acceptTerms"
+//                         checked={formData.acceptTerms}
+//                         onChange={handleChange}
+//                         className="mt-0.5 w-4 h-4 rounded border-slate-300 text-[#041367] focus:ring-[#041367]/30"
+//                       />
+//                       <span className="text-[13px] text-slate-600 leading-snug">
+//                         I agree to the{' '}
+                      
+//                         <a href="/privacy-policy" className="font-medium text-[#041367] hover:underline underline-offset-4">Privacy Policy</a>
+//                       </span>
+//                     </label>
+//                     {touched.acceptTerms && errors.acceptTerms && (
+//                       <p className="mt-1 text-xs text-red-600" role="alert">{errors.acceptTerms}</p>
+//                     )}
+//                   </div>
+
+//                   <div className="flex gap-3 !mt-5">
+//                     <Button type="button" variant="outline" onClick={prevStep} className="flex-1">
+//                       {arrowLeft}
+//                       Back
+//                     </Button>
+//                     <Button type="submit" variant="primary" isLoading={loading} className="flex-1">
+//                       Create account
+//                     </Button>
+//                   </div>
+//                 </motion.div>
+//               )}
+//             </form>
+//           </section>
+//         </motion.div>
+
+//         <p className="mt-5 text-center text-xs text-slate-400">
+//           © 2006 Thai Shipping (Thailand) Co., Ltd. All rights reserved.
+//         </p>
+//       </main>
 //     </>
 //   );
 // }
+
 
 
 "use client";
@@ -793,6 +814,12 @@ import Image from 'next/image';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { registerCustomer } from '@/services/Authentication';
+
+// ==========================================================
+// BRAND COLORS
+// ==========================================================
+const NAVY = '#073155';
+const ORANGE = '#E96C35';
 
 // ==========================================================
 // AUTH HOOK (unchanged logic)
@@ -878,7 +905,7 @@ const AnimatedImageOverlay = () => {
 
       <div>
         <div className="inline-flex items-center px-3 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm mb-5">
-          <span className="text-white/90 text-xs font-medium">Serving customers since 1988</span>
+          <span className="text-white/90 text-xs font-medium">Serving customers since 2009</span>
         </div>
 
         <div className="min-h-[160px]">
@@ -948,7 +975,7 @@ const Input = ({
       )}
       <div className="relative">
         {icon && (
-          <div className={`absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none transition-colors duration-200 ${isFocused ? 'text-[#041367]' : 'text-slate-400'}`}>
+          <div className={`absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none transition-colors duration-200 ${isFocused ? 'text-[#073155]' : 'text-slate-400'}`}>
             {icon}
           </div>
         )}
@@ -968,7 +995,7 @@ const Input = ({
           className={`w-full h-10 rounded-lg border bg-white text-slate-900 text-sm placeholder:text-slate-400 transition-colors duration-200 focus:outline-none focus:ring-2 disabled:bg-slate-50 ${
             error
               ? 'border-red-400 focus:ring-red-100'
-              : 'border-slate-300 hover:border-slate-400 focus:border-[#041367] focus:ring-[#041367]/15'
+              : 'border-slate-300 hover:border-slate-400 focus:border-[#073155] focus:ring-[#073155]/15'
           } ${icon ? 'pl-10' : 'pl-3.5'} ${rightElement ? 'pr-11' : 'pr-3.5'}`}
         />
         {rightElement && (
@@ -1000,7 +1027,7 @@ const Select = ({ label, name, value, onChange, required = false, children }) =>
         name={name}
         value={value}
         onChange={onChange}
-        className="w-full h-10 appearance-none rounded-lg border border-slate-300 hover:border-slate-400 bg-white pl-3.5 pr-9 text-sm text-slate-900 transition-colors focus:outline-none focus:border-[#041367] focus:ring-2 focus:ring-[#041367]/15"
+        className="w-full h-10 appearance-none rounded-lg border border-slate-300 hover:border-slate-400 bg-white pl-3.5 pr-9 text-sm text-slate-900 transition-colors focus:outline-none focus:border-[#073155] focus:ring-2 focus:ring-[#073155]/15"
       >
         {children}
       </select>
@@ -1028,7 +1055,7 @@ const Button = ({
     'h-11 rounded-lg text-sm font-semibold transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2';
 
   const variants = {
-    primary: 'bg-[#041367] text-white hover:bg-[#0a2080] focus-visible:ring-[#041367]',
+    primary: 'bg-[#073155] text-white hover:bg-[#0a4270] focus-visible:ring-[#073155]',
     outline: 'bg-white border border-slate-300 text-slate-700 hover:bg-slate-50 hover:border-slate-400 focus-visible:ring-slate-400',
   };
 
@@ -1088,7 +1115,7 @@ export default function RegisterPage() {
   const countryOptions = [
     { code: '+1', name: 'USA/Canada', example: '+1 555 123 4567' },
     { code: '+44', name: 'UK', example: '+44 20 7123 4567' },
-    { code: '+66', name: 'Thailand', example: '+66 2 123 4567' },
+    { code: '+66', name: 'Thailand', example: '+66 X XXX XXXX' },
     { code: '+86', name: 'China', example: '+86 10 1234 5678' },
   ];
 
@@ -1128,7 +1155,7 @@ export default function RegisterPage() {
 
   const getPasswordStrengthColor = () => {
     if (passwordStrength <= 25) return 'bg-red-500';
-    if (passwordStrength <= 50) return 'bg-orange-500';
+    if (passwordStrength <= 50) return 'bg-[#E96C35]';
     if (passwordStrength <= 75) return 'bg-yellow-500';
     return 'bg-green-500';
   };
@@ -1265,7 +1292,7 @@ export default function RegisterPage() {
     <button
       type="button"
       onClick={() => setShowPassword(!showPassword)}
-      className="p-2 text-slate-400 hover:text-slate-700 transition-colors rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#041367]/40"
+      className="p-2 text-slate-400 hover:text-slate-700 transition-colors rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#073155]/40"
       aria-label={showPassword ? 'Hide password' : 'Show password'}
     >
       {showPassword ? (
@@ -1313,16 +1340,16 @@ export default function RegisterPage() {
           {/* ==================================================
               LEFT: BRAND PANEL
           ================================================== */}
-          <aside className="relative hidden md:block bg-[#041367]">
+          <aside className="relative hidden md:block bg-[#073155]">
             <Image
-              src="/images/building.avif"
+              src="/images/cta.jpg"
               alt="Thai Shipping"
               fill
               priority
               sizes="(min-width: 768px) 430px, 0px"
               className="object-cover object-center"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#041367]/80 via-[#041367]/60 to-[#041367]/90" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#073155]/80 via-[#073155]/60 to-[#073155]/90" />
             <AnimatedImageOverlay />
           </aside>
 
@@ -1330,13 +1357,13 @@ export default function RegisterPage() {
               RIGHT: FORM PANEL
           ================================================== */}
           <section className="flex flex-col justify-center px-6 sm:px-10 py-8">
-            <p className="md:hidden text-sm font-semibold text-[#041367] mb-5">Thai Shipping Thailand</p>
+            <p className="md:hidden text-sm font-semibold text-[#073155] mb-5">Thai Shipping Thailand</p>
 
             <div className="mb-6">
               <h1 className="text-2xl font-semibold text-slate-900 tracking-tight">Create your account</h1>
               <p className="mt-1.5 text-sm text-slate-500">
                 Already have an account?{' '}
-                <Link href="/auth/login" className="font-medium text-[#041367] hover:underline underline-offset-4">
+                <Link href="/auth/login" className="font-medium text-[#E96C35] hover:text-[#d55f2b] hover:underline underline-offset-4">
                   Sign in
                 </Link>
               </p>
@@ -1354,8 +1381,8 @@ export default function RegisterPage() {
                       <li className="flex items-center gap-2" aria-current={active ? 'step' : undefined}>
                         <span
                           className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-semibold transition-colors ${
-                            done || active ? 'bg-[#041367] text-white' : 'bg-slate-100 text-slate-500 ring-1 ring-slate-200'
-                          } ${active ? 'ring-4 ring-[#041367]/15' : ''}`}
+                            done || active ? 'bg-[#073155] text-white' : 'bg-slate-100 text-slate-500 ring-1 ring-slate-200'
+                          } ${active ? 'ring-4 ring-[#073155]/15' : ''}`}
                         >
                           {done ? (
                             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1370,7 +1397,7 @@ export default function RegisterPage() {
                         </span>
                       </li>
                       {step < steps.length && (
-                        <div className={`flex-1 h-px mx-3 ${currentStep > step ? 'bg-[#041367]' : 'bg-slate-200'}`} />
+                        <div className={`flex-1 h-px mx-3 ${currentStep > step ? 'bg-[#073155]' : 'bg-slate-200'}`} />
                       )}
                     </React.Fragment>
                   );
@@ -1387,7 +1414,7 @@ export default function RegisterPage() {
                       value={formData.firstName}
                       onChange={handleChange}
                       onBlur={() => handleBlur('firstName')}
-                      placeholder="John"
+                      placeholder="Enter your firstname"
                       error={touched.firstName && errors.firstName}
                       required
                       icon={renderIcon('user')}
@@ -1398,7 +1425,7 @@ export default function RegisterPage() {
                       value={formData.lastName}
                       onChange={handleChange}
                       onBlur={() => handleBlur('lastName')}
-                      placeholder="Doe"
+                      placeholder="Enter your lastname"
                       error={touched.lastName && errors.lastName}
                       required
                     />
@@ -1411,7 +1438,7 @@ export default function RegisterPage() {
                     value={formData.email}
                     onChange={handleChange}
                     onBlur={() => handleBlur('email')}
-                    placeholder="john.doe@company.com"
+                    placeholder="name@company.com"
                     error={touched.email && errors.email}
                     required
                     icon={renderIcon('email')}
@@ -1550,13 +1577,11 @@ export default function RegisterPage() {
                         name="acceptTerms"
                         checked={formData.acceptTerms}
                         onChange={handleChange}
-                        className="mt-0.5 w-4 h-4 rounded border-slate-300 text-[#041367] focus:ring-[#041367]/30"
+                        className="mt-0.5 w-4 h-4 rounded border-slate-300 text-[#073155] focus:ring-[#073155]/30"
                       />
                       <span className="text-[13px] text-slate-600 leading-snug">
                         I agree to the{' '}
-                        <a href="#" className="font-medium text-[#041367] hover:underline underline-offset-4">Terms of Service</a>{' '}
-                        and{' '}
-                        <a href="#" className="font-medium text-[#041367] hover:underline underline-offset-4">Privacy Policy</a>
+                        <a href="/privacy-policy" className="font-medium text-[#E96C35] hover:text-[#d55f2b] hover:underline underline-offset-4">Privacy Policy</a>
                       </span>
                     </label>
                     {touched.acceptTerms && errors.acceptTerms && (
@@ -1580,7 +1605,7 @@ export default function RegisterPage() {
         </motion.div>
 
         <p className="mt-5 text-center text-xs text-slate-400">
-          © 2006 Thai Shipping (Thailand) Co., Ltd. All rights reserved.
+          © 2009 Thai Shipping (Thailand) Co., Ltd. All rights reserved.
         </p>
       </main>
     </>

@@ -1,12 +1,20 @@
+
+
+
+
 // 'use client';
 
 // import React, { useState, useEffect } from 'react';
 // import Link from 'next/link';
 // import { useRouter, useSearchParams } from 'next/navigation';
+// import { motion } from 'framer-motion';
 // import { ToastContainer, toast } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
 // import { verifyOTP, resendOTP } from '@/services/Authentication';
 
+// // ==========================================================
+// // BUTTON
+// // ==========================================================
 // const Button = ({
 //   children,
 //   type = 'button',
@@ -17,18 +25,22 @@
 //   onClick,
 //   className = '',
 // }) => {
-//   const baseClasses = 'rounded-lg font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2';
-  
+//   const baseClasses =
+//     'rounded-xl font-semibold transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2';
+
 //   const variants = {
-//     primary: 'bg-[#E67E22] text-white hover:bg-[#d35400] focus:ring-[#E67E22]',
-//     secondary: 'bg-gray-200 text-gray-900 hover:bg-gray-300 focus:ring-gray-500',
-//     outline: 'border-2 border-[#E67E22] text-[#E67E22] hover:bg-[#fffaf6] focus:ring-[#E67E22]'
+//     primary:
+//       'bg-[#073155] text-white hover:bg-[#0a4270] focus-visible:ring-[#073155] shadow-sm',
+//     secondary:
+//       'bg-slate-100 text-slate-700 hover:bg-slate-200 focus-visible:ring-slate-400',
+//     outline:
+//       'border-2 border-[#073155] text-[#073155] hover:bg-[#073155] hover:text-white focus-visible:ring-[#073155]',
 //   };
 
 //   const sizes = {
-//     sm: 'px-3 py-1.5 text-sm',
-//     md: 'px-4 py-2 text-base',
-//     lg: 'px-5 py-2.5 text-base'
+//     sm: 'px-4 py-2 text-sm',
+//     md: 'px-5 py-2.5 text-base',
+//     lg: 'px-6 py-3 text-base',
 //   };
 
 //   const variantClass = variants[variant] || variants.primary;
@@ -37,80 +49,85 @@
 //   return (
 //     <button
 //       type={type}
-//       className={baseClasses + ' ' + variantClass + ' ' + sizeClass + ' ' + className + ' ' + (disabled || isLoading ? 'opacity-50 cursor-not-allowed' : '')}
+//       className={`${baseClasses} ${variantClass} ${sizeClass} ${className} ${
+//         disabled || isLoading ? 'opacity-50 cursor-not-allowed' : ''
+//       }`}
 //       disabled={disabled || isLoading}
 //       onClick={onClick}
 //     >
-//       {isLoading ? (
-//         <div className="flex items-center justify-center">
-//           <svg className="animate-spin h-5 w-5 mr-2" viewBox="0 0 24 24">
-//             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-//             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-//           </svg>
-//           Verifying...
-//         </div>
-//       ) : (
-//         children
-//       )}
+//       <span className="flex items-center justify-center gap-2">
+//         {isLoading ? (
+//           <>
+//             <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
+//               <circle
+//                 className="opacity-25"
+//                 cx="12"
+//                 cy="12"
+//                 r="10"
+//                 stroke="currentColor"
+//                 strokeWidth="4"
+//                 fill="none"
+//               />
+//               <path
+//                 className="opacity-75"
+//                 fill="currentColor"
+//                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+//               />
+//             </svg>
+//             Verifying...
+//           </>
+//         ) : (
+//           children
+//         )}
+//       </span>
 //     </button>
 //   );
 // };
 
-// const Input = ({
-//   label,
-//   type = 'text',
-//   name,
+// // ==========================================================
+// // OTP INPUT (single digit box)
+// // ==========================================================
+// const OtpBox = ({
+//   id,
 //   value,
 //   onChange,
-//   onBlur,
-//   placeholder,
-//   error,
-//   required = false,
-//   disabled = false,
-//   maxLength,
-//   className = '',
-//   ...props
-// }) => {
-//   return (
-//     <div className="mb-3">
-//       {label && (
-//         <label htmlFor={name} className="block text-sm font-medium text-gray-700 mb-1">
-//           {label}
-//           {required && <span className="text-red-500 ml-1">*</span>}
-//         </label>
-//       )}
-//       <div className="relative">
-//         <input
-//           type={type}
-//           id={name}
-//           name={name}
-//           value={value}
-//           onChange={onChange}
-//           onBlur={onBlur}
-//           placeholder={placeholder}
-//           disabled={disabled}
-//           maxLength={maxLength}
-//           className={
-//             'w-full px-2 py-2 border rounded-lg shadow-sm ' +
-//             'focus:outline-none focus:ring-2 focus:ring-[#E67E22] focus:border-[#E67E22] ' +
-//             'text-center text-lg font-semibold ' +
-//             (error ? 'border-red-500 ' : 'border-gray-300 ') +
-//             (disabled ? 'bg-gray-100 cursor-not-allowed ' : '') +
-//             className
-//           }
-//           {...props}
-//         />
-//       </div>
-//       {error && <p className="mt-1 text-sm text-red-600">{error}</p>}
-//     </div>
-//   );
-// };
+//   onKeyDown,
+//   onPaste,
+//   disabled,
+//   hasError,
+// }) => (
+//   <input
+//     id={id}
+//     name={id}
+//     type="text"
+//     inputMode="numeric"
+//     autoComplete="one-time-code"
+//     value={value}
+//     onChange={onChange}
+//     onKeyDown={onKeyDown}
+//     onPaste={onPaste}
+//     placeholder=""
+//     maxLength={1}
+//     disabled={disabled}
+//     className={`h-12 w-11 rounded-lg border-2 bg-white text-center text-xl font-bold text-[#073155] transition-all duration-200 outline-none sm:h-14 sm:w-12 sm:text-2xl
+//       ${
+//         hasError
+//           ? 'border-red-400 focus:border-red-500 focus:ring-4 focus:ring-red-500/10'
+//           : 'border-slate-200 hover:border-[#073155]/40 focus:border-[#073155] focus:ring-4 focus:ring-[#073155]/10'
+//       }
+//       ${disabled ? 'opacity-50 cursor-not-allowed' : ''}
+//     `}
+//   />
+// );
 
+// // ==========================================================
+// // VERIFY OTP PAGE
+// // ==========================================================
 // export default function VerifyOTPPage() {
 //   const router = useRouter();
 //   const searchParams = useSearchParams();
 //   const email = searchParams.get('email');
-  
+
 //   const [otp, setOtp] = useState(['', '', '', '', '', '']);
 //   const [loading, setLoading] = useState(false);
 //   const [resendLoading, setResendLoading] = useState(false);
@@ -118,13 +135,14 @@
 //   const [canResend, setCanResend] = useState(false);
 //   const [error, setError] = useState('');
 
+//   // Redirect if no email
 //   useEffect(() => {
 //     if (!email) {
 //       router.push('/auth/register');
 //     }
 //   }, [email, router]);
 
-//   // Timer for resend OTP
+//   // Resend timer
 //   useEffect(() => {
 //     if (timeLeft > 0) {
 //       const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
@@ -134,9 +152,12 @@
 //     }
 //   }, [timeLeft]);
 
+//   // ============================
+//   // OTP HANDLERS
+//   // ============================
 //   const handleOtpChange = (index, value) => {
 //     if (value.length > 1) return;
-    
+
 //     const newOtp = [...otp];
 //     newOtp[index] = value;
 //     setOtp(newOtp);
@@ -165,7 +186,7 @@
 //         if (index < 6) newOtp[index] = digit;
 //       });
 //       setOtp(newOtp);
-      
+
 //       const nextIndex = Math.min(digits.length, 5);
 //       const nextInput = document.getElementById(`otp-${nextIndex}`);
 //       if (nextInput) nextInput.focus();
@@ -174,7 +195,7 @@
 
 //   const handleSubmit = async (e) => {
 //     e.preventDefault();
-    
+
 //     const otpString = otp.join('');
 //     if (otpString.length !== 6) {
 //       setError('Please enter complete 6-digit OTP');
@@ -184,13 +205,16 @@
 //     setLoading(true);
 //     try {
 //       const response = await verifyOTP(email, otpString);
-      
+
 //       if (response.success) {
-//         toast.success('Email verified successfully! Redirecting to your profile...', {
-//           position: 'top-right',
-//           autoClose: 3000,
-//         });
-        
+//         toast.success(
+//           'Email verified successfully! Redirecting to your profile...',
+//           {
+//             position: 'top-right',
+//             autoClose: 3000,
+//           }
+//         );
+
 //         setTimeout(() => {
 //           router.push('/profile');
 //         }, 3000);
@@ -209,26 +233,23 @@
 
 //   const handleResendOTP = async () => {
 //     if (!canResend) return;
-    
+
 //     setResendLoading(true);
 //     try {
-//       // Call resend OTP API
 //       await resendOTP(email);
-      
+
 //       toast.success('New OTP sent to your email!', {
 //         position: 'top-right',
 //         autoClose: 3000,
 //       });
-      
+
 //       setTimeLeft(60);
 //       setCanResend(false);
 //       setOtp(['', '', '', '', '', '']);
-      
-//       // Focus first input after resend
+
 //       setTimeout(() => {
 //         document.getElementById('otp-0')?.focus();
 //       }, 100);
-      
 //     } catch (error) {
 //       toast.error(error.message || 'Failed to resend OTP. Please try again.', {
 //         position: 'top-right',
@@ -239,8 +260,16 @@
 //     }
 //   };
 
+//   // If no email, show redirect spinner
 //   if (!email) {
-//     return null;
+//     return (
+//       <div className="flex min-h-[70vh] items-center justify-center bg-[#F7F9FB]">
+//         <div className="text-center">
+//           <div className="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-4 border-[#073155]/20 border-t-[#073155]" />
+//           <p className="text-sm text-[#5A6B7B]">Redirecting...</p>
+//         </div>
+//       </div>
+//     );
 //   }
 
 //   return (
@@ -257,232 +286,252 @@
 //         pauseOnHover
 //         theme="colored"
 //       />
-      
-//       <div className="h-screen flex flex-col lg:flex-row overflow-hidden bg-[#fffaf6]">
-//         {/* Left Side - Branding/Info */}
-//         <div className="lg:w-1/2 bg-[#122652] p-6 lg:p-8 flex flex-col justify-between relative overflow-hidden">
-//           {/* Background Pattern */}
-//           <div className="absolute inset-0 opacity-10">
-//             <div className="absolute top-0 -left-4 w-72 h-72 bg-[#E67E22] rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
-//             <div className="absolute top-0 -right-4 w-72 h-72 bg-[#3C719D] rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
-//             <div className="absolute -bottom-8 left-20 w-72 h-72 bg-[#E67E22] rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
-//           </div>
 
-//           {/* Content */}
-//           <div className="relative z-10 flex flex-col h-full">
-//             <div className="flex items-center space-x-2">
-//               <div className="w-10 h-10 bg-[#E67E22] rounded-lg flex items-center justify-center">
-//                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+//       <main className="flex min-h-[80vh] items-center justify-center bg-[#F7F9FB] px-4 py-8 sm:py-10 -mt-6">
+//         <motion.div
+//           initial={{ opacity: 0, y: 10 }}
+//           animate={{ opacity: 1, y: 0 }}
+//           transition={{ duration: 0.45 }}
+//           className="w-full max-w-[460px]"
+//         >
+//           {/* Main card */}
+//           <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-[0_10px_40px_rgba(7,49,85,0.08)] sm:p-8">
+//             {/* Icon badge */}
+//             <div className="mb-5 flex justify-center">
+//               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#E96C35] shadow-lg shadow-[#E96C35]/25">
+//                 <svg
+//                   className="h-5 w-5 text-white"
+//                   fill="none"
+//                   stroke="currentColor"
+//                   viewBox="0 0 24 24"
+//                 >
+//                   <path
+//                     strokeLinecap="round"
+//                     strokeLinejoin="round"
+//                     strokeWidth="2"
+//                     d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+//                   />
 //                 </svg>
 //               </div>
-//               <span className="text-2xl font-bold text-white">Logi<span className="text-[#E67E22]">Swift</span></span>
 //             </div>
 
-//             <div className="flex-1 flex flex-col justify-center">
-//               <h1 className="text-3xl lg:text-4xl font-bold text-white leading-tight mb-3">
-//                 Verify Your
-//                 <span className="text-[#E67E22] block">Email Address</span>
-//               </h1>
-//               <p className="text-gray-300 text-base max-w-md mb-4">
-//                 We've sent a verification code to your email. Please enter it below to complete your registration.
+//             {/* Header */}
+//             <div className="mb-5 text-center">
+//               <p className="mb-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-[#E96C35]">
+//                 Email Verification
 //               </p>
+//               <h1 className="text-xl font-semibold tracking-tight text-[#073155] sm:text-2xl">
+//                 Verify your email
+//               </h1>
+//               <p className="mx-auto mt-2 max-w-xs text-[13px] leading-5 text-[#5A6B7B]">
+//                 We&apos;ve sent a 6-digit verification code to your email.
+//               </p>
+//             </div>
 
-//               {/* Email Info */}
-//               <div className="mb-4 p-3 bg-white/10 backdrop-blur-lg rounded-lg border border-white/20">
-//                 <p className="text-gray-200 text-xs">
-//                   Verification email sent to:
+//             {/* Email pill */}
+//             <div className="mb-5 flex items-center gap-2.5 rounded-xl border border-[#E5E9EF] bg-[#F8FAFC] px-3.5 py-2.5">
+//               <svg
+//                 className="h-4 w-4 shrink-0 text-[#E96C35]"
+//                 fill="none"
+//                 stroke="currentColor"
+//                 viewBox="0 0 24 24"
+//               >
+//                 <path
+//                   strokeLinecap="round"
+//                   strokeLinejoin="round"
+//                   strokeWidth="1.8"
+//                   d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+//                 />
+//               </svg>
+//               <div className="min-w-0 flex-1">
+//                 <p className="text-[9.5px] font-semibold uppercase tracking-[0.14em] text-[#8A94A6]">
+//                   Code sent to
 //                 </p>
-//                 <p className="text-white font-semibold text-sm mt-0.5 break-all">
+//                 <p className="mt-0.5 truncate text-[12.5px] font-semibold text-[#073155]">
 //                   {email}
 //                 </p>
 //               </div>
-
-//               {/* Features */}
-//               <div className="space-y-2 mb-4">
-//                 {[
-//                   'Secure verification process',
-//                   'Quick account activation',
-//                   'Access to all features',
-//                   '24/7 customer support'
-//                 ].map(function(feature, index) {
-//                   return (
-//                     <div key={index} className="flex items-center space-x-2">
-//                       <div className="flex-shrink-0 w-5 h-5 bg-[#E67E22] rounded-full flex items-center justify-center">
-//                         <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-//                         </svg>
-//                       </div>
-//                       <span className="text-gray-200 text-sm">{feature}</span>
-//                     </div>
-//                   );
-//                 })}
-//               </div>
-
-//               {/* Testimonial */}
-//               <div className="bg-white/10 backdrop-blur-lg rounded-xl p-4 border border-white/20">
-//                 <p className="text-white text-sm italic">
-//                   "The verification process was seamless. I was up and running in minutes!"
-//                 </p>
-//                 <div className="mt-2 flex items-center">
-//                   <div className="w-8 h-8 bg-[#E67E22] rounded-full flex items-center justify-center text-white font-bold text-sm">
-//                     MK
-//                   </div>
-//                   <div className="ml-2">
-//                     <p className="text-white text-sm font-semibold">Mike Khan</p>
-//                     <p className="text-gray-300 text-xs">Verified Trader</p>
-//                   </div>
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-
-//         {/* Right Side - OTP Verification Form */}
-//         <div className="lg:w-1/2 flex items-center justify-center p-4 lg:p-6 overflow-y-auto">
-//           <div className="w-full max-w-md py-4">
-//             <div className="text-center mb-4">
-//               <h2 className="text-2xl font-bold text-[#122652]">Enter Verification Code</h2>
-//               <p className="text-gray-600 text-sm mt-1">
-//                 Didn't receive the code?{' '}
-//                 <button
-//                   onClick={handleResendOTP}
-//                   disabled={!canResend || resendLoading}
-//                   className={'font-semibold text-sm ' + (canResend && !resendLoading ? 'text-[#E67E22] hover:underline' : 'text-gray-400 cursor-not-allowed')}
-//                 >
-//                   {resendLoading ? (
-//                     <span className="flex items-center justify-center">
-//                       <svg className="animate-spin h-3 w-3 mr-1" viewBox="0 0 24 24">
-//                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-//                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-//                       </svg>
-//                       Sending...
-//                     </span>
-//                   ) : (
-//                     `Resend OTP ${!canResend ? `(${timeLeft}s)` : ''}`
-//                   )}
-//                 </button>
-//               </p>
 //             </div>
 
-//             <form onSubmit={handleSubmit} className="space-y-5">
-//               {/* OTP Input Fields */}
-//               <div className="space-y-3">
-//                 <label className="block text-sm font-medium text-gray-700 text-center">
-//                   Enter 6-digit code
+//             {/* Form */}
+//             <form onSubmit={handleSubmit} className="space-y-4">
+//               <div>
+//                 <label className="mb-3 block text-center text-[12px] font-medium text-[#073155]">
+//                   Enter the 6-digit code
 //                 </label>
-                
-//                 <div className="flex justify-center gap-2">
-//                   {otp.map(function(digit, index) {
-//                     return (
-//                       <div key={index} className="w-11">
-//                         <Input
-//                           id={`otp-${index}`}
-//                           name={`otp-${index}`}
-//                           type="text"
-//                           value={digit}
-//                           onChange={function(e) { handleOtpChange(index, e.target.value); }}
-//                           onKeyDown={function(e) { handleKeyDown(index, e); }}
-//                           onPaste={index === 0 ? handlePaste : undefined}
-//                           placeholder="0"
-//                           maxLength={1}
-//                           required
-//                           disabled={loading || resendLoading}
-//                           className="text-center text-lg font-bold px-1"
-//                           error={error && index === 0 ? error : ''}
-//                         />
-//                       </div>
-//                     );
-//                   })}
+
+//                 <div className="flex items-center justify-center gap-2 sm:gap-2.5">
+//                   {otp.map((digit, index) => (
+//                     <OtpBox
+//                       key={index}
+//                       id={`otp-${index}`}
+//                       value={digit}
+//                       onChange={(e) =>
+//                         handleOtpChange(
+//                           index,
+//                           e.target.value.replace(/\D/g, '')
+//                         )
+//                       }
+//                       onKeyDown={(e) => handleKeyDown(index, e)}
+//                       onPaste={index === 0 ? handlePaste : undefined}
+//                       disabled={loading || resendLoading}
+//                       hasError={!!error}
+//                     />
+//                   ))}
 //                 </div>
 
 //                 {error && (
-//                   <p className="text-center text-sm text-red-600 animate-pulse">
+//                   <motion.p
+//                     initial={{ opacity: 0, y: -4 }}
+//                     animate={{ opacity: 1, y: 0 }}
+//                     className="mt-3 flex items-center justify-center gap-1.5 text-[12px] font-medium text-red-500"
+//                   >
+//                     <svg
+//                       className="h-3.5 w-3.5"
+//                       fill="none"
+//                       stroke="currentColor"
+//                       viewBox="0 0 24 24"
+//                     >
+//                       <path
+//                         strokeLinecap="round"
+//                         strokeLinejoin="round"
+//                         strokeWidth="2"
+//                         d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+//                       />
+//                     </svg>
 //                     {error}
-//                   </p>
+//                   </motion.p>
 //                 )}
 //               </div>
 
-//               {/* Action Buttons */}
-//               <div className="space-y-3">
-//                 <Button
-//                   type="submit"
-//                   variant="primary"
-//                   size="lg"
-//                   isLoading={loading}
-//                   disabled={resendLoading}
-//                   className="w-full"
+//               <Button
+//                 type="submit"
+//                 variant="primary"
+//                 size="lg"
+//                 isLoading={loading}
+//                 disabled={resendLoading}
+//                 className="!mt-5 w-full"
+//               >
+//                 Verify Email
+//                 <svg
+//                   className="h-4 w-4"
+//                   fill="none"
+//                   stroke="currentColor"
+//                   viewBox="0 0 24 24"
 //                 >
-//                   Verify Email
-//                   <svg className="w-4 h-4 ml-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-//                   </svg>
-//                 </Button>
+//                   <path
+//                     strokeLinecap="round"
+//                     strokeLinejoin="round"
+//                     strokeWidth="2"
+//                     d="M14 5l7 7m0 0l-7 7m7-7H3"
+//                   />
+//                 </svg>
+//               </Button>
 
+//               {/* Resend */}
+//               <div className="text-center">
+//                 <p className="text-[12.5px] text-[#5A6B7B]">
+//                   Didn&apos;t receive the code?{' '}
+//                   <button
+//                     type="button"
+//                     onClick={handleResendOTP}
+//                     disabled={!canResend || resendLoading}
+//                     className={`font-semibold transition-colors ${
+//                       canResend && !resendLoading
+//                         ? 'text-[#E96C35] hover:text-[#d55f2b] hover:underline underline-offset-4'
+//                         : 'cursor-not-allowed text-[#8A94A6]'
+//                     }`}
+//                   >
+//                     {resendLoading ? (
+//                       <span className="inline-flex items-center justify-center gap-1">
+//                         <svg
+//                           className="h-3 w-3 animate-spin"
+//                           viewBox="0 0 24 24"
+//                         >
+//                           <circle
+//                             className="opacity-25"
+//                             cx="12"
+//                             cy="12"
+//                             r="10"
+//                             stroke="currentColor"
+//                             strokeWidth="4"
+//                             fill="none"
+//                           />
+//                           <path
+//                             className="opacity-75"
+//                             fill="currentColor"
+//                             d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+//                           />
+//                         </svg>
+//                         Sending...
+//                       </span>
+//                     ) : (
+//                       `Resend code ${!canResend ? `(${timeLeft}s)` : ''}`
+//                     )}
+//                   </button>
+//                 </p>
+//               </div>
+
+//               <div className="text-center">
 //                 <Link
 //                   href="/auth/register"
-//                   className="block text-center text-xs text-gray-600 hover:text-[#E67E22] transition-colors"
+//                   className="inline-flex items-center gap-1.5 text-[12px] font-medium text-[#5A6B7B] transition-colors hover:text-[#073155]"
 //                 >
-//                   ← Back to Registration
+//                   <svg
+//                     className="h-3.5 w-3.5"
+//                     fill="none"
+//                     stroke="currentColor"
+//                     viewBox="0 0 24 24"
+//                   >
+//                     <path
+//                       strokeLinecap="round"
+//                       strokeLinejoin="round"
+//                       strokeWidth="2"
+//                       d="M15 19l-7-7 7-7"
+//                     />
+//                   </svg>
+//                   Back to Registration
 //                 </Link>
 //               </div>
+//             </form>
 
-//               {/* Help Text */}
-//               <div className="mt-4 p-3 bg-blue-50 rounded-lg">
-//                 <div className="flex items-start space-x-2">
-//                   <svg className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-//                   </svg>
-//                   <div className="text-xs text-blue-800">
-//                     <p className="font-semibold mb-0.5">Having trouble?</p>
-//                     <p>Check spam folder or click "Resend OTP". Code expires in 10 minutes.</p>
-//                   </div>
+//             {/* Help note */}
+//             <div className="mt-5 rounded-xl border border-[#E96C35]/20 bg-[#FFF6F1] p-3.5">
+//               <div className="flex items-start gap-2.5">
+//                 <svg
+//                   className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#E96C35]"
+//                   fill="none"
+//                   stroke="currentColor"
+//                   viewBox="0 0 24 24"
+//                 >
+//                   <path
+//                     strokeLinecap="round"
+//                     strokeLinejoin="round"
+//                     strokeWidth="2"
+//                     d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+//                   />
+//                 </svg>
+//                 <div className="text-[11px] leading-4 text-[#073155]">
+//                   <p className="font-semibold">Having trouble?</p>
+//                   <p className="mt-0.5 text-[#5A6B7B]">
+//                     Check your spam folder or click &quot;Resend code&quot;.
+//                     The code expires in 10 minutes.
+//                   </p>
 //                 </div>
 //               </div>
-//             </form>
+//             </div>
 //           </div>
-//         </div>
-//       </div>
 
-//       {/* Animation Styles */}
-//       <style jsx>{`
-//         @keyframes blob {
-//           0% { transform: translate(0px, 0px) scale(1); }
-//           33% { transform: translate(30px, -50px) scale(1.1); }
-//           66% { transform: translate(-20px, 20px) scale(0.9); }
-//           100% { transform: translate(0px, 0px) scale(1); }
-//         }
-//         .animate-blob {
-//           animation: blob 7s infinite;
-//         }
-//         .animation-delay-2000 {
-//           animation-delay: 2s;
-//         }
-//         .animation-delay-4000 {
-//           animation-delay: 4s;
-//         }
-        
-//         /* Custom scrollbar for right side */
-//         .overflow-y-auto::-webkit-scrollbar {
-//           width: 4px;
-//         }
-        
-//         .overflow-y-auto::-webkit-scrollbar-track {
-//           background: #f1f1f1;
-//         }
-        
-//         .overflow-y-auto::-webkit-scrollbar-thumb {
-//           background: #E67E22;
-//           border-radius: 4px;
-//         }
-        
-//         .overflow-y-auto::-webkit-scrollbar-thumb:hover {
-//           background: #d35400;
-//         }
-//       `}</style>
+//           {/* Footer */}
+//           <p className="mt-5 text-center text-[11px] text-[#8A94A6]">
+//             © 2006 Thai Shipping (Thailand) Co., Ltd. All rights reserved.
+//           </p>
+//         </motion.div>
+//       </main>
 //     </>
 //   );
 // }
+
 
 
 
@@ -491,12 +540,14 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
-import Image from 'next/image';
+import { motion } from 'framer-motion';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { verifyOTP, resendOTP } from '@/services/Authentication';
 
+// ==========================================================
+// BUTTON
+// ==========================================================
 const Button = ({
   children,
   type = 'button',
@@ -507,18 +558,22 @@ const Button = ({
   onClick,
   className = '',
 }) => {
-  const baseClasses = 'rounded-xl font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 relative overflow-hidden group';
-  
+  const baseClasses =
+    'rounded-xl font-semibold transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2';
+
   const variants = {
-    primary: 'bg-gradient-to-r from-[#041367] via-[#0f2b6e] to-[#041367] text-white hover:shadow-xl hover:scale-[1.02] focus:ring-[#041367]',
-    secondary: 'bg-gray-100 text-gray-700 hover:bg-gray-200 focus:ring-gray-500',
-    outline: 'border-2 border-[#041367] text-[#041367] hover:bg-[#041367] hover:text-white focus:ring-[#041367]'
+    primary:
+      'bg-[#073155] text-white hover:bg-[#0a4270] focus-visible:ring-[#073155] shadow-sm',
+    secondary:
+      'bg-slate-100 text-slate-700 hover:bg-slate-200 focus-visible:ring-slate-400',
+    outline:
+      'border-2 border-[#073155] text-[#073155] hover:bg-[#073155] hover:text-white focus-visible:ring-[#073155]',
   };
 
   const sizes = {
     sm: 'px-4 py-2 text-sm',
     md: 'px-5 py-2.5 text-base',
-    lg: 'px-6 py-3 text-lg'
+    lg: 'px-6 py-3 text-base',
   };
 
   const variantClass = variants[variant] || variants.primary;
@@ -527,16 +582,30 @@ const Button = ({
   return (
     <button
       type={type}
-      className={`${baseClasses} ${variantClass} ${sizeClass} ${className} ${(disabled || isLoading) ? 'opacity-50 cursor-not-allowed' : ''}`}
+      className={`${baseClasses} ${variantClass} ${sizeClass} ${className} ${
+        disabled || isLoading ? 'opacity-50 cursor-not-allowed' : ''
+      }`}
       disabled={disabled || isLoading}
       onClick={onClick}
     >
-      <span className="relative z-10 flex items-center justify-center gap-2">
+      <span className="flex items-center justify-center gap-2">
         {isLoading ? (
           <>
             <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
-              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"
+                fill="none"
+              />
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              />
             </svg>
             Verifying...
           </>
@@ -544,149 +613,54 @@ const Button = ({
           children
         )}
       </span>
-      {variant === 'primary' && (
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-          initial={{ x: '-100%' }}
-          whileHover={{ x: '100%' }}
-          transition={{ duration: 0.6 }}
-        />
-      )}
     </button>
   );
 };
 
-const Input = ({
-  label,
-  type = 'text',
-  name,
+// ==========================================================
+// OTP INPUT (single digit box)
+// ==========================================================
+const OtpBox = ({
+  id,
   value,
   onChange,
-  onBlur,
-  placeholder,
-  error,
-  required = false,
-  disabled = false,
-  maxLength,
-  className = '',
-  ...props
-}) => {
-  const [isFocused, setIsFocused] = useState(false);
+  onKeyDown,
+  onPaste,
+  disabled,
+  hasError,
+}) => (
+  <input
+    id={id}
+    name={id}
+    type="text"
+    inputMode="numeric"
+    autoComplete="one-time-code"
+    value={value}
+    onChange={onChange}
+    onKeyDown={onKeyDown}
+    onPaste={onPaste}
+    placeholder=""
+    maxLength={1}
+    disabled={disabled}
+    className={`h-12 w-11 rounded-lg border-2 bg-white text-center text-xl font-bold text-[#073155] transition-all duration-200 outline-none sm:h-14 sm:w-12 sm:text-2xl
+      ${
+        hasError
+          ? 'border-red-400 focus:border-red-500 focus:ring-4 focus:ring-red-500/10'
+          : 'border-slate-200 hover:border-[#073155]/40 focus:border-[#073155] focus:ring-4 focus:ring-[#073155]/10'
+      }
+      ${disabled ? 'opacity-50 cursor-not-allowed' : ''}
+    `}
+  />
+);
 
-  return (
-    <div className="mb-2">
-      {label && (
-        <label className="block text-sm font-medium text-gray-700 mb-2">
-          {label}
-          {required && <span className="text-red-500 ml-1">*</span>}
-        </label>
-      )}
-      <div className="relative group">
-        <input
-          type={type}
-          id={name}
-          name={name}
-          value={value}
-          onChange={onChange}
-          onBlur={(e) => {
-            setIsFocused(false);
-            onBlur && onBlur(e);
-          }}
-          onFocus={() => setIsFocused(true)}
-          placeholder={placeholder}
-          disabled={disabled}
-          maxLength={maxLength}
-          className={`w-full px-4 py-3 border-2 rounded-xl shadow-sm bg-white transition-all duration-300 focus:outline-none text-center text-xl font-semibold ${
-            error 
-              ? 'border-red-500 bg-red-50 focus:ring-red-500' 
-              : isFocused 
-                ? 'border-[#041367] ring-4 ring-[#041367]/10' 
-                : 'border-gray-200 hover:border-[#041367]/50'
-          } ${className}`}
-          {...props}
-        />
-      </div>
-      {error && (
-        <motion.p initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="mt-2 text-sm text-red-500 flex items-center gap-1">
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-          {error}
-        </motion.p>
-      )}
-    </div>
-  );
-};
-
-// Animated Text Overlay Component for Right Side Image
-const AnimatedImageOverlay = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  
-  const messages = [
-    { title: "Global Shipping Excellence", description: "Connecting Thailand to the world with reliable ocean freight services across Asia, America, and Europe." },
-    { title: "30+ Years of Trust", description: "Serving the global community with excellence, recognized as Ocean Carrier of the Year for four consecutive years." },
-    { title: "Advanced Fleet", description: "Modern container fleet with real-time tracking and temperature-controlled solutions for all cargo types." },
-    { title: "24/7 Customer Support", description: "Dedicated support team available round the clock for all your shipping needs." },
-    { title: "Global Network", description: "200+ overseas branch offices and 50+ countries connected through our comprehensive network." }
-  ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % messages.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, []);
-
-  return (
-    <div className="absolute inset-0 flex flex-col justify-center p-8 md:p-10">
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentIndex}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.5 }}
-          className="space-y-4"
-        >
-          <div className="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full">
-            <span className="text-white text-sm font-medium">✦ Since 1988</span>
-          </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
-            {messages[currentIndex].title}
-          </h2>
-          <p className="text-white/90 text-base md:text-lg leading-relaxed max-w-md">
-            {messages[currentIndex].description}
-          </p>
-          <div className="flex items-center gap-2 pt-4">
-            <div className="w-12 h-0.5 bg-white/60 rounded-full"></div>
-            <span className="text-white/60 text-sm">Hanjin Shipping Thailand</span>
-          </div>
-        </motion.div>
-      </AnimatePresence>
-      
-      {/* Slide Indicators */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-2">
-        {messages.map((_, idx) => (
-          <button
-            key={idx}
-            onClick={() => setCurrentIndex(idx)}
-            className={`transition-all duration-300 rounded-full ${
-              currentIndex === idx 
-                ? 'w-8 h-1.5 bg-white' 
-                : 'w-1.5 h-1.5 bg-white/40 hover:bg-white/60'
-            }`}
-          />
-        ))}
-      </div>
-    </div>
-  );
-};
-
+// ==========================================================
+// VERIFY OTP PAGE
+// ==========================================================
 export default function VerifyOTPPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const email = searchParams.get('email');
-  
+
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const [loading, setLoading] = useState(false);
   const [resendLoading, setResendLoading] = useState(false);
@@ -694,13 +668,14 @@ export default function VerifyOTPPage() {
   const [canResend, setCanResend] = useState(false);
   const [error, setError] = useState('');
 
+  // Redirect if no email
   useEffect(() => {
     if (!email) {
       router.push('/auth/register');
     }
   }, [email, router]);
 
-  // Timer for resend OTP
+  // Resend timer
   useEffect(() => {
     if (timeLeft > 0) {
       const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
@@ -710,9 +685,12 @@ export default function VerifyOTPPage() {
     }
   }, [timeLeft]);
 
+  // ============================
+  // OTP HANDLERS
+  // ============================
   const handleOtpChange = (index, value) => {
     if (value.length > 1) return;
-    
+
     const newOtp = [...otp];
     newOtp[index] = value;
     setOtp(newOtp);
@@ -741,7 +719,7 @@ export default function VerifyOTPPage() {
         if (index < 6) newOtp[index] = digit;
       });
       setOtp(newOtp);
-      
+
       const nextIndex = Math.min(digits.length, 5);
       const nextInput = document.getElementById(`otp-${nextIndex}`);
       if (nextInput) nextInput.focus();
@@ -750,7 +728,7 @@ export default function VerifyOTPPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     const otpString = otp.join('');
     if (otpString.length !== 6) {
       setError('Please enter complete 6-digit OTP');
@@ -760,13 +738,16 @@ export default function VerifyOTPPage() {
     setLoading(true);
     try {
       const response = await verifyOTP(email, otpString);
-      
+
       if (response.success) {
-        toast.success('Email verified successfully! Redirecting to your profile...', {
-          position: 'top-right',
-          autoClose: 3000,
-        });
-        
+        toast.success(
+          'Email verified successfully! Redirecting to your profile...',
+          {
+            position: 'top-right',
+            autoClose: 3000,
+          }
+        );
+
         setTimeout(() => {
           router.push('/profile');
         }, 3000);
@@ -785,24 +766,23 @@ export default function VerifyOTPPage() {
 
   const handleResendOTP = async () => {
     if (!canResend) return;
-    
+
     setResendLoading(true);
     try {
       await resendOTP(email);
-      
+
       toast.success('New OTP sent to your email!', {
         position: 'top-right',
         autoClose: 3000,
       });
-      
+
       setTimeLeft(60);
       setCanResend(false);
       setOtp(['', '', '', '', '', '']);
-      
+
       setTimeout(() => {
         document.getElementById('otp-0')?.focus();
       }, 100);
-      
     } catch (error) {
       toast.error(error.message || 'Failed to resend OTP. Please try again.', {
         position: 'top-right',
@@ -813,14 +793,13 @@ export default function VerifyOTPPage() {
     }
   };
 
+  // If no email, show redirect spinner
   if (!email) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white flex items-center justify-center">
+      <div className="flex min-h-[70vh] items-center justify-center bg-[#F7F9FB]">
         <div className="text-center">
-          <div className="relative">
-            <div className="w-20 h-20 border-4 border-[#041367] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          </div>
-          <p className="text-gray-500 mt-4">Redirecting...</p>
+          <div className="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-4 border-[#073155]/20 border-t-[#073155]" />
+          <p className="text-sm text-[#5A6B7B]">Redirecting...</p>
         </div>
       </div>
     );
@@ -828,174 +807,260 @@ export default function VerifyOTPPage() {
 
   return (
     <>
-      <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="colored" />
-      
-      <div className="min-h-screen bg-white">
-      
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
 
-        {/* Main Content */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 lg:py-8">
-          <div className="grid lg:grid-cols-2 gap-6 items-stretch min-h-[400px]">
-            
-            {/* Left Side - OTP Verification Form */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              className="flex items-center"
-            >
-              <div className="w-full bg-white rounded-2xl shadow-xl p-6 border border-gray-100">
-                {/* Header */}
-                <div className="text-center mb-6">
-                  <div className="w-14 h-14 bg-gradient-to-br from-[#041367] to-blue-700 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-md">
-                    <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <h2 className="text-2xl font-bold text-gray-900">Verify Your Email</h2>
-                  <p className="text-gray-500 text-sm mt-2">
-                    Enter the 6-digit code sent to your email
-                  </p>
-                </div>
-
-                {/* Email Info */}
-                <div className="mb-6 p-3 bg-gray-50 rounded-xl border border-gray-100">
-                  <p className="text-gray-500 text-xs text-center">
-                    Verification code sent to:
-                  </p>
-                  <p className="text-[#041367] font-semibold text-sm text-center mt-0.5 break-all">
-                    {email}
-                  </p>
-                </div>
-
-                <form onSubmit={handleSubmit}>
-                  {/* OTP Input Fields */}
-                  <div className="space-y-4">
-                    <label className="block text-sm font-medium text-gray-700 text-center">
-                      Enter 6-digit code
-                    </label>
-                    
-                    <div className="flex justify-center gap-3">
-                      {otp.map((digit, index) => (
-                        <div key={index} className="w-12">
-                          <Input
-                            id={`otp-${index}`}
-                            name={`otp-${index}`}
-                            type="text"
-                            value={digit}
-                            onChange={(e) => handleOtpChange(index, e.target.value)}
-                            onKeyDown={(e) => handleKeyDown(index, e)}
-                            onPaste={index === 0 ? handlePaste : undefined}
-                            placeholder="0"
-                            maxLength={1}
-                            required
-                            disabled={loading || resendLoading}
-                            className="text-center text-xl font-bold px-0"
-                            error={error && index === 0 ? error : ''}
-                          />
-                        </div>
-                      ))}
-                    </div>
-
-                    {error && (
-                      <p className="text-center text-sm text-red-500 animate-pulse">
-                        {error}
-                      </p>
-                    )}
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="space-y-4 mt-6">
-                    <Button
-                      type="submit"
-                      variant="primary"
-                      size="lg"
-                      isLoading={loading}
-                      disabled={resendLoading}
-                      className="w-full"
-                    >
-                      Verify Email
-                      <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                      </svg>
-                    </Button>
-
-                    <div className="text-center">
-                      <p className="text-sm text-gray-600">
-                        Didn't receive the code?{' '}
-                        <button
-                          onClick={handleResendOTP}
-                          disabled={!canResend || resendLoading}
-                          className={`font-semibold ${
-                            canResend && !resendLoading 
-                              ? 'text-[#041367] hover:underline' 
-                              : 'text-gray-400 cursor-not-allowed'
-                          }`}
-                        >
-                          {resendLoading ? (
-                            <span className="flex items-center justify-center gap-1">
-                              <svg className="animate-spin h-3 w-3" viewBox="0 0 24 24">
-                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                              </svg>
-                              Sending...
-                            </span>
-                          ) : (
-                            `Resend OTP ${!canResend ? `(${timeLeft}s)` : ''}`
-                          )}
-                        </button>
-                      </p>
-                    </div>
-
-                    <Link
-                      href="/auth/register"
-                      className="block text-center text-sm text-gray-500 hover:text-[#041367] transition-colors"
-                    >
-                      ← Back to Registration
-                    </Link>
-                  </div>
-
-                  {/* Help Text */}
-                  <div className="mt-6 p-3 bg-blue-50 rounded-xl">
-                    <div className="flex items-start gap-2">
-                      <svg className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      <div className="text-xs text-blue-800">
-                        <p className="font-semibold mb-0.5">Having trouble?</p>
-                        <p>Check your spam folder or click "Resend OTP". The code expires in 10 minutes.</p>
-                      </div>
-                    </div>
-                  </div>
-                </form>
+      <main className="flex min-h-[80vh] items-center justify-center bg-[#F7F9FB] px-4 py-8 sm:py-10 -mt-6">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45 }}
+          className="w-full max-w-[460px]"
+        >
+          {/* Main card */}
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-[0_10px_40px_rgba(7,49,85,0.08)] sm:p-8">
+            {/* Icon badge */}
+            <div className="mb-5 flex justify-center">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#E96C35] shadow-lg shadow-[#E96C35]/25">
+                <svg
+                  className="h-5 w-5 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
               </div>
-            </motion.div>
+            </div>
 
-            {/* Right Side - Image with Animated Text Overlay */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative rounded-2xl overflow-hidden shadow-xl min-h-[400px]"
-            >
-              <Image
-                src="/images/building.avif"
-                alt="Hanjin Shipping"
-                fill
-                className="object-cover"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-black/40" />
-              <AnimatedImageOverlay />
-            </motion.div>
+            {/* Header */}
+            <div className="mb-5 text-center">
+              <p className="mb-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-[#E96C35]">
+                Email Verification
+              </p>
+              <h1 className="text-xl font-semibold tracking-tight text-[#073155] sm:text-2xl">
+                Verify your email
+              </h1>
+              <p className="mx-auto mt-2 max-w-xs text-[13px] leading-5 text-[#5A6B7B]">
+                We&apos;ve sent a 6-digit verification code to your email.
+              </p>
+            </div>
+
+            {/* Email pill */}
+            <div className="mb-5 flex items-center gap-2.5 rounded-xl border border-[#E5E9EF] bg-[#F8FAFC] px-3.5 py-2.5">
+              <svg
+                className="h-4 w-4 shrink-0 text-[#E96C35]"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1.8"
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                />
+              </svg>
+              <div className="min-w-0 flex-1">
+                <p className="text-[9.5px] font-semibold uppercase tracking-[0.14em] text-[#8A94A6]">
+                  Code sent to
+                </p>
+                <p className="mt-0.5 truncate text-[12.5px] font-semibold text-[#073155]">
+                  {email}
+                </p>
+              </div>
+            </div>
+
+            {/* Form */}
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label className="mb-3 block text-center text-[12px] font-medium text-[#073155]">
+                  Enter the 6-digit code
+                </label>
+
+                <div className="flex items-center justify-center gap-2 sm:gap-2.5">
+                  {otp.map((digit, index) => (
+                    <OtpBox
+                      key={index}
+                      id={`otp-${index}`}
+                      value={digit}
+                      onChange={(e) =>
+                        handleOtpChange(
+                          index,
+                          e.target.value.replace(/\D/g, '')
+                        )
+                      }
+                      onKeyDown={(e) => handleKeyDown(index, e)}
+                      onPaste={index === 0 ? handlePaste : undefined}
+                      disabled={loading || resendLoading}
+                      hasError={!!error}
+                    />
+                  ))}
+                </div>
+
+                {error && (
+                  <motion.p
+                    initial={{ opacity: 0, y: -4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mt-3 flex items-center justify-center gap-1.5 text-[12px] font-medium text-red-500"
+                  >
+                    <svg
+                      className="h-3.5 w-3.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                    {error}
+                  </motion.p>
+                )}
+              </div>
+
+              <Button
+                type="submit"
+                variant="primary"
+                size="lg"
+                isLoading={loading}
+                disabled={resendLoading}
+                className="!mt-5 w-full"
+              >
+                Verify Email
+                <svg
+                  className="h-4 w-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                  />
+                </svg>
+              </Button>
+
+              {/* Resend */}
+              <div className="text-center">
+                <p className="text-[12.5px] text-[#5A6B7B]">
+                  Didn&apos;t receive the code?{' '}
+                  <button
+                    type="button"
+                    onClick={handleResendOTP}
+                    disabled={!canResend || resendLoading}
+                    className={`font-semibold transition-colors ${
+                      canResend && !resendLoading
+                        ? 'text-[#E96C35] hover:text-[#d55f2b] hover:underline underline-offset-4'
+                        : 'cursor-not-allowed text-[#8A94A6]'
+                    }`}
+                  >
+                    {resendLoading ? (
+                      <span className="inline-flex items-center justify-center gap-1">
+                        <svg
+                          className="h-3 w-3 animate-spin"
+                          viewBox="0 0 24 24"
+                        >
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                            fill="none"
+                          />
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                          />
+                        </svg>
+                        Sending...
+                      </span>
+                    ) : (
+                      `Resend code ${!canResend ? `(${timeLeft}s)` : ''}`
+                    )}
+                  </button>
+                </p>
+              </div>
+
+              <div className="text-center">
+                <Link
+                  href="/auth/register"
+                  className="inline-flex items-center gap-1.5 text-[12px] font-medium text-[#5A6B7B] transition-colors hover:text-[#073155]"
+                >
+                  <svg
+                    className="h-3.5 w-3.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M15 19l-7-7 7-7"
+                    />
+                  </svg>
+                  Back to Registration
+                </Link>
+              </div>
+            </form>
+
+            {/* Help note */}
+            <div className="mt-5 rounded-xl border border-[#E96C35]/20 bg-[#FFF6F1] p-3.5">
+              <div className="flex items-start gap-2.5">
+                <svg
+                  className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#E96C35]"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                <div className="text-[11px] leading-4 text-[#073155]">
+                  <p className="font-semibold">Having trouble?</p>
+                  <p className="mt-0.5 text-[#5A6B7B]">
+                    Check your spam folder or click &quot;Resend code&quot;.
+                    The code expires in 10 minutes.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
 
-        {/* Footer */}
-        <div className="text-center py-6 border-t border-gray-100 mt-8">
-          <p className="text-xs text-gray-400">© 2006 Hanjin Shipping (Thailand) Co., Ltd. All rights reserved.</p>
-        </div>
-      </div>
+          {/* Footer */}
+          <p className="mt-5 text-center text-[11px] text-[#8A94A6]">
+            © 2006 Thai Shipping (Thailand) Co., Ltd. All rights reserved.
+          </p>
+        </motion.div>
+      </main>
     </>
   );
 }

@@ -1,22 +1,33 @@
 
-
 // "use client";
 
-// import React, { useEffect, useState } from 'react';
-// import Link from 'next/link';
-// import { useRouter } from 'next/navigation';
-// import { motion, AnimatePresence } from 'framer-motion';
-// import Image from 'next/image';
-// import { ToastContainer, toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
-// import { login } from '@/services/Authentication'; 
-// import { setAuthToken, setUserDetails, getAuthToken } from '@/utils/SessionHelper';  
+// import React, { useEffect, useState } from "react";
+// import Link from "next/link";
+// import { useRouter } from "next/navigation";
+// import { motion, AnimatePresence } from "framer-motion";
+// import Image from "next/image";
+// import { ToastContainer, toast } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
 
-// // ==================== FIREBASE IMPORTS ====================
-// import { initializeApp } from 'firebase/app';
-// import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+// import { login, googleLogin } from "@/services/Authentication";
 
-// // Firebase configuration
+// import {
+//   setAuthToken,
+//   setUserDetails,
+//   getAuthToken,
+// } from "@/utils/SessionHelper";
+
+// // ==========================================================
+// // FIREBASE
+// // ==========================================================
+
+// import { initializeApp } from "firebase/app";
+// import {
+//   getAuth,
+//   GoogleAuthProvider,
+//   signInWithPopup,
+// } from "firebase/auth";
+
 // const firebaseConfig = {
 //   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
 //   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
@@ -29,82 +40,88 @@
 // let auth;
 // let googleProvider;
 
-// if (typeof window !== 'undefined') {
+// if (typeof window !== "undefined") {
+//   try {
 //     const app = initializeApp(firebaseConfig);
+
 //     auth = getAuth(app);
+
 //     googleProvider = new GoogleAuthProvider();
-//     googleProvider.addScope('email');
-//     googleProvider.addScope('profile');
+//     googleProvider.addScope("email");
+//     googleProvider.addScope("profile");
 //     googleProvider.setCustomParameters({
-//         prompt: 'select_account'
+//       prompt: "select_account",
 //     });
+//   } catch (error) {
+//     console.error("Firebase initialization error:", error);
+//   }
 // }
 
-// import { googleLogin } from '@/services/Authentication';
+// // ==========================================================
+// // BUTTON COMPONENT
+// // ==========================================================
 
 // const Button = ({
 //   children,
-//   type = 'button',
-//   variant = 'primary',
-//   size = 'md',
+//   type = "button",
+//   variant = "primary",
 //   isLoading = false,
 //   disabled = false,
 //   onClick,
-//   className = '',
+//   className = "",
 // }) => {
-//   const baseClasses = 'rounded-xl font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 relative overflow-hidden group';
-  
+//   const baseClasses =
+//     "h-11 w-full rounded-lg text-sm font-semibold transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2";
+
 //   const variants = {
-//     primary: 'bg-gradient-to-r from-[#041367] via-[#0f2b6e] to-[#041367] text-white hover:shadow-xl hover:scale-[1.02] focus:ring-[#041367]',
-//     secondary: 'bg-gray-100 text-gray-700 hover:bg-gray-200 focus:ring-gray-500',
-//     outline: 'border-2 border-[#041367] text-[#041367] hover:bg-[#041367] hover:text-white focus:ring-[#041367]',
-//     google: 'bg-white text-gray-700 border border-gray-200 hover:border-[#041367] hover:shadow-md focus:ring-gray-500'
+//     primary:
+//       "bg-[#041367] text-white hover:bg-[#0a2080] focus-visible:ring-[#041367]",
+//     google:
+//       "bg-white text-slate-700 border border-slate-300 hover:bg-slate-50 hover:border-slate-400 focus-visible:ring-slate-400",
 //   };
-
-//   const sizes = {
-//     sm: 'px-4 py-2 text-sm',
-//     md: 'px-5 py-2.5 text-base',
-//     lg: 'px-7 py-3.5 text-lg'
-//   };
-
-//   const variantClass = variants[variant] || variants.primary;
-//   const sizeClass = sizes[size] || sizes.md;
 
 //   return (
 //     <button
 //       type={type}
-//       className={`${baseClasses} ${variantClass} ${sizeClass} ${className} ${(disabled || isLoading) ? 'opacity-50 cursor-not-allowed' : ''}`}
+//       className={`${baseClasses} ${variants[variant] || variants.primary} ${className} ${
+//         disabled || isLoading ? "opacity-60 cursor-not-allowed" : ""
+//       }`}
 //       disabled={disabled || isLoading}
 //       onClick={onClick}
 //     >
-//       <span className="relative z-10 flex items-center justify-center gap-2">
+//       <span className="flex items-center justify-center gap-2">
 //         {isLoading ? (
-//           <>
-//             <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
-//               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-//               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-//             </svg>
-//             {children}
-//           </>
+//           <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+//             <circle
+//               className="opacity-25"
+//               cx="12"
+//               cy="12"
+//               r="10"
+//               stroke="currentColor"
+//               strokeWidth="4"
+//               fill="none"
+//             />
+//             <path
+//               className="opacity-75"
+//               fill="currentColor"
+//               d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+//             />
+//           </svg>
 //         ) : (
 //           children
 //         )}
 //       </span>
-//       {variant === 'primary' && (
-//         <motion.div
-//           className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-//           initial={{ x: '-100%' }}
-//           whileHover={{ x: '100%' }}
-//           transition={{ duration: 0.6 }}
-//         />
-//       )}
 //     </button>
 //   );
 // };
 
+// // ==========================================================
+// // INPUT COMPONENT
+// // ==========================================================
+
 // const Input = ({
 //   label,
-//   type = 'text',
+//   type = "text",
 //   name,
 //   value,
 //   onChange,
@@ -114,23 +131,34 @@
 //   required = false,
 //   disabled = false,
 //   icon,
+//   rightElement,
+//   autoComplete,
 // }) => {
 //   const [isFocused, setIsFocused] = useState(false);
 
 //   return (
-//     <div className="mb-3">
+//     <div className="mb-4">
 //       {label && (
-//         <label className="block text-sm font-medium text-gray-700 mb-2">
+//         <label
+//           htmlFor={name}
+//           className="block text-sm font-medium text-slate-700 mb-1.5"
+//         >
 //           {label}
-//           {required && <span className="text-red-500 ml-1">*</span>}
+//           {required && <span className="text-red-500 ml-0.5">*</span>}
 //         </label>
 //       )}
-//       <div className="relative group">
+
+//       <div className="relative">
 //         {icon && (
-//           <div className={`absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none transition-colors duration-300 ${isFocused ? 'text-[#041367]' : 'text-gray-400'}`}>
+//           <div
+//             className={`absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none transition-colors duration-200 ${
+//               isFocused ? "text-[#041367]" : "text-slate-400"
+//             }`}
+//           >
 //             {icon}
 //           </div>
 //         )}
+
 //         <input
 //           type={type}
 //           id={name}
@@ -139,25 +167,33 @@
 //           onChange={onChange}
 //           onBlur={(e) => {
 //             setIsFocused(false);
-//             onBlur && onBlur(e);
+//             if (onBlur) onBlur(e);
 //           }}
 //           onFocus={() => setIsFocused(true)}
 //           placeholder={placeholder}
 //           disabled={disabled}
-//           className={`w-full px-4 py-3 border-2 rounded-xl shadow-sm bg-white transition-all duration-300 focus:outline-none ${
-//             error 
-//               ? 'border-red-500 bg-red-50 focus:ring-red-500' 
-//               : isFocused 
-//                 ? 'border-[#041367] ring-4 ring-[#041367]/10' 
-//                 : 'border-gray-200 hover:border-[#041367]/50'
-//           } ${icon ? 'pl-10' : ''}`}
+//           autoComplete={autoComplete}
+//           className={`w-full h-11 rounded-lg border bg-white text-slate-900 text-sm placeholder:text-slate-400 transition-colors duration-200 focus:outline-none focus:ring-2 disabled:bg-slate-50 ${
+//             error
+//               ? "border-red-400 focus:ring-red-100"
+//               : "border-slate-300 focus:border-[#041367] focus:ring-[#041367]/15"
+//           } ${icon ? "pl-11" : "pl-4"} ${rightElement ? "pr-11" : "pr-4"}`}
 //         />
+
+//         {rightElement && (
+//           <div className="absolute inset-y-0 right-0 pr-2 flex items-center">
+//             {rightElement}
+//           </div>
+//         )}
 //       </div>
+
 //       {error && (
-//         <motion.p initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="mt-2 text-sm text-red-500 flex items-center gap-1">
-//           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-//           </svg>
+//         <motion.p
+//           initial={{ opacity: 0, y: -4 }}
+//           animate={{ opacity: 1, y: 0 }}
+//           className="mt-1.5 text-xs text-red-600"
+//           role="alert"
+//         >
 //           {error}
 //         </motion.p>
 //       )}
@@ -165,453 +201,637 @@
 //   );
 // };
 
-// // Animated Text Overlay Component for Right Side Image
+// // ==========================================================
+// // ROTATING MESSAGES (LEFT PANEL)
+// // ==========================================================
+
+// const messages = [
+//   {
+//     title: "Global shipping, handled",
+//     description:
+//       "Reliable ocean freight connecting Thailand with Asia, America and Europe.",
+//   },
+//   {
+//     title: "30+ years of trust",
+//     description:
+//       "Three decades of dependable shipping and logistics for businesses worldwide.",
+//   },
+//   {
+//     title: "Track every container",
+//     description:
+//       "Modern fleet with real-time tracking and temperature-controlled options.",
+//   },
+//   {
+//     title: "Support around the clock",
+//     description:
+//       "Our team is available 24/7 for bookings, documents and shipment questions.",
+//   },
+//   {
+//     title: "A network in 50+ countries",
+//     description:
+//       "More than 200 overseas branch offices working as one connected network.",
+//   },
+// ];
+
 // const AnimatedImageOverlay = () => {
 //   const [currentIndex, setCurrentIndex] = useState(0);
-  
-//   const messages = [
-//     { title: "Global Shipping Excellence", description: "Connecting Thailand to the world with reliable ocean freight services across Asia, America, and Europe." },
-//     { title: "30+ Years of Trust", description: "Serving the global community with excellence, recognized as Ocean Carrier of the Year for four consecutive years." },
-//     { title: "Advanced Fleet", description: "Modern container fleet with real-time tracking and temperature-controlled solutions for all cargo types." },
-//     { title: "24/7 Customer Support", description: "Dedicated support team available round the clock for all your shipping needs." },
-//     { title: "Global Network", description: "200+ overseas branch offices and 50+ countries connected through our comprehensive network." }
-//   ];
 
 //   useEffect(() => {
 //     const interval = setInterval(() => {
 //       setCurrentIndex((prev) => (prev + 1) % messages.length);
-//     }, 4000);
+//     }, 4500);
+
 //     return () => clearInterval(interval);
 //   }, []);
 
 //   return (
-//     <div className="absolute inset-0 flex flex-col justify-center p-8 md:p-10">
-//       <AnimatePresence mode="wait">
-//         <motion.div
-//           key={currentIndex}
-//           initial={{ opacity: 0, y: 20 }}
-//           animate={{ opacity: 1, y: 0 }}
-//           exit={{ opacity: 0, y: -20 }}
-//           transition={{ duration: 0.5 }}
-//           className="space-y-4"
-//         >
-//           <div className="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full">
-//             <span className="text-white text-sm font-medium">✦ Since 1988</span>
-//           </div>
-//           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
-//             {messages[currentIndex].title}
-//           </h2>
-//           <p className="text-white/90 text-base md:text-lg leading-relaxed max-w-md">
-//             {messages[currentIndex].description}
-//           </p>
-//           <div className="flex items-center gap-2 pt-4">
-//             <div className="w-12 h-0.5 bg-white/60 rounded-full"></div>
-//             <span className="text-white/60 text-sm">Thai Shipping</span>
-//           </div>
-//         </motion.div>
-//       </AnimatePresence>
-      
-//       {/* Slide Indicators */}
-//       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-2">
-//         {messages.map((_, idx) => (
-//           <button
-//             key={idx}
-//             onClick={() => setCurrentIndex(idx)}
-//             className={`transition-all duration-300 rounded-full ${
-//               currentIndex === idx 
-//                 ? 'w-8 h-1.5 bg-white' 
-//                 : 'w-1.5 h-1.5 bg-white/40 hover:bg-white/60'
-//             }`}
-//           />
-//         ))}
+//     <div className="relative z-10 h-full flex flex-col justify-between p-8 lg:p-10">
+//       <div className="flex items-center gap-2.5">
+//         <div className="w-8 h-8 rounded-md bg-white/15 border border-white/25 flex items-center justify-center">
+//           <svg
+//             className="w-4.5 h-4.5 text-white"
+//             width="18"
+//             height="18"
+//             fill="none"
+//             stroke="currentColor"
+//             viewBox="0 0 24 24"
+//           >
+//             <path
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//               strokeWidth="1.8"
+//               d="M3 17l2-8h14l2 8M3 17h18M3 17l1 3h16l1-3M12 9V4m0 0H8m4 0h4"
+//             />
+//           </svg>
+//         </div>
+//         <span className="text-white font-semibold text-base tracking-tight">
+//           Thai Shipping
+//         </span>
+//       </div>
+
+//       <div className="min-h-[150px]">
+//         <AnimatePresence mode="wait">
+//           <motion.div
+//             key={currentIndex}
+//             initial={{ opacity: 0, y: 12 }}
+//             animate={{ opacity: 1, y: 0 }}
+//             exit={{ opacity: 0, y: -12 }}
+//             transition={{ duration: 0.4 }}
+//           >
+//             <h2 className="text-white text-2xl lg:text-[28px] font-semibold leading-tight tracking-tight">
+//               {messages[currentIndex].title}
+//             </h2>
+//             <p className="mt-3 text-white/75 text-sm leading-relaxed max-w-sm">
+//               {messages[currentIndex].description}
+//             </p>
+//           </motion.div>
+//         </AnimatePresence>
+
+//         <div className="mt-6 flex items-center gap-1.5">
+//           {messages.map((_, idx) => (
+//             <button
+//               key={idx}
+//               type="button"
+//               onClick={() => setCurrentIndex(idx)}
+//               aria-label={`Go to message ${idx + 1}`}
+//               className={`transition-all duration-300 rounded-full h-1.5 ${
+//                 currentIndex === idx
+//                   ? "w-6 bg-white"
+//                   : "w-1.5 bg-white/40 hover:bg-white/70"
+//               }`}
+//             />
+//           ))}
+//         </div>
 //       </div>
 //     </div>
 //   );
 // };
 
-// // ==================== MAIN LOGIN COMPONENT ====================
+// // ==========================================================
+// // MAIN LOGIN COMPONENT
+// // ==========================================================
 
 // export default function LoginPage() {
 //   const router = useRouter();
+
 //   const [formData, setFormData] = useState({
-//     email: '',
-//     password: ''
+//     email: "",
+//     password: "",
 //   });
+
 //   const [showPassword, setShowPassword] = useState(false);
 //   const [rememberMe, setRememberMe] = useState(false);
 //   const [loading, setLoading] = useState(false);
 //   const [googleLoading, setGoogleLoading] = useState(false);
 //   const [errors, setErrors] = useState({});
 //   const [touched, setTouched] = useState({});
-//   const [isCheckingAuth, setIsCheckingAuth] = useState(true); 
+//   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+
+//   // ========================================================
+//   // GOOGLE LOGIN
+//   // ========================================================
 
 //   const handleGoogleLogin = async () => {
-//     setGoogleLoading(true);
-    
-//     try {
-//         const result = await signInWithPopup(auth, googleProvider);
-//         const user = result.user;
-//         const idToken = await user.getIdToken();
-        
-//         const response = await googleLogin(
-//             idToken,
-//             user.email,
-//             user.displayName,
-//             user.photoURL,
-//             user.uid
-//         );
-        
-//         if (response.success) {
-//             const userData = response.user || response.data || response;
-
-//             if (response.token) {
-//               setAuthToken(response.token);
-//             }
-//             if (userData) {
-//               setUserDetails(userData);
-//             }
-
-//             toast.success(`Welcome ${userData?.firstName || 'Customer'}!`);
-            
-//             if (typeof window !== 'undefined') {
-//                 window.dispatchEvent(new Event('authChange'));
-//             }
-            
-//             setTimeout(() => {
-//                 router.push('/profile');
-//             }, 1500);
-//         }
-//     } catch (error) {
-//         console.error('Google Login Error:', error);
-//         toast.error(error.message || 'Google login failed');
-//     } finally {
-//         setGoogleLoading(false);
+//     if (!auth || !googleProvider) {
+//       toast.error("Google login is currently unavailable.");
+//       return;
 //     }
-// };
 
-//   useEffect(() => { 
+//     setGoogleLoading(true);
+
+//     try {
+//       const result = await signInWithPopup(auth, googleProvider);
+//       const user = result.user;
+//       const idToken = await user.getIdToken();
+
+//       const response = await googleLogin(
+//         idToken,
+//         user.email,
+//         user.displayName,
+//         user.photoURL,
+//         user.uid
+//       );
+
+//       if (response.success) {
+//         const userData = response.user || response.data || response;
+
+//         if (response.token) {
+//           setAuthToken(response.token);
+//         }
+
+//         if (userData) {
+//           setUserDetails(userData);
+//         }
+
+//         toast.success(`Welcome ${userData?.firstName || "Customer"}!`);
+
+//         if (typeof window !== "undefined") {
+//           window.dispatchEvent(new Event("authChange"));
+//         }
+
+//         setTimeout(() => {
+//           router.push("/profile");
+//         }, 1500);
+//       } else {
+//         toast.error(response.message || "Google login failed");
+//       }
+//     } catch (error) {
+//       console.error("Google Login Error:", error);
+//       toast.error(error?.message || "Google login failed");
+//     } finally {
+//       setGoogleLoading(false);
+//     }
+//   };
+
+//   // ========================================================
+//   // AUTH CHECK
+//   // ========================================================
+
+//   useEffect(() => {
 //     const checkAuth = async () => {
 //       try {
-//         const token = getAuthToken(); 
-//         if (token) { 
-//           const userStr = localStorage.getItem('user_details');
+//         const token = getAuthToken();
+
+//         if (token) {
+//           const userStr = localStorage.getItem("user_details");
+
 //           if (userStr) {
 //             const user = JSON.parse(userStr);
-//             if (user.role === 'customer') {
-//               router.push('/profile');
+
+//             if (user.role === "customer") {
+//               router.push("/profile");
 //             } else {
-//               localStorage.removeItem('auth_token');
-//               localStorage.removeItem('user_details');
+//               localStorage.removeItem("auth_token");
+//               localStorage.removeItem("user_details");
 //               setIsCheckingAuth(false);
 //             }
 //           } else {
-//             router.push('/profile');
+//             router.push("/profile");
 //           }
 //         } else {
-//           setIsCheckingAuth(false);  
+//           setIsCheckingAuth(false);
 //         }
 //       } catch (error) {
-//         console.error('Auth check error:', error);
-//         setIsCheckingAuth(false); 
+//         console.error("Auth check error:", error);
+//         setIsCheckingAuth(false);
 //       }
 //     };
 
 //     checkAuth();
-//   }, [router]); 
+//   }, [router]);
+
+//   // ========================================================
+//   // FORM VALIDATION
+//   // ========================================================
 
 //   const validateForm = () => {
 //     const newErrors = {};
 
 //     if (!formData.email) {
-//       newErrors.email = 'Email is required';
+//       newErrors.email = "Email is required";
 //     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-//       newErrors.email = 'Email is invalid';
+//       newErrors.email = "Enter a valid email address";
 //     }
 
 //     if (!formData.password) {
-//       newErrors.password = 'Password is required';
+//       newErrors.password = "Password is required";
 //     } else if (formData.password.length < 6) {
-//       newErrors.password = 'Password must be at least 6 characters';
+//       newErrors.password = "Password must be at least 6 characters";
 //     }
 
 //     return newErrors;
 //   };
 
+//   // ========================================================
+//   // HANDLERS
+//   // ========================================================
+
 //   const handleChange = (e) => {
 //     const { name, value } = e.target;
-//     setFormData(prev => ({
+
+//     setFormData((prev) => ({
 //       ...prev,
-//       [name]: value
+//       [name]: value,
 //     }));
+
 //     if (errors[name]) {
-//       setErrors(prev => ({ ...prev, [name]: '' }));
+//       setErrors((prev) => ({
+//         ...prev,
+//         [name]: "",
+//       }));
 //     }
 //   };
 
 //   const handleBlur = (field) => {
-//     setTouched(prev => ({ ...prev, [field]: true }));
-//     const validationErrors = validateForm();
-//     setErrors(validationErrors);
+//     setTouched((prev) => ({
+//       ...prev,
+//       [field]: true,
+//     }));
+
+//     setErrors(validateForm());
 //   };
 
 //   const handleSubmit = async (e) => {
 //     e.preventDefault();
-    
+
 //     setTouched({
 //       email: true,
-//       password: true
+//       password: true,
 //     });
 
 //     const validationErrors = validateForm();
 //     setErrors(validationErrors);
 
-//     if (Object.keys(validationErrors).length === 0) {
-//       setLoading(true);
-//       try {
-//         const response = await login(formData.email, formData.password);
-        
-//         if (response.success && response.token) {
-//           const userData = response.data || response.user;
-          
-//           if (userData.role !== 'customer') {
-//             toast.error('Access denied. Only customers can log in to this portal.', {
-//               position: 'top-right',
-//               autoClose: 5000,
-//             });
-//             setLoading(false);
-//             return;
-//           }
+//     if (Object.keys(validationErrors).length !== 0) {
+//       return;
+//     }
 
-//           setAuthToken(response.token);
-//           setUserDetails(userData);
-          
-//           if (typeof window !== 'undefined') {
-//             window.dispatchEvent(new Event('authChange'));
-//           }
-          
-//           toast.success('Login successful! Redirecting...', {
-//             position: 'top-right',
-//             autoClose: 2000,
-//           });
-          
-//           setTimeout(() => {
-//             router.push('/profile');
-//           }, 2000);
-//         } else {
-//           toast.error(response.message || 'Invalid email or password', {
-//             position: 'top-right',
-//             autoClose: 5000,
-//           });
+//     setLoading(true);
+
+//     try {
+//       const response = await login(formData.email, formData.password);
+
+//       if (response.success && response.token) {
+//         const userData = response.data || response.user;
+
+//         if (!userData || userData.role !== "customer") {
+//           toast.error(
+//             "Access denied. Only customers can log in to this portal.",
+//             {
+//               position: "top-right",
+//               autoClose: 5000,
+//             }
+//           );
+
+//           setLoading(false);
+//           return;
 //         }
-//       } catch (error) {
-//         console.error('Login error:', error);
-//         toast.error(error.message || 'Invalid email or password', {
-//           position: 'top-right',
+
+//         setAuthToken(response.token);
+//         setUserDetails(userData);
+
+//         if (typeof window !== "undefined") {
+//           window.dispatchEvent(new Event("authChange"));
+//         }
+
+//         toast.success("Login successful! Redirecting...", {
+//           position: "top-right",
+//           autoClose: 2000,
+//         });
+
+//         setTimeout(() => {
+//           router.push("/profile");
+//         }, 2000);
+//       } else {
+//         toast.error(response.message || "Invalid email or password", {
+//           position: "top-right",
 //           autoClose: 5000,
 //         });
-//       } finally {
-//         setLoading(false);
 //       }
+//     } catch (error) {
+//       console.error("Login error:", error);
+
+//       toast.error(error?.message || "Invalid email or password", {
+//         position: "top-right",
+//         autoClose: 5000,
+//       });
+//     } finally {
+//       setLoading(false);
 //     }
 //   };
 
+//   // ========================================================
+//   // ICONS
+//   // ========================================================
+
 //   const renderIcon = (type) => {
-//     switch(type) {
-//       case 'email':
+//     switch (type) {
+//       case "email":
 //         return (
-//           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+//           <svg
+//             className="w-[18px] h-[18px]"
+//             fill="none"
+//             stroke="currentColor"
+//             viewBox="0 0 24 24"
+//           >
+//             <rect x="3" y="5" width="18" height="14" rx="2" strokeWidth="1.6" />
+//             <path
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//               strokeWidth="1.6"
+//               d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8"
+//             />
 //           </svg>
 //         );
-//       case 'password':
+
+//       case "password":
 //         return (
-//           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+//           <svg
+//             className="w-[18px] h-[18px]"
+//             fill="none"
+//             stroke="currentColor"
+//             viewBox="0 0 24 24"
+//           >
+//             <rect x="4" y="10" width="16" height="11" rx="2" strokeWidth="1.6" />
+//             <path
+//               strokeLinecap="round"
+//               strokeWidth="1.6"
+//               d="M8 10V7a4 4 0 018 0v3"
+//             />
 //           </svg>
 //         );
+
 //       default:
 //         return null;
 //     }
 //   };
 
+//   const PasswordVisibilityIcon = () => {
+//     if (showPassword) {
+//       return (
+//         <svg
+//           className="w-[18px] h-[18px]"
+//           fill="none"
+//           stroke="currentColor"
+//           viewBox="0 0 24 24"
+//         >
+//           <path
+//             strokeLinecap="round"
+//             strokeLinejoin="round"
+//             strokeWidth="1.5"
+//             d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"
+//           />
+//         </svg>
+//       );
+//     }
+
+//     return (
+//       <svg
+//         className="w-[18px] h-[18px]"
+//         fill="none"
+//         stroke="currentColor"
+//         viewBox="0 0 24 24"
+//       >
+//         <path
+//           strokeLinecap="round"
+//           strokeLinejoin="round"
+//           strokeWidth="1.5"
+//           d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+//         />
+//         <path
+//           strokeLinecap="round"
+//           strokeLinejoin="round"
+//           strokeWidth="1.5"
+//           d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+//         />
+//       </svg>
+//     );
+//   };
+
+//   const GoogleIcon = () => (
+//     <svg className="w-5 h-5" viewBox="0 0 24 24">
+//       <path
+//         fill="#4285F4"
+//         d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+//       />
+//       <path
+//         fill="#34A853"
+//         d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+//       />
+//       <path
+//         fill="#FBBC05"
+//         d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+//       />
+//       <path
+//         fill="#EA4335"
+//         d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+//       />
+//     </svg>
+//   );
+
+//   // ========================================================
+//   // AUTH CHECK LOADING
+//   // ========================================================
+
 //   if (isCheckingAuth) {
 //     return (
-//       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white flex items-center justify-center">
+//       <div className="min-h-[60vh] bg-slate-50 flex items-center justify-center">
 //         <div className="text-center">
-//           <div className="relative">
-//             <div className="w-20 h-20 border-4 border-[#041367] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-//             <div className="absolute inset-0 flex items-center justify-center">
-//               <div className="w-8 h-8 bg-gradient-to-r from-[#041367] to-blue-600 rounded-full animate-pulse"></div>
-//             </div>
-//           </div>
-//           <p className="text-gray-500 mt-4">Securing your connection...</p>
+//           <div className="w-10 h-10 border-2 border-[#041367]/20 border-t-[#041367] rounded-full animate-spin mx-auto" />
+//           <p className="text-slate-500 text-sm mt-4">Checking your session...</p>
 //         </div>
 //       </div>
 //     );
 //   }
 
+//   // ========================================================
+//   // MAIN UI
+//   // ========================================================
+
 //   return (
 //     <>
-//       <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="colored" />
-      
-//       <div className="min-h-screen bg-white">
-     
-
-//         {/* Main Content */}
-//       {/* Main Content */}
-// <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 lg:py-8">
-//   <div className="grid lg:grid-cols-2 gap-6 items-stretch min-h-[400px]">
-    
-//     {/* Left Side - Login Form */}
-//     <motion.div
-//       initial={{ opacity: 0, x: -30 }}
-//       animate={{ opacity: 1, x: 0 }}
-//       transition={{ duration: 0.6 }}
-//       className="flex items-center"
-//     >
-//       <div className="w-full bg-white rounded-2xl shadow-xl p-5 border border-gray-100">
-//         {/* Header */}
-//         <div className="text-center mb-4">
-//           <div className="w-12 h-12 bg-gradient-to-br from-[#041367] to-blue-700 rounded-xl flex items-center justify-center mx-auto mb-3 shadow-md">
-//             <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
-//             </svg>
-//           </div>
-//           <h2 className="text-xl font-bold text-gray-900">Welcome Back</h2>
-//           <p className="text-gray-500 text-xs mt-1">Sign in to your account</p>
-//         </div>
-
-//         <form onSubmit={handleSubmit}>
-//           <Input
-//             label="Email Address"
-//             type="email"
-//             name="email"
-//             value={formData.email}
-//             onChange={handleChange}
-//             onBlur={() => handleBlur('email')}
-//             placeholder="customer@hanjin.com"
-//             error={touched.email && errors.email}
-//             required
-//             icon={renderIcon('email')}
-//           />
-
-//           <div className="relative">
-//             <Input
-//               label="Password"
-//               type={showPassword ? 'text' : 'password'}
-//               name="password"
-//               value={formData.password}
-//               onChange={handleChange}
-//               onBlur={() => handleBlur('password')}
-//               placeholder="Enter your password"
-//               error={touched.password && errors.password}
-//               required
-//               icon={renderIcon('password')}
-//             />
-//             <button
-//               type="button"
-//               onClick={() => setShowPassword(!showPassword)}
-//               className="absolute right-3 top-[38px] text-gray-400 hover:text-[#041367] transition-colors"
-//             >
-//               {showPassword ? (
-//                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
-//                 </svg>
-//               ) : (
-//                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-//                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-//                 </svg>
-//               )}
-//             </button>
-//           </div>
-
-//           <div className="flex items-center justify-between mb-4">
-//             <label className="flex items-center gap-2 cursor-pointer">
-//               <input
-//                 type="checkbox"
-//                 checked={rememberMe}
-//                 onChange={(e) => setRememberMe(e.target.checked)}
-//                 className="w-4 h-4 text-[#041367] rounded border-gray-300 focus:ring-[#041367]"
-//               />
-//               <span className="text-sm text-gray-600">Remember me</span>
-//             </label>
-//             <Link href="/auth/forgot-password" className="text-sm text-[#041367] hover:underline font-medium">
-//               Forgot password?
-//             </Link>
-//           </div>
-
-//           <Button type="submit" variant="primary" size="md" isLoading={loading} className="w-full mb-3">
-//             Sign In
-//             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-//             </svg>
-//           </Button>
-
-//           <div className="relative my-4">
-//             <div className="absolute inset-0 flex items-center">
-//               <div className="w-full border-t border-gray-200"></div>
-//             </div>
-//             <div className="relative flex justify-center text-sm">
-//               <span className="px-3 bg-white text-gray-500">Or continue with</span>
-//             </div>
-//           </div>
-
-//           <Button
-//             type="button"
-//             variant="google"
-//             size="md"
-//             isLoading={googleLoading}
-//             onClick={handleGoogleLogin}
-//             className="w-full flex items-center justify-center gap-2"
-//           >
-//             <svg className="w-4 h-4" viewBox="0 0 24 24">
-//               <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-//               <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-//               <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-//               <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-//             </svg>
-//             {!googleLoading && "Continue with Google"}
-//           </Button>
-//         </form>
-
-//         <p className="text-center text-xs text-gray-500 mt-4">
-//           Don't have an account?{' '}
-//           <Link href="/auth/register" className="text-[#041367] font-semibold hover:underline">
-//             Create an account
-//           </Link>
-//         </p>
-//       </div>
-//     </motion.div>
-
-//     {/* Right Side - Image with Animated Text Overlay */}
-//     <motion.div
-//       initial={{ opacity: 0, x: 30 }}
-//       animate={{ opacity: 1, x: 0 }}
-//       transition={{ duration: 0.6, delay: 0.2 }}
-//       className="relative rounded-2xl overflow-hidden shadow-xl min-h-[400px]"
-//     >
-//       <Image
-//         src="/images/building.avif"
-//         alt="Hanjin Shipping"
-//         fill
-//         className="object-cover"
-//         priority
+//       <ToastContainer
+//         position="top-right"
+//         autoClose={5000}
+//         hideProgressBar={false}
+//         newestOnTop
+//         closeOnClick
+//         rtl={false}
+//         pauseOnFocusLoss
+//         draggable
+//         pauseOnHover
+//         theme="colored"
 //       />
-//       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-black/40" />
-//       <AnimatedImageOverlay />
-//     </motion.div>
-//   </div>
-// </div>
 
-//         {/* Footer */}
-//         <div className="text-center py-6 border-t border-gray-100 mt-8">
-//           <p className="text-xs text-gray-400">© 2006 Hanjin Shipping (Thailand) Co., Ltd. All rights reserved.</p>
-//         </div>
-//       </div>
+//       <main className="bg-slate-100 px-4 py-8 sm:py-10 -mt-6">
+//         <motion.div
+//           initial={{ opacity: 0, y: 10 }}
+//           animate={{ opacity: 1, y: 0 }}
+//           transition={{ duration: 0.45 }}
+//           className="mx-auto w-full max-w-[920px] overflow-hidden rounded-2xl bg-white shadow-[0_10px_40px_rgba(15,23,42,0.12)] ring-1 ring-slate-200 grid md:grid-cols-[1fr_1.05fr] md:min-h-[540px]"
+//         >
+//           {/* ==================================================
+//               LEFT: BRAND PANEL
+//           ================================================== */}
+
+//           <aside className="relative hidden md:block bg-[#041367]">
+//             <Image
+//               src="/images/login.jpg"
+//               alt="Hanjin Shipping container terminal"
+//               fill
+//               priority
+//               sizes="(min-width: 768px) 460px, 0px"
+//               className="object-cover object-center"
+//             />
+
+//             <div className="absolute inset-0 bg-gradient-to-b from-[#041367]/80 via-[#041367]/60 to-[#041367]/90" />
+
+//             <AnimatedImageOverlay />
+//           </aside>
+
+//           {/* ==================================================
+//               RIGHT: FORM PANEL
+//           ================================================== */}
+
+//           <section className="flex flex-col justify-center px-6 sm:px-10 py-8">
+//             {/* Mobile brand */}
+//             <p className="md:hidden text-sm font-semibold text-[#041367] mb-5">
+//               Thai Shipping
+//             </p>
+
+//             <div className="mb-6">
+//               <h1 className="text-2xl font-semibold text-slate-900 tracking-tight">
+//                 Sign in to your account
+//               </h1>
+//               <p className="mt-1.5 text-sm text-slate-500">
+//                 Manage your shipments and bookings in the customer portal.
+//               </p>
+//             </div>
+
+//             <form onSubmit={handleSubmit} noValidate>
+//               <Input
+//                 label="Email address"
+//                 type="email"
+//                 name="email"
+//                 value={formData.email}
+//                 onChange={handleChange}
+//                 onBlur={() => handleBlur("email")}
+//                 placeholder="you@company.com"
+//                 error={touched.email && errors.email}
+//                 required
+//                 disabled={loading}
+//                 icon={renderIcon("email")}
+//                 autoComplete="email"
+//               />
+
+//               <Input
+//                 label="Password"
+//                 type={showPassword ? "text" : "password"}
+//                 name="password"
+//                 value={formData.password}
+//                 onChange={handleChange}
+//                 onBlur={() => handleBlur("password")}
+//                 placeholder="Enter your password"
+//                 error={touched.password && errors.password}
+//                 required
+//                 disabled={loading}
+//                 icon={renderIcon("password")}
+//                 autoComplete="current-password"
+//                 rightElement={
+//                   <button
+//                     type="button"
+//                     onClick={() => setShowPassword(!showPassword)}
+//                     className="p-2 text-slate-400 hover:text-slate-700 transition-colors rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#041367]/40"
+//                     aria-label={showPassword ? "Hide password" : "Show password"}
+//                   >
+//                     <PasswordVisibilityIcon />
+//                   </button>
+//                 }
+//               />
+
+//               <div className="flex items-center justify-between mb-5">
+//                 <label className="flex items-center gap-2 cursor-pointer text-slate-600 text-sm">
+//                   <input
+//                     type="checkbox"
+//                     checked={rememberMe}
+//                     onChange={(e) => setRememberMe(e.target.checked)}
+//                     className="w-4 h-4 rounded border-slate-300 text-[#041367] focus:ring-[#041367]/30"
+//                   />
+//                   Remember me
+//                 </label>
+
+//                 <Link
+//                   href="/auth/forgot-password"
+//                   className="text-sm font-medium text-[#041367] hover:underline underline-offset-4"
+//                 >
+//                   Forgot password?
+//                 </Link>
+//               </div>
+
+//               <Button type="submit" variant="primary" isLoading={loading}>
+//                 Sign in
+//               </Button>
+
+//               <div className="flex items-center gap-3 my-5">
+//                 <div className="flex-1 h-px bg-slate-200" />
+//                 <span className="text-xs text-slate-400">or</span>
+//                 <div className="flex-1 h-px bg-slate-200" />
+//               </div>
+
+//               <Button
+//                 type="button"
+//                 variant="google"
+//                 isLoading={googleLoading}
+//                 disabled={loading}
+//                 onClick={handleGoogleLogin}
+//               >
+//                 <GoogleIcon />
+//                 Continue with Google
+//               </Button>
+//             </form>
+
+//             <p className="mt-6 text-center text-sm text-slate-500">
+//               Don&apos;t have an account?{" "}
+//               <Link
+//                 href="/auth/register"
+//                 className="font-medium text-[#041367] hover:underline underline-offset-4"
+//               >
+//                 Create an account
+//               </Link>
+//             </p>
+//           </section>
+//         </motion.div>
+
+//         <p className="mt-5 text-center text-xs text-slate-400">
+//           © 2006 Hanjin Shipping (Thailand) Co., Ltd. All rights reserved.
+//         </p>
+//       </main>
 //     </>
 //   );
 // }
+
+
+
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -688,7 +908,7 @@ const Button = ({
 
   const variants = {
     primary:
-      "bg-[#041367] text-white hover:bg-[#0a2080] focus-visible:ring-[#041367]",
+      "bg-[#073155] text-white hover:bg-[#0a4270] focus-visible:ring-[#073155]",
     google:
       "bg-white text-slate-700 border border-slate-300 hover:bg-slate-50 hover:border-slate-400 focus-visible:ring-slate-400",
   };
@@ -765,7 +985,7 @@ const Input = ({
         {icon && (
           <div
             className={`absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none transition-colors duration-200 ${
-              isFocused ? "text-[#041367]" : "text-slate-400"
+              isFocused ? "text-[#073155]" : "text-slate-400"
             }`}
           >
             {icon}
@@ -789,7 +1009,7 @@ const Input = ({
           className={`w-full h-11 rounded-lg border bg-white text-slate-900 text-sm placeholder:text-slate-400 transition-colors duration-200 focus:outline-none focus:ring-2 disabled:bg-slate-50 ${
             error
               ? "border-red-400 focus:ring-red-100"
-              : "border-slate-300 focus:border-[#041367] focus:ring-[#041367]/15"
+              : "border-slate-300 focus:border-[#073155] focus:ring-[#073155]/15"
           } ${icon ? "pl-11" : "pl-4"} ${rightElement ? "pr-11" : "pr-4"}`}
         />
 
@@ -1270,7 +1490,7 @@ export default function LoginPage() {
     return (
       <div className="min-h-[60vh] bg-slate-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="w-10 h-10 border-2 border-[#041367]/20 border-t-[#041367] rounded-full animate-spin mx-auto" />
+          <div className="w-10 h-10 border-2 border-[#073155]/20 border-t-[#073155] rounded-full animate-spin mx-auto" />
           <p className="text-slate-500 text-sm mt-4">Checking your session...</p>
         </div>
       </div>
@@ -1307,17 +1527,17 @@ export default function LoginPage() {
               LEFT: BRAND PANEL
           ================================================== */}
 
-          <aside className="relative hidden md:block bg-[#041367]">
+          <aside className="relative hidden md:block bg-[#073155]">
             <Image
               src="/images/login.jpg"
-              alt="Hanjin Shipping container terminal"
+              alt="Thai Shipping container terminal"
               fill
               priority
               sizes="(min-width: 768px) 460px, 0px"
               className="object-cover object-center"
             />
 
-            <div className="absolute inset-0 bg-gradient-to-b from-[#041367]/80 via-[#041367]/60 to-[#041367]/90" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#073155]/80 via-[#073155]/60 to-[#073155]/90" />
 
             <AnimatedImageOverlay />
           </aside>
@@ -1328,7 +1548,7 @@ export default function LoginPage() {
 
           <section className="flex flex-col justify-center px-6 sm:px-10 py-8">
             {/* Mobile brand */}
-            <p className="md:hidden text-sm font-semibold text-[#041367] mb-5">
+            <p className="md:hidden text-sm font-semibold text-[#073155] mb-5">
               Thai Shipping
             </p>
 
@@ -1374,7 +1594,7 @@ export default function LoginPage() {
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="p-2 text-slate-400 hover:text-slate-700 transition-colors rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#041367]/40"
+                    className="p-2 text-slate-400 hover:text-slate-700 transition-colors rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#073155]/40"
                     aria-label={showPassword ? "Hide password" : "Show password"}
                   >
                     <PasswordVisibilityIcon />
@@ -1384,18 +1604,12 @@ export default function LoginPage() {
 
               <div className="flex items-center justify-between mb-5">
                 <label className="flex items-center gap-2 cursor-pointer text-slate-600 text-sm">
-                  <input
-                    type="checkbox"
-                    checked={rememberMe}
-                    onChange={(e) => setRememberMe(e.target.checked)}
-                    className="w-4 h-4 rounded border-slate-300 text-[#041367] focus:ring-[#041367]/30"
-                  />
-                  Remember me
+                
                 </label>
 
                 <Link
                   href="/auth/forgot-password"
-                  className="text-sm font-medium text-[#041367] hover:underline underline-offset-4"
+                  className="text-sm font-medium text-[#E96C35] hover:text-[#d55f2b] hover:underline underline-offset-4"
                 >
                   Forgot password?
                 </Link>
@@ -1427,7 +1641,7 @@ export default function LoginPage() {
               Don&apos;t have an account?{" "}
               <Link
                 href="/auth/register"
-                className="font-medium text-[#041367] hover:underline underline-offset-4"
+                className="font-medium text-[#E96C35] hover:text-[#d55f2b] hover:underline underline-offset-4"
               >
                 Create an account
               </Link>
@@ -1436,7 +1650,7 @@ export default function LoginPage() {
         </motion.div>
 
         <p className="mt-5 text-center text-xs text-slate-400">
-          © 2006 Hanjin Shipping (Thailand) Co., Ltd. All rights reserved.
+          © 2006 Thai Shipping (Thailand) Co., Ltd. All rights reserved.
         </p>
       </main>
     </>

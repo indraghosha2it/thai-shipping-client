@@ -2,40 +2,40 @@ import ToastProvider from "@/components/common/ToastProvider";
 import ProfilePage from "@/components/profile/profile";
 import React, { Suspense } from "react";
 
-// 🔹 SEO metadata for Profile - Hanjin Shipping Thailand
+// 🔹 SEO metadata for Profile - Thai Shipping Services
 export const metadata = {
   title: "My Profile",
   description:
-    "Manage your Hanjin Shipping Thailand customer profile. Update personal information, view company details, manage notification preferences, and access security settings for your ocean freight account.",
+    "Manage your Thai Shipping Services customer profile. Update personal information, view company details, manage notification preferences, and access security settings for your shipping account.",
   keywords: [
-    "Hanjin Shipping Thailand",
+    "Thai Shipping Services",
     "My Profile",
     "Profile Settings",
     "Account Management",
     "User Profile",
-    "Ocean Freight Account",
+    "Thai Shipping Account",
     "Customer Profile",
     "Profile Update",
     "Account Settings",
     "Personal Information",
     "Company Profile",
-    "Hanjin Customer Portal",
+    "Thai Shipping Customer Portal",
   ],
   alternates: {
-    canonical: "https://hanjinthailand.com/profile",
+    canonical: "https://thaishipping.com/profile",
   },
   openGraph: {
-    title: "My Profile | Hanjin Shipping Thailand",
+    title: "My Profile | Thai Shipping Services",
     description:
-      "Manage your Hanjin Shipping Thailand customer profile. Update personal information, view company details, manage preferences, and access security settings for your ocean freight account.",
-    url: "https://hanjinthailand.com/profile",
-    siteName: "Hanjin Shipping Thailand",
+      "Manage your Thai Shipping Services customer profile. Update personal information, view company details, manage preferences, and access security settings for your shipping account.",
+    url: "https://thaishipping.com/profile",
+    siteName: "Thai Shipping Services",
     images: [
       {
         url: "/og-profile.jpg",
         width: 1200,
         height: 630,
-        alt: "Hanjin Shipping Thailand - My Profile",
+        alt: "Thai Shipping Services - My Profile",
       },
     ],
     type: "website",
@@ -43,9 +43,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "My Profile | Hanjin Shipping Thailand",
+    title: "My Profile | Thai Shipping Services",
     description:
-      "Manage your Hanjin Shipping Thailand customer profile. Update personal information and manage preferences for your ocean freight account.",
+      "Manage your Thai Shipping Services customer profile. Update personal information and manage preferences for your shipping account.",
     images: ["/og-profile.jpg"],
   },
   robots: {
@@ -58,37 +58,38 @@ export default function Page() {
   return (
     <>
       <Suspense>
-          <ToastProvider />
-        </Suspense>
+        <ToastProvider />
+      </Suspense>
       <ProfilePage />
 
-      {/* 🔹 Schema Markup for Profile Page - Hanjin Shipping Thailand */}
+      {/* 🔹 Schema Markup for Profile Page - Thai Shipping Services */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebPage",
-            name: "User Profile - Hanjin Shipping Thailand",
+            name: "User Profile - Thai Shipping Services",
             description:
-              "Manage your Hanjin Shipping Thailand customer profile. Update personal information, view company details, manage notification preferences, and access security settings for your ocean freight account.",
-            url: "https://hanjinthailand.com/profile",
+              "Manage your Thai Shipping Services customer profile. Update personal information, view company details, manage notification preferences, and access security settings for your shipping account.",
+            url: "https://thaishipping.com/profile",
             publisher: {
               "@type": "Organization",
-              name: "Hanjin Shipping Thailand",
-              url: "https://hanjinthailand.com",
-              logo: "https://hanjinthailand.com/logo.png",
+              name: "Thai Shipping Services",
+              url: "https://thaishipping.com",
+              logo: "https://thaishipping.com/logo.png",
             },
             mainEntity: {
               "@type": "ProfilePage",
               name: "Customer Profile",
-              description: "User profile management for ocean freight customer account",
+              description:
+                "User profile management for shipping customer account",
             },
           }),
         }}
       />
 
-      {/* 🔹 Breadcrumb Schema for Profile - Hanjin Shipping Thailand */}
+      {/* 🔹 Breadcrumb Schema for Profile - Thai Shipping Services */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -100,19 +101,19 @@ export default function Page() {
                 "@type": "ListItem",
                 position: 1,
                 name: "Home",
-                item: "https://hanjinthailand.com",
+                item: "https://thaishipping.com",
               },
               {
                 "@type": "ListItem",
                 position: 2,
                 name: "Customer Portal",
-                item: "https://hanjinthailand.com/customer-portal",
+                item: "https://thaishipping.com/customer-portal",
               },
               {
                 "@type": "ListItem",
                 position: 3,
                 name: "My Profile",
-                item: "https://hanjinthailand.com/profile",
+                item: "https://thaishipping.com/profile",
               },
             ],
           }),
@@ -126,14 +127,15 @@ export default function Page() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
-            name: "Hanjin Shipping (Thailand) Co., Ltd.",
-            url: "https://hanjinthailand.com",
-            logo: "https://hanjinthailand.com/logo.png",
-            description: "Leading ocean freight and container shipping solutions provider in Thailand",
+            name: "Thai Shipping Services",
+            url: "https://thaishipping.com",
+            logo: "https://thaishipping.com/logo.png",
+            description:
+              "Air, sea, and land shipping services in Thailand — your guide to Thai imports, exports, food shipping, and shipping regulations.",
             address: {
               "@type": "PostalAddress",
-              streetAddress: "6th Floor, Sirinrat Building, 3388/17-18 Rama IV Road, Khlong Tan",
-              addressLocality: "Khlong Toei",
+              streetAddress: "Bangkok, Thailand",
+              addressLocality: "Bangkok",
               addressRegion: "Bangkok",
               postalCode: "10110",
               addressCountry: "Thailand",
@@ -142,7 +144,7 @@ export default function Page() {
               "@type": "ContactPoint",
               telephone: "+66-2-123-4567",
               contactType: "customer support",
-              email: "support@hanjinthailand.com",
+              email: "support@thaishipping.com",
               availableLanguage: ["English", "Thai"],
             },
           }),
@@ -156,18 +158,20 @@ export default function Page() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Person",
-            name: "Hanjin Shipping Customer",
-            url: "https://hanjinthailand.com/profile",
+            name: "Thai Shipping Customer",
+            url: "https://thaishipping.com/profile",
             worksFor: {
               "@type": "Organization",
-              name: "Hanjin Shipping (Thailand) Co., Ltd.",
+              name: "Thai Shipping Services",
             },
             knowsAbout: [
-              "Ocean Freight Management",
-              "Container Shipping",
-              "Global Logistics",
-              "Supply Chain Management",
-              "Maritime Transport",
+              "Air Shipping",
+              "Sea Shipping",
+              "Land Transportation",
+              "Thai Imports",
+              "Thai Exports",
+              "Thai Food Shipping",
+              "Shipping Regulations",
             ],
           }),
         }}
@@ -183,13 +187,14 @@ export default function Page() {
             name: "Customer Profile Management",
             provider: {
               "@type": "Organization",
-              name: "Hanjin Shipping Thailand",
+              name: "Thai Shipping Services",
             },
             serviceType: "Account Management",
-            description: "Secure profile management system for ocean freight customers to update personal and company information.",
+            description:
+              "Secure profile management system for shipping customers to update personal and company information.",
             audience: {
               "@type": "Audience",
-              name: "Hanjin Shipping Customers",
+              name: "Thai Shipping Customers",
             },
             hasOfferCatalog: {
               "@type": "OfferCatalog",
@@ -228,8 +233,8 @@ export default function Page() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebApplication",
-            name: "Hanjin Customer Profile Portal",
-            url: "https://hanjinthailand.com/profile",
+            name: "Thai Shipping Customer Profile Portal",
+            url: "https://thaishipping.com/profile",
             applicationCategory: "BusinessApplication",
             operatingSystem: "All",
             offers: {
@@ -237,7 +242,8 @@ export default function Page() {
               price: "0",
               priceCurrency: "USD",
             },
-            description: "Customer profile management portal for ocean freight account",
+            description:
+              "Customer profile management portal for shipping account",
             features: [
               "Profile information management",
               "Company details management",

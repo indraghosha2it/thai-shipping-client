@@ -1,170 +1,43 @@
-// import CustomerBookingsPage from "@/components/booking/myBooking";
-// import React from "react";
-
-// // 🔹 SEO metadata for My Shipments
-// export const metadata = {
-//   title: "My Shipments | Samudera Traffic Co., Ltd. Group",
-//   description:
-//     "Track and manage your shipments with Samudera Traffic Co., Ltd. Group. View booking details, track real-time status, accept/reject quotes, download invoices, and manage your logistics operations.",
-//   keywords: [
-//     "Samudera Traffic Co., Ltd.",
-//     "My Shipments",
-//     "Track Shipment",
-//     "Booking Management",
-//     "Shipment Tracking",
-//     "Logistics Dashboard",
-//     "Freight Tracking",
-//     "Cargo Status",
-//     "Delivery Tracking",
-//     "Shipment History",
-//   ],
-//   alternates: {
-//     canonical: "https://samuderathai.com/bookings/my_bookings",
-//   },
-//   openGraph: {
-//     title: "My Shipments | Samudera Traffic Co., Ltd. Group",
-//     description:
-//       "Track and manage your shipments with Samudera Traffic Co., Ltd. Group. View booking details, track real-time status, accept/reject quotes, download invoices, and manage your logistics operations.",
-//     url: "https://samuderathai.com/bookings/my_bookings",
-//     siteName: "Samudera Traffic Co., Ltd. Group",
-//     images: [
-//       {
-//         url: "/og-my-bookings.jpg",
-//         width: 1200,
-//         height: 630,
-//         alt: "Samudera Traffic Co., Ltd. Group - My Shipments",
-//       },
-//     ],
-//     type: "website",
-//   },
-//   twitter: {
-//     card: "summary_large_image",
-//     title: "My Shipments | Samudera Traffic Co., Ltd. Group",
-//     description:
-//       "Track and manage your shipments with Samudera Traffic Co., Ltd. Group. View booking details, track real-time status, and manage your logistics operations.",
-//     images: ["/og-my-bookings.jpg"],
-//   },
-//   robots: {
-//     index: true,
-//     follow: true,
-//   },
-// };
-
-// export default function Page() {
-//   return (
-//     <>
-//       <CustomerBookingsPage />
-
-//       {/* 🔹 Schema Markup for My Shipments Page */}
-//       <script
-//         type="application/ld+json"
-//         dangerouslySetInnerHTML={{
-//           __html: JSON.stringify({
-//             "@context": "https://schema.org",
-//             "@type": "WebPage",
-//             name: "My Shipments Dashboard",
-//             description:
-//               "Track and manage your shipments with Samudera Traffic Co., Ltd. Group. View booking details, track real-time status, accept/reject quotes, download invoices, and manage your logistics operations.",
-//             url: "https://samuderathai.com/bookings/my_bookings",
-//             publisher: {
-//               "@type": "Organization",
-//               name: "Samudera Traffic Co., Ltd. Group",
-//               url: "https://samuderathai.com",
-//               logo: "https://samuderathai.com/logo.png",
-//             },
-//             mainEntity: {
-//               "@type": "WebPageElement",
-//               name: "Shipments Dashboard",
-//               description: "Customer dashboard for tracking and managing logistics shipments",
-//             },
-//             potentialAction: {
-//               "@type": "Action",
-//               name: "Manage Shipments",
-//               description: "View, track, and manage all logistics shipments",
-//               target: {
-//                 "@type": "EntryPoint",
-//                 urlTemplate: "https://samuderathai.com/bookings/my_bookings",
-//                 actionPlatform: ["https://schema.org/DesktopWebPlatform", "https://schema.org/MobileWebPlatform"],
-//               },
-//             },
-//           }),
-//         }}
-//       />
-
-//       {/* 🔹 Breadcrumb Schema for My Shipments */}
-//       <script
-//         type="application/ld+json"
-//         dangerouslySetInnerHTML={{
-//           __html: JSON.stringify({
-//             "@context": "https://schema.org",
-//             "@type": "BreadcrumbList",
-//             itemListElement: [
-//               {
-//                 "@type": "ListItem",
-//                 position: 1,
-//                 name: "Home",
-//                 item: "https://samuderathai.com",
-//               },
-//               {
-//                 "@type": "ListItem",
-//                 position: 2,
-//                 name: "Bookings",
-//                 item: "https://samuderathai.com/bookings",
-//               },
-//               {
-//                 "@type": "ListItem",
-//                 position: 3,
-//                 name: "My Shipments",
-//                 item: "https://samuderathai.com/bookings/my_bookings",
-//               },
-//             ],
-//           }),
-//         }}
-//       />
-//     </>
-//   );
-// }
-
-
-
 import CustomerBookingsPage from "@/components/booking/myBooking";
 import React from "react";
 
-// 🔹 SEO metadata for My Bookings - Hanjin Shipping Thailand
+// 🔹 SEO metadata for My Bookings - Thai Shipping Services
 export const metadata = {
   title: "My Bookings",
   description:
-    "View and manage your ocean freight bookings with Hanjin Shipping Thailand. Track container booking status, view shipment details, accept/reject quotes, download invoices, and manage your global shipping operations across Asia, America, and Europe.",
+    "View and manage your shipping bookings with Thai Shipping Services. Track air, sea, and land shipment status, view booking details, accept/reject quotes, download invoices, and manage your shipping operations across Thailand and worldwide.",
   keywords: [
-    "Hanjin Shipping Thailand",
+    "Thai Shipping Services",
     "My Bookings",
+    "Shipping Booking Thailand",
     "Container Booking",
-    "Ocean Freight Booking",
+    "Air Freight Booking",
+    "Sea Freight Booking",
     "Booking Management",
     "Shipment Tracking",
-    "Logistics Dashboard",
+    "Thai Logistics Dashboard",
     "Cargo Booking",
     "Container Status",
     "Freight Booking",
-    "Shipping Bookings",
-    "Hanjin Customer Portal",
+    "Thai Shipping Bookings",
+    "Customer Portal",
     "Booking History",
   ],
   alternates: {
-    canonical: "https://hanjinthailand.com/bookings/my_bookings",
+    canonical: "https://thaishipping.com/bookings/my_bookings",
   },
   openGraph: {
-    title: "My Bookings | Hanjin Shipping Thailand",
+    title: "My Bookings | Thai Shipping Services",
     description:
-      "View and manage your ocean freight bookings with Hanjin Shipping Thailand. Track container booking status, view shipment details, accept/reject quotes, and download invoices.",
-    url: "https://hanjinthailand.com/bookings/my_bookings",
-    siteName: "Hanjin Shipping Thailand",
+      "View and manage your shipping bookings with Thai Shipping Services. Track air, sea, and land shipment status, view booking details, accept/reject quotes, and download invoices.",
+    url: "https://thaishipping.com/bookings/my_bookings",
+    siteName: "Thai Shipping Services",
     images: [
       {
         url: "/og-my-bookings.jpg",
         width: 1200,
         height: 630,
-        alt: "Hanjin Shipping Thailand - My Bookings Dashboard",
+        alt: "Thai Shipping Services - My Bookings Dashboard",
       },
     ],
     type: "website",
@@ -172,9 +45,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "My Bookings | Hanjin Shipping Thailand",
+    title: "My Bookings | Thai Shipping Services",
     description:
-      "View and manage your ocean freight bookings with Hanjin Shipping Thailand. Track container status and manage shipping operations.",
+      "View and manage your shipping bookings with Thai Shipping Services. Track shipment status and manage shipping operations.",
     images: ["/og-my-bookings.jpg"],
   },
   robots: {
@@ -194,43 +67,49 @@ export default function Page() {
     <>
       <CustomerBookingsPage />
 
-      {/* 🔹 Schema Markup for My Bookings Page - Hanjin Shipping Thailand */}
+      {/* 🔹 Schema Markup for My Bookings Page - Thai Shipping Services */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebPage",
-            name: "My Bookings Dashboard - Hanjin Shipping Thailand",
+            name: "My Bookings Dashboard - Thai Shipping Services",
             description:
-              "View and manage your ocean freight bookings with Hanjin Shipping Thailand. Track container booking status, view shipment details, accept/reject quotes, download invoices, and manage your global shipping operations.",
-            url: "https://hanjinthailand.com/bookings/my_bookings",
+              "View and manage your shipping bookings with Thai Shipping Services. Track air, sea, and land shipment status, view booking details, accept/reject quotes, download invoices, and manage your shipping operations.",
+            url: "https://thaishipping.com/bookings/my_bookings",
             publisher: {
               "@type": "Organization",
-              name: "Hanjin Shipping Thailand",
-              url: "https://hanjinthailand.com",
-              logo: "https://hanjinthailand.com/logo.png",
+              name: "Thai Shipping Services",
+              url: "https://thaishipping.com",
+              logo: "https://thaishipping.com/logo.png",
             },
             mainEntity: {
               "@type": "WebPageElement",
               name: "Bookings Dashboard",
-              description: "Customer dashboard for viewing and managing ocean freight container bookings",
+              description:
+                "Customer dashboard for viewing and managing air, sea, and land shipping bookings",
             },
             potentialAction: {
               "@type": "Action",
               name: "Manage Bookings",
-              description: "View, track, and manage all ocean freight container bookings",
+              description:
+                "View, track, and manage all shipping bookings",
               target: {
                 "@type": "EntryPoint",
-                urlTemplate: "https://hanjinthailand.com/bookings/my_bookings",
-                actionPlatform: ["https://schema.org/DesktopWebPlatform", "https://schema.org/MobileWebPlatform"],
+                urlTemplate:
+                  "https://thaishipping.com/bookings/my_bookings",
+                actionPlatform: [
+                  "https://schema.org/DesktopWebPlatform",
+                  "https://schema.org/MobileWebPlatform",
+                ],
               },
             },
           }),
         }}
       />
 
-      {/* 🔹 Breadcrumb Schema for My Bookings - Hanjin Shipping Thailand */}
+      {/* 🔹 Breadcrumb Schema for My Bookings - Thai Shipping Services */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -242,19 +121,19 @@ export default function Page() {
                 "@type": "ListItem",
                 position: 1,
                 name: "Home",
-                item: "https://hanjinthailand.com",
+                item: "https://thaishipping.com",
               },
               {
                 "@type": "ListItem",
                 position: 2,
                 name: "Customer Portal",
-                item: "https://hanjinthailand.com/customer-portal",
+                item: "https://thaishipping.com/customer-portal",
               },
               {
                 "@type": "ListItem",
                 position: 3,
                 name: "My Bookings",
-                item: "https://hanjinthailand.com/bookings/my_bookings",
+                item: "https://thaishipping.com/bookings/my_bookings",
               },
             ],
           }),
@@ -268,14 +147,15 @@ export default function Page() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
-            name: "Hanjin Shipping (Thailand) Co., Ltd.",
-            url: "https://hanjinthailand.com",
-            logo: "https://hanjinthailand.com/logo.png",
-            description: "Leading ocean freight and container shipping solutions provider in Thailand",
+            name: "Thai Shipping Services",
+            url: "https://thaishipping.com",
+            logo: "https://thaishipping.com/logo.png",
+            description:
+              "Air, sea, and land shipping services in Thailand — your guide to Thai imports, exports, food shipping, and shipping regulations.",
             address: {
               "@type": "PostalAddress",
-              streetAddress: "6th Floor, Sirinrat Building, 3388/17-18 Rama IV Road, Khlong Tan",
-              addressLocality: "Khlong Toei",
+              streetAddress: "Bangkok, Thailand",
+              addressLocality: "Bangkok",
               addressRegion: "Bangkok",
               postalCode: "10110",
               addressCountry: "Thailand",
@@ -284,7 +164,7 @@ export default function Page() {
               "@type": "ContactPoint",
               telephone: "+66-2-123-4567",
               contactType: "customer support",
-              email: "booking@hanjinthailand.com",
+              email: "booking@thaishipping.com",
               availableLanguage: ["English", "Thai"],
             },
           }),
@@ -298,16 +178,17 @@ export default function Page() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Service",
-            name: "Ocean Freight Booking Management",
+            name: "Shipping Booking Management",
             provider: {
               "@type": "Organization",
-              name: "Hanjin Shipping Thailand",
+              name: "Thai Shipping Services",
             },
             serviceType: "Booking Management",
-            description: "Online portal for customers to view and manage ocean freight container bookings.",
+            description:
+              "Online portal for customers to view and manage air, sea, and land shipping bookings.",
             audience: {
               "@type": "Audience",
-              name: "Hanjin Shipping Customers",
+              name: "Thai Shipping Customers",
             },
             hasOfferCatalog: {
               "@type": "OfferCatalog",
@@ -316,7 +197,7 @@ export default function Page() {
                 {
                   "@type": "Offer",
                   name: "View Bookings",
-                  description: "View all ocean freight container bookings",
+                  description: "View all shipping bookings",
                 },
                 {
                   "@type": "Offer",
@@ -351,8 +232,8 @@ export default function Page() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebApplication",
-            name: "Hanjin Booking Portal",
-            url: "https://hanjinthailand.com/bookings/my_bookings",
+            name: "Thai Shipping Booking Portal",
+            url: "https://thaishipping.com/bookings/my_bookings",
             applicationCategory: "BusinessApplication",
             operatingSystem: "All",
             offers: {
@@ -360,7 +241,8 @@ export default function Page() {
               price: "0",
               priceCurrency: "USD",
             },
-            description: "Customer portal for managing ocean freight container bookings",
+            description:
+              "Customer portal for managing air, sea, and land shipping bookings",
             features: [
               "View all bookings",
               "Track booking status",
@@ -380,9 +262,10 @@ export default function Page() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Action",
-            name: "Create Ocean Freight Booking",
-            description: "Create a new ocean freight container booking",
-            target: "https://hanjinthailand.com/create-booking",
+            name: "Create Shipping Booking",
+            description:
+              "Create a new air, sea, or land shipping booking",
+            target: "https://thaishipping.com/create-booking",
           }),
         }}
       />

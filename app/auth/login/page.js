@@ -1,51 +1,52 @@
-
 import LoginPage from "@/components/auth/login/page";
 import React from "react";
 
-// 🔹 SEO metadata for Login - Updated for Hanjin Shipping Thailand
+// 🔹 SEO metadata for Login - Thai Shipping Services
 export const metadata = {
-  title: "Customer Login ",
+  title: "Customer Login",
   description:
-    "Login to your Hanjin Shipping Thailand customer account. Track shipments in real-time, manage your logistics operations, access digital documents, and enjoy seamless supply chain management across Asia, America, and Europe.",
+    "Login to your Thai Shipping Services customer account. Track shipments in real-time, manage your air, sea, and land logistics operations, access digital documents, and enjoy seamless shipping management across Thailand and worldwide.",
   keywords: [
-    "Hanjin Shipping Thailand",
+    "Thai Shipping Services",
     "Customer Login",
     "Login Portal",
-    "Logistics Account",
-    "Shipment Tracking",
+    "Thai Logistics Account",
+    "Shipment Tracking Thailand",
     "Supply Chain Login",
     "Cargo Management",
     "Digital Logistics",
     "Account Access",
     "Real-time Tracking",
-    "Container Shipping",
-    "Freight Forwarding",
-    "Maritime Logistics",
+    "Air Freight Login",
+    "Sea Freight Login",
+    "Land Transport Login",
+    "Thai Import Export Login",
+    "Bangkok Shipping Login",
   ],
   alternates: {
-    canonical: "https://hanjinthailand.com/auth/login",
+    canonical: "https://thaishipping.com/auth/login",
   },
   openGraph: {
-    title: "Customer Login | Hanjin Shipping Thailand",
+    title: "Customer Login | Thai Shipping Services",
     description:
-      "Login to your Hanjin Shipping Thailand customer account. Track shipments in real-time, manage your logistics operations, access digital documents, and enjoy seamless supply chain management across Asia, America, and Europe.",
-    url: "https://hanjinthailand.com/auth/login",
-    siteName: "Hanjin Shipping Thailand",
+      "Login to your Thai Shipping Services customer account. Track shipments in real-time, manage your air, sea, and land logistics operations, and access digital documents.",
+    url: "https://thaishipping.com/auth/login",
+    siteName: "Thai Shipping Services",
     images: [
       {
         url: "/og-login.jpg",
         width: 1200,
         height: 630,
-        alt: "Hanjin Shipping Thailand - Customer Login",
+        alt: "Thai Shipping Services - Customer Login",
       },
     ],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Customer Login | Hanjin Shipping Thailand",
+    title: "Customer Login | Thai Shipping Services",
     description:
-      "Login to your Hanjin Shipping Thailand customer account. Track shipments in real-time and manage your logistics operations.",
+      "Login to your Thai Shipping Services customer account. Track shipments in real-time and manage your logistics operations.",
     images: ["/og-login.jpg"],
   },
   robots: {
@@ -59,7 +60,7 @@ export default function Page() {
     <>
       <LoginPage />
 
-      {/* 🔹 Schema Markup for Login Page - Updated for Hanjin Shipping */}
+      {/* 🔹 Schema Markup for Login Page - Thai Shipping Services */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -68,34 +69,39 @@ export default function Page() {
             "@type": "WebPage",
             name: "Customer Login",
             description:
-              "Login to your Hanjin Shipping Thailand customer account. Track shipments in real-time, manage your logistics operations, access digital documents, and enjoy seamless supply chain management across Asia, America, and Europe.",
-            url: "https://hanjinthailand.com/auth/login",
+              "Login to your Thai Shipping Services customer account. Track shipments in real-time, manage your air, sea, and land logistics operations, access digital documents, and enjoy seamless shipping management across Thailand and worldwide.",
+            url: "https://thaishipping.com/auth/login",
             publisher: {
               "@type": "Organization",
-              name: "Hanjin Shipping Thailand",
-              url: "https://hanjinthailand.com",
-              logo: "https://hanjinthailand.com/images/logo.png",
+              name: "Thai Shipping Services",
+              url: "https://thaishipping.com",
+              logo: "https://thaishipping.com/images/logo.png",
             },
             mainEntity: {
               "@type": "WebPageElement",
               name: "Login Form",
-              description: "Secure customer login portal with email and password authentication",
+              description:
+                "Secure customer login portal with email and password authentication",
             },
             potentialAction: {
               "@type": "Action",
               name: "Login",
-              description: "Customer authentication for logistics account access",
+              description:
+                "Customer authentication for logistics account access",
               target: {
                 "@type": "EntryPoint",
-                urlTemplate: "https://hanjinthailand.com/auth/login",
-                actionPlatform: ["https://schema.org/DesktopWebPlatform", "https://schema.org/MobileWebPlatform"],
+                urlTemplate: "https://thaishipping.com/auth/login",
+                actionPlatform: [
+                  "https://schema.org/DesktopWebPlatform",
+                  "https://schema.org/MobileWebPlatform",
+                ],
               },
             },
           }),
         }}
       />
 
-      {/* 🔹 Breadcrumb Schema for Login - Updated for Hanjin Shipping */}
+      {/* 🔹 Breadcrumb Schema for Login - Thai Shipping Services */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -107,19 +113,19 @@ export default function Page() {
                 "@type": "ListItem",
                 position: 1,
                 name: "Home",
-                item: "https://hanjinthailand.com",
+                item: "https://thaishipping.com",
               },
               {
                 "@type": "ListItem",
                 position: 2,
                 name: "Authentication",
-                item: "https://hanjinthailand.com/auth",
+                item: "https://thaishipping.com/auth",
               },
               {
                 "@type": "ListItem",
                 position: 3,
                 name: "Customer Login",
-                item: "https://hanjinthailand.com/auth/login",
+                item: "https://thaishipping.com/auth/login",
               },
             ],
           }),

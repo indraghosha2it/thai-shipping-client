@@ -1,179 +1,53 @@
-// import CreateBooking from "@/components/booking/createBooking";
-
-// import React from "react";
-
-// // 🔹 SEO metadata for Create Booking
-// export const metadata = {
-//   title: "Create Booking | Samudera Traffic Co., Ltd. Group",
-//   description:
-//     "Create a new shipping booking with Samudera Traffic Co., Ltd. Group. Book sea freight, air freight, inland trucking, or multimodal shipping. Get competitive rates with real-time tracking.",
-//   keywords: [
-//     "Samudera Traffic Co., Ltd.",
-//     "Create Booking",
-//     "Shipping Booking",
-//     "Sea Freight Booking",
-//     "Air Freight Booking",
-//     "Inland Trucking",
-//     "Multimodal Shipping",
-//     "Logistics Booking",
-//     "Freight Booking",
-//     "Shipment Booking",
-//   ],
-//   alternates: {
-//     canonical: "https://samuderathai.com/create-booking",
-//   },
-//   openGraph: {
-//     title: "Create Booking | Samudera Traffic Co., Ltd. Group",
-//     description:
-//       "Create a new shipping booking with Samudera Traffic Co., Ltd. Group. Book sea freight, air freight, inland trucking, or multimodal shipping. Get competitive rates with real-time tracking.",
-//     url: "https://samuderathai.com/create-booking",
-//     siteName: "Samudera Traffic Co., Ltd. Group",
-//     images: [
-//       {
-//         url: "/og-create-booking.jpg",
-//         width: 1200,
-//         height: 630,
-//         alt: "Samudera Traffic Co., Ltd. Group - Create Booking",
-//       },
-//     ],
-//     type: "website",
-//   },
-//   twitter: {
-//     card: "summary_large_image",
-//     title: "Create Booking | Samudera Traffic Co., Ltd. Group",
-//     description:
-//       "Create a new shipping booking with Samudera Traffic Co., Ltd. Group. Book sea freight, air freight, inland trucking, or multimodal shipping.",
-//     images: ["/og-create-booking.jpg"],
-//   },
-//   robots: {
-//     index: true,
-//     follow: true,
-//   },
-// };
-
-// export default function Page() {
-//   return (
-//     <>
-//       <CreateBooking />
-
-//       {/* 🔹 Schema Markup for Create Booking Page */}
-//       <script
-//         type="application/ld+json"
-//         dangerouslySetInnerHTML={{
-//           __html: JSON.stringify({
-//             "@context": "https://schema.org",
-//             "@type": "WebPage",
-//             name: "Create Shipping Booking",
-//             description:
-//               "Create a new shipping booking with Samudera Traffic Co., Ltd. Group. Book sea freight, air freight, inland trucking, or multimodal shipping with competitive rates.",
-//             url: "https://samuderathai.com/create-booking",
-//             publisher: {
-//               "@type": "Organization",
-//               name: "Samudera Traffic Co., Ltd. Group",
-//               url: "https://samuderathai.com",
-//               logo: "https://samuderathai.com/logo.png",
-//             },
-//             mainEntity: {
-//               "@type": "WebPageElement",
-//               name: "Booking Form",
-//               description: "Multi-step booking form for shipping and logistics services",
-//             },
-//             potentialAction: {
-//               "@type": "Action",
-//               name: "Create Booking",
-//               description: "Book shipping services including sea freight, air freight, and inland trucking",
-//               target: {
-//                 "@type": "EntryPoint",
-//                 urlTemplate: "https://samuderathai.com/create-booking",
-//                 actionPlatform: ["https://schema.org/DesktopWebPlatform", "https://schema.org/MobileWebPlatform"],
-//               },
-//             },
-//           }),
-//         }}
-//       />
-
-//       {/* 🔹 Breadcrumb Schema for Create Booking */}
-//       <script
-//         type="application/ld+json"
-//         dangerouslySetInnerHTML={{
-//           __html: JSON.stringify({
-//             "@context": "https://schema.org",
-//             "@type": "BreadcrumbList",
-//             itemListElement: [
-//               {
-//                 "@type": "ListItem",
-//                 position: 1,
-//                 name: "Home",
-//                 item: "https://samuderathai.com",
-//               },
-//               {
-//                 "@type": "ListItem",
-//                 position: 2,
-//                 name: "Bookings",
-//                 item: "https://samuderathai.com/bookings",
-//               },
-//               {
-//                 "@type": "ListItem",
-//                 position: 3,
-//                 name: "Create Booking",
-//                 item: "https://samuderathai.com/create-booking",
-//               },
-//             ],
-//           }),
-//         }}
-//       />
-//     </>
-//   );
-// }
-
-
 import CreateBooking from "@/components/booking/createBooking";
 
 import React from "react";
 
-// 🔹 SEO metadata for Create Booking - Hanjin Shipping Thailand
+// 🔹 SEO metadata for Create Booking - Thai Shipping Services
 export const metadata = {
   title: "Create Shipping Booking",
   description:
-    "Create a new ocean freight booking with Hanjin Shipping Thailand. Book container shipping, FCL/LCL services, and global logistics solutions across Asia, America, and Europe with real-time tracking.",
+    "Create a new shipping booking with Thai Shipping Services. Book air, sea, and land transportation, container shipping, and logistics solutions across Thailand and worldwide with real-time tracking.",
   keywords: [
-    "Hanjin Shipping Thailand",
+    "Thai Shipping Services",
     "Create Booking",
-    "Ocean Freight Booking",
+    "Shipping Booking Thailand",
     "Container Shipping Booking",
     "Sea Freight Booking",
+    "Air Freight Booking",
+    "Land Transport Booking",
     "FCL Booking",
     "LCL Booking",
-    "Global Logistics",
+    "Thai Logistics Booking",
     "Freight Booking",
     "Shipment Booking",
-    "Hanjin Booking",
+    "Thai Shipping Booking",
     "Container Booking Thailand",
+    "Bangkok Shipping Booking",
   ],
   alternates: {
-    canonical: "https://hanjinthailand.com/create-booking",
+    canonical: "https://thaishipping.com/create-booking",
   },
   openGraph: {
-    title: "Create Shipping Booking | Hanjin Shipping Thailand",
+    title: "Create Shipping Booking | Thai Shipping Services",
     description:
-      "Create a new ocean freight booking with Hanjin Shipping Thailand. Book container shipping, FCL/LCL services, and global logistics solutions across Asia, America, and Europe.",
-    url: "https://hanjinthailand.com/create-booking",
-    siteName: "Hanjin Shipping Thailand",
+      "Create a new shipping booking with Thai Shipping Services. Book air, sea, and land transportation, container shipping, and logistics solutions across Thailand and worldwide.",
+    url: "https://thaishipping.com/create-booking",
+    siteName: "Thai Shipping Services",
     images: [
       {
         url: "/og-create-booking.jpg",
         width: 1200,
         height: 630,
-        alt: "Hanjin Shipping Thailand - Create Ocean Freight Booking",
+        alt: "Thai Shipping Services - Create Shipping Booking",
       },
     ],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Create Shipping Booking | Hanjin Shipping Thailand",
+    title: "Create Shipping Booking | Thai Shipping Services",
     description:
-      "Create a new ocean freight booking with Hanjin Shipping Thailand. Book container shipping services across Asia, America, and Europe.",
+      "Create a new shipping booking with Thai Shipping Services. Book air, sea, and land shipping services across Thailand and worldwide.",
     images: ["/og-create-booking.jpg"],
   },
   robots: {
@@ -187,43 +61,48 @@ export default function Page() {
     <>
       <CreateBooking />
 
-      {/* 🔹 Schema Markup for Create Booking Page - Hanjin Shipping Thailand */}
+      {/* 🔹 Schema Markup for Create Booking Page - Thai Shipping Services */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebPage",
-            name: "Create Ocean Freight Booking",
+            name: "Create Shipping Booking",
             description:
-              "Create a new ocean freight booking with Hanjin Shipping Thailand. Book container shipping, FCL/LCL services, and global logistics solutions across Asia, America, and Europe.",
-            url: "https://hanjinthailand.com/create-booking",
+              "Create a new shipping booking with Thai Shipping Services. Book air, sea, and land transportation, container shipping, and logistics solutions across Thailand and worldwide.",
+            url: "https://thaishipping.com/create-booking",
             publisher: {
               "@type": "Organization",
-              name: "Hanjin Shipping Thailand",
-              url: "https://hanjinthailand.com",
-              logo: "https://hanjinthailand.com/logo.png",
+              name: "Thai Shipping Services",
+              url: "https://thaishipping.com",
+              logo: "https://thaishipping.com/logo.png",
             },
             mainEntity: {
               "@type": "WebPageElement",
               name: "Booking Form",
-              description: "Multi-step booking form for ocean freight and container shipping services",
+              description:
+                "Multi-step booking form for air, sea, and land shipping services",
             },
             potentialAction: {
               "@type": "Action",
               name: "Create Booking",
-              description: "Book ocean freight services including FCL, LCL, and container shipping",
+              description:
+                "Book shipping services including air freight, sea freight, land transport, and container shipping",
               target: {
                 "@type": "EntryPoint",
-                urlTemplate: "https://hanjinthailand.com/create-booking",
-                actionPlatform: ["https://schema.org/DesktopWebPlatform", "https://schema.org/MobileWebPlatform"],
+                urlTemplate: "https://thaishipping.com/create-booking",
+                actionPlatform: [
+                  "https://schema.org/DesktopWebPlatform",
+                  "https://schema.org/MobileWebPlatform",
+                ],
               },
             },
           }),
         }}
       />
 
-      {/* 🔹 Breadcrumb Schema for Create Booking - Hanjin Shipping Thailand */}
+      {/* 🔹 Breadcrumb Schema for Create Booking - Thai Shipping Services */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -235,19 +114,19 @@ export default function Page() {
                 "@type": "ListItem",
                 position: 1,
                 name: "Home",
-                item: "https://hanjinthailand.com",
+                item: "https://thaishipping.com",
               },
               {
                 "@type": "ListItem",
                 position: 2,
                 name: "Services",
-                item: "https://hanjinthailand.com/services",
+                item: "https://thaishipping.com/shipping-services",
               },
               {
                 "@type": "ListItem",
                 position: 3,
                 name: "Create Booking",
-                item: "https://hanjinthailand.com/create-booking",
+                item: "https://thaishipping.com/create-booking",
               },
             ],
           }),
@@ -261,42 +140,23 @@ export default function Page() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Service",
-            name: "Ocean Freight Booking Service",
+            name: "Shipping Booking Service",
             provider: {
               "@type": "Organization",
-              name: "Hanjin Shipping Thailand",
+              name: "Thai Shipping Services",
             },
-            serviceType: "Freight Booking",
-            description: "Online booking service for ocean freight and container shipping",
+            serviceType: "Shipping Booking",
+            description:
+              "Online booking service for air, sea, and land shipping, including container and freight services",
             areaServed: [
-              {
-                "@type": "Country",
-                name: "Thailand",
-              },
-              {
-                "@type": "Country",
-                name: "China",
-              },
-              {
-                "@type": "Country",
-                name: "United States",
-              },
-              {
-                "@type": "Country",
-                name: "United Kingdom",
-              },
-              {
-                "@type": "Country",
-                name: "Germany",
-              },
-              {
-                "@type": "Country",
-                name: "Japan",
-              },
-              {
-                "@type": "Country",
-                name: "South Korea",
-              },
+              { "@type": "Country", name: "Thailand" },
+              { "@type": "Country", name: "China" },
+              { "@type": "Country", name: "United States" },
+              { "@type": "Country", name: "United Kingdom" },
+              { "@type": "Country", name: "Germany" },
+              { "@type": "Country", name: "Japan" },
+              { "@type": "Country", name: "South Korea" },
+              { "@type": "Country", name: "Malaysia" },
             ],
             hasOfferCatalog: {
               "@type": "OfferCatalog",
@@ -304,23 +164,33 @@ export default function Page() {
               itemListElement: [
                 {
                   "@type": "Offer",
-                  name: "FCL Container Shipping",
-                  description: "Full Container Load shipping services",
+                  name: "Air Shipping",
+                  description:
+                    "Air freight services for international and domestic deliveries",
                 },
                 {
                   "@type": "Offer",
-                  name: "LCL Container Shipping",
-                  description: "Less than Container Load consolidation services",
+                  name: "Sea Shipping",
+                  description:
+                    "Sea freight services for global exports and imports",
                 },
                 {
                   "@type": "Offer",
-                  name: "Reefer Container",
-                  description: "Temperature-controlled container shipping",
+                  name: "Land Transportation",
+                  description:
+                    "Local and regional land transportation services",
                 },
                 {
                   "@type": "Offer",
-                  name: "Special Equipment",
-                  description: "Open top, flat rack, and other special containers",
+                  name: "Container Shipping",
+                  description:
+                    "FCL and LCL container shipping services",
+                },
+                {
+                  "@type": "Offer",
+                  name: "Heavy Transportation",
+                  description:
+                    "Specialist heavy equipment shipping",
                 },
               ],
             },

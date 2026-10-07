@@ -1,163 +1,16 @@
-// import MyInvoicesPage from "@/components/profile/invoice";
-// import React from "react";
-
-// // 🔹 SEO metadata for My Invoices
-// export const metadata = {
-//   title: "My Invoices | Samudera Traffic Co., Ltd. Group",
-//   description:
-//     "View and manage your shipping invoices with Samudera Traffic Co., Ltd. Group. Track invoice status, download PDF copies, view payment history, and manage your logistics billing online.",
-//   keywords: [
-//     "Samudera Traffic Co., Ltd.",
-//     "My Invoices",
-//     "Shipping Invoices",
-//     "Logistics Billing",
-//     "Invoice Management",
-//     "Payment History",
-//     "Freight Invoices",
-//     "Cargo Billing",
-//     "Transportation Invoices",
-//     "Logistics Payments",
-//   ],
-//   alternates: {
-//     canonical: "https://samuderathai.com/invoices",
-//   },
-//   openGraph: {
-//     title: "My Invoices | Samudera Traffic Co., Ltd. Group",
-//     description:
-//       "View and manage your shipping invoices with Samudera Traffic Co., Ltd. Group. Track invoice status, download PDF copies, view payment history, and manage your logistics billing online.",
-//     url: "https://samuderathai.com/invoices",
-//     siteName: "Samudera Traffic Co., Ltd. Group",
-//     images: [
-//       {
-//         url: "/og-invoices.jpg",
-//         width: 1200,
-//         height: 630,
-//         alt: "Samudera Traffic Co., Ltd. Group - My Invoices",
-//       },
-//     ],
-//     type: "website",
-//   },
-//   twitter: {
-//     card: "summary_large_image",
-//     title: "My Invoices | Samudera Traffic Co., Ltd. Group",
-//     description:
-//       "View and manage your shipping invoices with Samudera Traffic Co., Ltd. Group. Track invoice status and download PDF copies.",
-//     images: ["/og-invoices.jpg"],
-//   },
-//   robots: {
-//     index: true,
-//     follow: true,
-//   },
-// };
-
-// export default function Page() {
-//   return (
-//     <>
-//       <MyInvoicesPage />
-
-//       {/* 🔹 Schema Markup for My Invoices Page */}
-//       <script
-//         type="application/ld+json"
-//         dangerouslySetInnerHTML={{
-//           __html: JSON.stringify({
-//             "@context": "https://schema.org",
-//             "@type": "WebPage",
-//             name: "My Invoices",
-//             description:
-//               "View and manage your shipping invoices with Samudera Traffic Co., Ltd. Group. Track invoice status, download PDF copies, view payment history, and manage your logistics billing online.",
-//             url: "https://samuderathai.com/invoices",
-//             publisher: {
-//               "@type": "Organization",
-//               name: "Samudera Traffic Co., Ltd. Group",
-//               url: "https://samuderathai.com",
-//               logo: "https://samuderathai.com/logo.png",
-//             },
-//             mainEntity: {
-//               "@type": "ItemList",
-//               name: "Customer Invoices",
-//               description: "List of invoices for shipping and logistics services",
-//             },
-//           }),
-//         }}
-//       />
-
-//       {/* 🔹 Breadcrumb Schema for My Invoices */}
-//       <script
-//         type="application/ld+json"
-//         dangerouslySetInnerHTML={{
-//           __html: JSON.stringify({
-//             "@context": "https://schema.org",
-//             "@type": "BreadcrumbList",
-//             itemListElement: [
-//               {
-//                 "@type": "ListItem",
-//                 position: 1,
-//                 name: "Home",
-//                 item: "https://samuderathai.com",
-//               },
-//               {
-//                 "@type": "ListItem",
-//                 position: 2,
-//                 name: "Customer Dashboard",
-//                 item: "https://samuderathai.com/customer/dashboard",
-//               },
-//               {
-//                 "@type": "ListItem",
-//                 position: 3,
-//                 name: "My Invoices",
-//                 item: "https://samuderathai.com/invoices",
-//               },
-//             ],
-//           }),
-//         }}
-//       />
-
-//       {/* 🔹 Organization Schema for Invoices */}
-//       <script
-//         type="application/ld+json"
-//         dangerouslySetInnerHTML={{
-//           __html: JSON.stringify({
-//             "@context": "https://schema.org",
-//             "@type": "Organization",
-//             name: "Samudera Traffic Co., Ltd. Group",
-//             url: "https://client.cargologisticscompany.com",
-//             logo: "https://client.cargologisticscompany.com/logo.png",
-//             description: "Leading logistics and supply chain solutions provider",
-//             paymentAccepted: ["Credit Card", "Bank Transfer", "Wire Transfer"],
-//             priceRange: "$$",
-//             areaServed: {
-//               "@type": "Country",
-//               name: "Worldwide",
-//             },
-//             contactPoint: {
-//               "@type": "ContactPoint",
-//               telephone: "+66977830395",
-//               contactType: "billing support",
-//               email: "billing@cargologisticscompany.com",
-//               availableLanguage: ["English"],
-//             },
-//           }),
-//         }}
-//       />
-//     </>
-//   );
-// }
-
-
-
 import MyInvoicesPage from "@/components/profile/invoice";
 import React from "react";
 
-// 🔹 SEO metadata for My Invoices - Hanjin Shipping Thailand
+// 🔹 SEO metadata for My Invoices - Thai Shipping Services
 export const metadata = {
   title: "My Invoices",
   description:
-    "View and manage your ocean freight shipping invoices with Hanjin Shipping Thailand. Track invoice status, download PDF copies, view payment history, and manage your container shipping billing online.",
+    "View and manage your shipping invoices with Thai Shipping Services. Track invoice status, download PDF copies, view payment history, and manage your air, sea, and land shipping billing online.",
   keywords: [
-    "Hanjin Shipping Thailand",
+    "Thai Shipping Services",
     "My Invoices",
-    "Ocean Freight Invoices",
-    "Container Shipping Invoices",
+    "Shipping Invoices",
+    "Thai Shipping Invoices",
     "Logistics Billing",
     "Invoice Management",
     "Payment History",
@@ -165,24 +18,26 @@ export const metadata = {
     "Shipping Charges",
     "Cargo Billing",
     "Transportation Invoices",
-    "Hanjin Billing Portal",
-    "Container Charges",
+    "Thai Shipping Billing Portal",
+    "Air Freight Invoices",
+    "Sea Freight Invoices",
+    "Land Transport Invoices",
   ],
   alternates: {
-    canonical: "https://hanjinthailand.com/invoices",
+    canonical: "https://thaishipping.com/invoices",
   },
   openGraph: {
-    title: "My Invoices | Hanjin Shipping Thailand",
+    title: "My Invoices | Thai Shipping Services",
     description:
-      "View and manage your ocean freight shipping invoices with Hanjin Shipping Thailand. Track invoice status, download PDF copies, view payment history, and manage your container shipping billing online.",
-    url: "https://hanjinthailand.com/invoices",
-    siteName: "Hanjin Shipping Thailand",
+      "View and manage your shipping invoices with Thai Shipping Services. Track invoice status, download PDF copies, view payment history, and manage your shipping billing online.",
+    url: "https://thaishipping.com/invoices",
+    siteName: "Thai Shipping Services",
     images: [
       {
         url: "/og-invoices.jpg",
         width: 1200,
         height: 630,
-        alt: "Hanjin Shipping Thailand - My Invoices",
+        alt: "Thai Shipping Services - My Invoices",
       },
     ],
     type: "website",
@@ -190,9 +45,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "My Invoices | Hanjin Shipping Thailand",
+    title: "My Invoices | Thai Shipping Services",
     description:
-      "View and manage your ocean freight shipping invoices with Hanjin Shipping Thailand. Track invoice status and download PDF copies.",
+      "View and manage your shipping invoices with Thai Shipping Services. Track invoice status and download PDF copies.",
     images: ["/og-invoices.jpg"],
   },
   robots: {
@@ -212,33 +67,34 @@ export default function Page() {
     <>
       <MyInvoicesPage />
 
-      {/* 🔹 Schema Markup for My Invoices Page - Hanjin Shipping Thailand */}
+      {/* 🔹 Schema Markup for My Invoices Page - Thai Shipping Services */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebPage",
-            name: "My Invoices - Hanjin Shipping Thailand",
+            name: "My Invoices - Thai Shipping Services",
             description:
-              "View and manage your ocean freight shipping invoices with Hanjin Shipping Thailand. Track invoice status, download PDF copies, view payment history, and manage your container shipping billing online.",
-            url: "https://hanjinthailand.com/invoices",
+              "View and manage your shipping invoices with Thai Shipping Services. Track invoice status, download PDF copies, view payment history, and manage your shipping billing online.",
+            url: "https://thaishipping.com/invoices",
             publisher: {
               "@type": "Organization",
-              name: "Hanjin Shipping Thailand",
-              url: "https://hanjinthailand.com",
-              logo: "https://hanjinthailand.com/logo.png",
+              name: "Thai Shipping Services",
+              url: "https://thaishipping.com",
+              logo: "https://thaishipping.com/logo.png",
             },
             mainEntity: {
               "@type": "ItemList",
               name: "Customer Invoices",
-              description: "List of invoices for ocean freight and container shipping services",
+              description:
+                "List of invoices for air, sea, and land shipping services",
             },
           }),
         }}
       />
 
-      {/* 🔹 Breadcrumb Schema for My Invoices - Hanjin Shipping Thailand */}
+      {/* 🔹 Breadcrumb Schema for My Invoices - Thai Shipping Services */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -250,37 +106,43 @@ export default function Page() {
                 "@type": "ListItem",
                 position: 1,
                 name: "Home",
-                item: "https://hanjinthailand.com",
+                item: "https://thaishipping.com",
               },
               {
                 "@type": "ListItem",
                 position: 2,
                 name: "Customer Portal",
-                item: "https://hanjinthailand.com/customer-portal",
+                item: "https://thaishipping.com/customer-portal",
               },
               {
                 "@type": "ListItem",
                 position: 3,
                 name: "My Invoices",
-                item: "https://hanjinthailand.com/invoices",
+                item: "https://thaishipping.com/invoices",
               },
             ],
           }),
         }}
       />
 
-      {/* 🔹 Organization Schema for Invoices - Hanjin Shipping Thailand */}
+      {/* 🔹 Organization Schema for Invoices - Thai Shipping Services */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
-            name: "Hanjin Shipping (Thailand) Co., Ltd.",
-            url: "https://hanjinthailand.com",
-            logo: "https://hanjinthailand.com/logo.png",
-            description: "Leading ocean freight and container shipping solutions provider in Thailand",
-            paymentAccepted: ["Bank Transfer", "Wire Transfer", "Credit Card", "Letter of Credit"],
+            name: "Thai Shipping Services",
+            url: "https://thaishipping.com",
+            logo: "https://thaishipping.com/logo.png",
+            description:
+              "Air, sea, and land shipping services in Thailand — your guide to Thai imports, exports, food shipping, and shipping regulations.",
+            paymentAccepted: [
+              "Bank Transfer",
+              "Wire Transfer",
+              "Credit Card",
+              "Letter of Credit",
+            ],
             priceRange: "$$$",
             areaServed: [
               { "@type": "Country", name: "Thailand" },
@@ -291,12 +153,13 @@ export default function Page() {
               { "@type": "Country", name: "Germany" },
               { "@type": "Country", name: "Japan" },
               { "@type": "Country", name: "South Korea" },
+              { "@type": "Country", name: "Malaysia" },
             ],
             contactPoint: {
               "@type": "ContactPoint",
               telephone: "+66-2-123-4567",
               contactType: "billing support",
-              email: "billing@hanjinthailand.com",
+              email: "billing@thaishipping.com",
               availableLanguage: ["English", "Thai"],
             },
           }),
@@ -310,16 +173,17 @@ export default function Page() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Service",
-            name: "Ocean Freight Billing Service",
+            name: "Shipping Billing Service",
             provider: {
               "@type": "Organization",
-              name: "Hanjin Shipping Thailand",
+              name: "Thai Shipping Services",
             },
             serviceType: "Invoice Management",
-            description: "Online invoice management system for ocean freight and container shipping charges",
+            description:
+              "Online invoice management system for air, sea, and land shipping charges",
             audience: {
               "@type": "Audience",
-              name: "Hanjin Shipping Customers",
+              name: "Thai Shipping Customers",
             },
             hasOfferCatalog: {
               "@type": "OfferCatalog",
@@ -358,12 +222,13 @@ export default function Page() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "FinancialProduct",
-            name: "Ocean Freight Billing Service",
+            name: "Shipping Billing Service",
             provider: {
               "@type": "Organization",
-              name: "Hanjin Shipping Thailand",
+              name: "Thai Shipping Services",
             },
-            feesAndCommissionsSpecification: "Shipping charges vary based on container type, route, and volume. Contact customer service for detailed rate information.",
+            feesAndCommissionsSpecification:
+              "Shipping charges vary based on service type, route, and volume. Contact customer service for detailed rate information.",
             annualPercentageRate: "N/A",
             areaServed: "Worldwide",
           }),
@@ -377,8 +242,8 @@ export default function Page() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebApplication",
-            name: "Hanjin Invoice Portal",
-            url: "https://hanjinthailand.com/invoices",
+            name: "Thai Shipping Invoice Portal",
+            url: "https://thaishipping.com/invoices",
             applicationCategory: "BusinessApplication",
             operatingSystem: "All",
             offers: {
@@ -386,7 +251,8 @@ export default function Page() {
               price: "0",
               priceCurrency: "USD",
             },
-            description: "Customer portal for managing ocean freight shipping invoices",
+            description:
+              "Customer portal for managing shipping invoices",
             features: [
               "Invoice viewing",
               "PDF download",

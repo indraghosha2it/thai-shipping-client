@@ -1,135 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://samuderathai.com/</loc>
-    <lastmod>2026-06-11T05:36:12.979Z</lastmod>
+    <loc>https://thaishipping.com/</loc>
+    <lastmod>2026-10-07T05:18:05.703Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://samuderathai.com/about/</loc>
-    <lastmod>2026-06-11T05:36:12.979Z</lastmod>
+    <loc>https://thaishipping.com/about/</loc>
+    <lastmod>2026-10-07T05:18:05.703Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://samuderathai.com/contact/</loc>
-    <lastmod>2026-06-11T05:36:12.979Z</lastmod>
+    <loc>https://thaishipping.com/contact/</loc>
+    <lastmod>2026-10-07T05:18:05.703Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://samuderathai.com/footer/booking/</loc>
-    <lastmod>2026-06-11T05:36:12.979Z</lastmod>
+    <loc>https://thaishipping.com/shipping-services/</loc>
+    <lastmod>2026-10-07T05:18:05.703Z</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://samuderathai.com/footer/choose/</loc>
-    <lastmod>2026-06-11T05:36:12.979Z</lastmod>
+    <loc>https://thaishipping.com/thai-imports/</loc>
+    <lastmod>2026-10-07T05:18:05.703Z</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://samuderathai.com/footer/mission-vission/</loc>
-    <lastmod>2026-06-11T05:36:12.979Z</lastmod>
+    <loc>https://thaishipping.com/thai-exports/</loc>
+    <lastmod>2026-10-07T05:18:05.703Z</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://samuderathai.com/footer/privacy-policy/</loc>
-    <lastmod>2026-06-11T05:36:12.979Z</lastmod>
+    <loc>https://thaishipping.com/thai-food-shipping/</loc>
+    <lastmod>2026-10-07T05:18:05.703Z</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://samuderathai.com/footer/terms/</loc>
-    <lastmod>2026-06-11T05:36:12.979Z</lastmod>
+    <loc>https://thaishipping.com/shipping-regulations/</loc>
+    <lastmod>2026-10-07T05:18:05.703Z</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://samuderathai.com/industries/</loc>
-    <lastmod>2026-06-11T05:36:12.979Z</lastmod>
+    <loc>https://thaishipping.com/tracking-number/</loc>
+    <lastmod>2026-10-07T05:18:05.703Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://samuderathai.com/industries_deatils/</loc>
-    <lastmod>2026-06-11T05:36:12.979Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://samuderathai.com/info/container/dry/</loc>
-    <lastmod>2026-06-11T05:36:12.979Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://samuderathai.com/info/container/flat-rack/</loc>
-    <lastmod>2026-06-11T05:36:12.979Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://samuderathai.com/info/container/open-top/</loc>
-    <lastmod>2026-06-11T05:36:12.979Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://samuderathai.com/info/container/reefer/</loc>
-    <lastmod>2026-06-11T05:36:12.979Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://samuderathai.com/info/reefer/general/</loc>
-    <lastmod>2026-06-11T05:36:12.979Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://samuderathai.com/info/reefer/temp-setting/</loc>
-    <lastmod>2026-06-11T05:36:12.979Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://samuderathai.com/services/america/</loc>
-    <lastmod>2026-06-11T05:36:12.979Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://samuderathai.com/services/europe/</loc>
-    <lastmod>2026-06-11T05:36:12.979Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://samuderathai.com/services/intra-asia/</loc>
-    <lastmod>2026-06-11T05:36:12.979Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://samuderathai.com/services/schedule/inbound/</loc>
-    <lastmod>2026-06-11T05:36:12.979Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://samuderathai.com/services/schedule/outbound/</loc>
-    <lastmod>2026-06-11T05:36:12.979Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://samuderathai.com/tracking-number/</loc>
-    <lastmod>2026-06-11T05:36:12.979Z</lastmod>
+    <loc>https://thaishipping.com/create-booking/</loc>
+    <lastmod>2026-10-07T05:18:05.703Z</lastmod>
     <changefreq>daily</changefreq>
-    <priority>1.0</priority>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://thaishipping.com/bookings/my_bookings/</loc>
+    <lastmod>2026-10-07T05:18:05.703Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://thaishipping.com/shipments/</loc>
+    <lastmod>2026-10-07T05:18:05.703Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://thaishipping.com/invoices/</loc>
+    <lastmod>2026-10-07T05:18:05.703Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://thaishipping.com/profile/</loc>
+    <lastmod>2026-10-07T05:18:05.703Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://thaishipping.com/privacy-policy/</loc>
+    <lastmod>2026-10-07T05:18:05.703Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://thaishipping.com/auth/login/</loc>
+    <lastmod>2026-10-07T05:18:05.703Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://thaishipping.com/auth/register/</loc>
+    <lastmod>2026-10-07T05:18:05.703Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
   </url>
 </urlset>

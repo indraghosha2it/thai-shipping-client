@@ -1,4 +1,5 @@
 
+
 // "use client";
 
 // import React, { useEffect, useState } from "react";
@@ -58,7 +59,8 @@
 //   informationLinks: [
 //     { label: "Contact Us", href: "/contact" },
 //     { label: "About Us", href: "/about" },
-//     { label: "Track Shipment", href: "/track-shipment" },
+//     { label: "Track Shipment", href: "/tracking-number" },
+//     { label: "Privacy Policy", href: "/privacy-policy" },
 //   ],
 // };
 
@@ -163,8 +165,8 @@
 //         {/* RIGHT CONTENT */}
 //         <div className="w-full px-6 py-8 sm:px-8 sm:py-9 lg:w-[74%] lg:px-9 lg:py-8 xl:px-11">
 //           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6 xl:gap-8">
-//             {/* COLUMN 1 — Brand */}
-//             <div>
+//             {/* COLUMN 1 — Brand (centered on mobile, top) */}
+//             <div className="flex flex-col items-center text-center sm:col-span-2 lg:col-span-1 lg:items-start lg:text-left">
 //               <Link href="/" className="inline-flex items-center">
 //                 <Image
 //                   src={navbarLogo?.url || bannerLogo?.url || "/images/logo.png"}
@@ -176,11 +178,11 @@
 //                 <span className="sr-only">{companyName}</span>
 //               </Link>
 
-//               <p className="mt-4 max-w-[190px] text-[9px] leading-[1.7] text-white/45 -mt-3">
+//               <p className="mt-4 max-w-[260px] text-[11px] leading-[1.7] text-white/50 -mt-3 lg:max-w-[190px] lg:text-[9px] lg:text-white/45">
 //                 {description}
 //               </p>
 
-//               <div className="mt-4 flex items-center gap-1.5">
+//               <div className="mt-4 flex items-center justify-center gap-2 lg:justify-start lg:gap-1.5">
 //                 {activeSocialLinks.map((social) => {
 //                   const Icon = socialIconMap[social.platform] || Facebook;
 //                   return (
@@ -190,77 +192,80 @@
 //                       target="_blank"
 //                       rel="noopener noreferrer"
 //                       aria-label={social.platform}
-//                       className="flex h-6 w-6 items-center justify-center rounded-full bg-[#ED6D32] text-white transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:text-[#062B35]"
+//                       className="flex h-7 w-7 items-center justify-center rounded-full bg-[#ED6D32] text-white transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:text-[#062B35] lg:h-6 lg:w-6"
 //                     >
-//                       <Icon className="h-3 w-3" strokeWidth={1.8} />
+//                       <Icon className="h-3.5 w-3.5 lg:h-3 lg:w-3" strokeWidth={1.8} />
 //                     </Link>
 //                   );
 //                 })}
 //               </div>
 //             </div>
 
-//             {/* COLUMN 2 — Discover */}
-//             <div>
-//               <h3 className="text-[12px] font-semibold text-white">Discover</h3>
-//               <div className="mt-4 space-y-2.5">
-//                 {discoverLinks.map((item) => (
-//                   <Link
-//                     key={item.label}
-//                     href={item.href}
-//                     className="group flex items-center gap-1.5 text-[9px] leading-[1.4] text-white/45 transition-colors duration-200 hover:text-[#ED6D32]"
-//                   >
-//                     <span>{item.label}</span>
-//                     <ArrowUpRight className="h-2.5 w-2.5 opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100" />
-//                   </Link>
-//                 ))}
-//               </div>
-//             </div>
-
-//             {/* COLUMN 3 — Information */}
-//             <div>
-//               <h3 className="text-[12px] font-semibold text-white">Information</h3>
-//               <div className="mt-4 space-y-2.5">
-//                 {informationLinks.map((item) => (
-//                   <Link
-//                     key={item.label}
-//                     href={item.href}
-//                     className="group flex items-center gap-1.5 text-[9px] leading-[1.4] text-white/45 transition-colors duration-200 hover:text-[#ED6D32]"
-//                   >
-//                     <span>{item.label}</span>
-//                     <ArrowUpRight className="h-2.5 w-2.5 opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100" />
-//                   </Link>
-//                 ))}
-//               </div>
-//             </div>
-
-//             {/* COLUMN 4 — Contact */}
-//             <div>
-//               <h3 className="text-[12px] font-semibold text-white">Contact</h3>
-//               <div className="mt-4 space-y-3.5">
-//                 <div className="flex items-start gap-2">
-//                   <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#ED6D32]" strokeWidth={1.7} />
-//                   <p className="text-[9px] leading-[1.6] text-white/45">
-//                     {contactInfo?.address?.line1}
-//                     <br />
-//                     {contactInfo?.address?.line2}
-//                   </p>
+//             {/* Mobile: 3 columns in one row. Desktop: each its own column. */}
+//             <div className="grid grid-cols-3 gap-2 sm:col-span-2 sm:gap-3 lg:contents">
+//               {/* COLUMN 2 — Discover */}
+//               <div>
+//                 <h3 className="text-[12px] font-semibold text-white">Discover</h3>
+//                 <div className="mt-4 space-y-2.5">
+//                   {discoverLinks.map((item) => (
+//                     <Link
+//                       key={item.label}
+//                       href={item.href}
+//                       className="group flex items-center gap-1.5 text-[10px] leading-[1.4] text-white/45 transition-colors duration-200 hover:text-[#ED6D32] lg:text-[9px]"
+//                     >
+//                       <span>{item.label}</span>
+//                       <ArrowUpRight className="h-2.5 w-2.5 opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100" />
+//                     </Link>
+//                   ))}
 //                 </div>
+//               </div>
 
-//                 <a
-//                   href={`mailto:${contactInfo?.email}`}
-//                   className="flex items-center gap-2 text-[9px] text-white/45 transition-colors hover:text-[#ED6D32]"
-//                 >
-//                   <Mail className="h-3.5 w-3.5 shrink-0 text-[#ED6D32]" strokeWidth={1.7} />
-//                   <span className="break-all">{contactInfo?.email}</span>
-//                 </a>
+//               {/* COLUMN 3 — Information */}
+//               <div>
+//                 <h3 className="text-[12px] font-semibold text-white">Information</h3>
+//                 <div className="mt-4 space-y-2.5">
+//                   {informationLinks.map((item) => (
+//                     <Link
+//                       key={item.label}
+//                       href={item.href}
+//                       className="group flex items-center gap-1.5 text-[10px] leading-[1.4] text-white/45 transition-colors duration-200 hover:text-[#ED6D32] lg:text-[9px]"
+//                     >
+//                       <span>{item.label}</span>
+//                       <ArrowUpRight className="h-2.5 w-2.5 opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100" />
+//                     </Link>
+//                   ))}
+//                 </div>
+//               </div>
 
-//                 <a
-//                   href={`tel:${contactInfo?.phone?.replace(/\s/g, "")}`}
-//                   className="flex items-center gap-2 text-[9px] text-white/45 transition-colors hover:text-[#ED6D32]"
-//                 >
-//                   <Phone className="h-3.5 w-3.5 shrink-0 text-[#ED6D32]" strokeWidth={1.7} />
-//                   {contactInfo?.phone}
-//                 </a>
+//               {/* COLUMN 4 — Contact */}
+//               <div>
+//                 <h3 className="text-[12px] font-semibold text-white">Contact</h3>
+//                 <div className="mt-4 space-y-3.5">
+//                   <div className="flex items-start gap-1.5">
+//                     <MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#ED6D32]" strokeWidth={1.7} />
+//                     <p className="text-[10px] leading-[1.6] text-white/45 lg:text-[9px]">
+//                       {contactInfo?.address?.line1}
+//                       <br />
+//                       {contactInfo?.address?.line2}
+//                     </p>
+//                   </div>
+
+//                   <a
+//                     href={`mailto:${contactInfo?.email}`}
+//                     className="flex items-center gap-1.5 text-[10px] text-white/45 transition-colors hover:text-[#ED6D32] lg:gap-2 lg:text-[9px]"
+//                   >
+//                     <Mail className="h-3.5 w-3.5 shrink-0 text-[#ED6D32]" strokeWidth={1.7} />
+//                     <span className="break-all">{contactInfo?.email}</span>
+//                   </a>
+
+//                   <a
+//                     href={`tel:${contactInfo?.phone?.replace(/\s/g, "")}`}
+//                     className="flex items-center gap-1.5 text-[10px] text-white/45 transition-colors hover:text-[#ED6D32] lg:gap-2 lg:text-[9px]"
+//                   >
+//                     <Phone className="h-3.5 w-3.5 shrink-0 text-[#ED6D32]" strokeWidth={1.7} />
+//                     {contactInfo?.phone}
+//                   </a>
+//                 </div>
 //               </div>
 //             </div>
 //           </div>
@@ -307,7 +312,11 @@ const socialIconMap = {
   youtube: Youtube,
 };
 
-// Fallback data — shown while loading or if API fails
+// ============================================================
+// FRONTEND-CONTROLLED DATA
+// Discover + Information columns are always driven from here.
+// The backend is NOT allowed to override these two arrays.
+// ============================================================
 const fallbackData = {
   navbarLogo: { url: "/images/logo.png" },
   bannerLogo: { url: "/images/logo.png" },
@@ -337,6 +346,8 @@ const fallbackData = {
   description:
     "Connecting Thailand with global markets through reliable shipping, logistics and international trade solutions.",
   copyrightText: "Copyright © 2009 ThaiShipping.com",
+
+  // 👇 These two are FRONTEND ONLY
   discoverLinks: [
     { label: "Thai Imports", href: "/thai-imports" },
     { label: "Thai Exports", href: "/thai-exports" },
@@ -347,7 +358,8 @@ const fallbackData = {
   informationLinks: [
     { label: "Contact Us", href: "/contact" },
     { label: "About Us", href: "/about" },
-    { label: "Track Shipment", href: "/track-shipment" },
+    { label: "Track Shipment", href: "/tracking-number" },
+    { label: "Privacy Policy", href: "/privacy-policy" },
   ],
 };
 
@@ -357,30 +369,44 @@ const Footer = () => {
   useEffect(() => {
     const load = async () => {
       const data = await fetchFooterSettings();
-      if (data) {
-        setSettings({
-          ...fallbackData,
-          ...data,
-          contactInfo: { ...fallbackData.contactInfo, ...data.contactInfo },
-          galleryImages:
-            data.galleryImages?.length > 0
-              ? data.galleryImages
-              : fallbackData.galleryImages,
-          socialLinks:
-            data.socialLinks?.length > 0
-              ? data.socialLinks
-              : fallbackData.socialLinks,
-          discoverLinks:
-            data.discoverLinks?.length > 0
-              ? data.discoverLinks
-              : fallbackData.discoverLinks,
-          informationLinks:
-            data.informationLinks?.length > 0
-              ? data.informationLinks
-              : fallbackData.informationLinks,
-        });
-      }
+      if (!data) return;
+
+      setSettings({
+        // start from fallback so any missing field still has a value
+        ...fallbackData,
+
+        // backend-driven fields
+        navbarLogo: data.navbarLogo?.url ? data.navbarLogo : fallbackData.navbarLogo,
+        bannerLogo: data.bannerLogo?.url ? data.bannerLogo : fallbackData.bannerLogo,
+        companyName: data.companyName || fallbackData.companyName,
+        description: data.description || fallbackData.description,
+        copyrightText: data.copyrightText || fallbackData.copyrightText,
+
+        contactInfo: {
+          ...fallbackData.contactInfo,
+          ...(data.contactInfo || {}),
+          address: {
+            ...fallbackData.contactInfo.address,
+            ...(data.contactInfo?.address || {}),
+          },
+        },
+
+        galleryImages:
+          data.galleryImages?.length > 0
+            ? data.galleryImages
+            : fallbackData.galleryImages,
+
+        socialLinks:
+          data.socialLinks?.length > 0
+            ? data.socialLinks
+            : fallbackData.socialLinks,
+
+        // 🔒 HARD LOCKED TO FRONTEND — backend cannot override these
+        discoverLinks: fallbackData.discoverLinks,
+        informationLinks: fallbackData.informationLinks,
+      });
     };
+
     load();
   }, []);
 
@@ -452,7 +478,7 @@ const Footer = () => {
         {/* RIGHT CONTENT */}
         <div className="w-full px-6 py-8 sm:px-8 sm:py-9 lg:w-[74%] lg:px-9 lg:py-8 xl:px-11">
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6 xl:gap-8">
-            {/* COLUMN 1 — Brand (centered on mobile, top) */}
+            {/* COLUMN 1 — Brand */}
             <div className="flex flex-col items-center text-center sm:col-span-2 lg:col-span-1 lg:items-start lg:text-left">
               <Link href="/" className="inline-flex items-center">
                 <Image
@@ -490,7 +516,7 @@ const Footer = () => {
 
             {/* Mobile: 3 columns in one row. Desktop: each its own column. */}
             <div className="grid grid-cols-3 gap-2 sm:col-span-2 sm:gap-3 lg:contents">
-              {/* COLUMN 2 — Discover */}
+              {/* COLUMN 2 — Discover (frontend only) */}
               <div>
                 <h3 className="text-[12px] font-semibold text-white">Discover</h3>
                 <div className="mt-4 space-y-2.5">
@@ -507,7 +533,7 @@ const Footer = () => {
                 </div>
               </div>
 
-              {/* COLUMN 3 — Information */}
+              {/* COLUMN 3 — Information (frontend only) */}
               <div>
                 <h3 className="text-[12px] font-semibold text-white">Information</h3>
                 <div className="mt-4 space-y-2.5">
@@ -524,7 +550,7 @@ const Footer = () => {
                 </div>
               </div>
 
-              {/* COLUMN 4 — Contact */}
+              {/* COLUMN 4 — Contact (backend) */}
               <div>
                 <h3 className="text-[12px] font-semibold text-white">Contact</h3>
                 <div className="mt-4 space-y-3.5">

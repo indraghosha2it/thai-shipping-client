@@ -1,52 +1,69 @@
 // import Contact from "@/components/contact";
 // import React from "react";
 
-// // 🔹 SEO metadata for Contact Us
+// // 🔹 SEO metadata for Contact Us - Thai Shipping Services
 // export const metadata = {
-//   title: "Contact Us | Samudera Traffic Co., Ltd. Group",
+//   title: "Contact Us",
 //   description:
-//     "Get in touch with Samudera Traffic Co., Ltd. Group for all your shipping and logistics needs. Contact our support team for inquiries about sea freight, air freight, trucking, and multimodal shipping solutions.",
+//     "Get in touch with Thai Shipping Services for all your air, sea, and land shipping needs. Contact our team for inquiries about Thai imports, exports, food shipping, shipping regulations, and logistics providers across Thailand.",
 //   keywords: [
-//     "Samudera Traffic Co., Ltd.",
+//     "Thai Shipping Services",
 //     "Contact Us",
-//     "Logistics Support",
-//     "Shipping Inquiries",
-//     "Freight Services",
-//     "Customer Support",
-//     "Logistics Company Contact",
-//     "Shipping Company",
-//     "Cargo Services",
-//     "Transportation Solutions",
+//     "Thailand Shipping Inquiries",
+//     "Air Shipping Thailand Contact",
+//     "Sea Shipping Thailand Contact",
+//     "Land Transportation Thailand",
+//     "Thai Logistics Contact",
+//     "Customer Support Thailand",
+//     "Thai Imports Contact",
+//     "Thai Exports Contact",
+//     "Thai Food Shipping Contact",
+//     "Shipping Regulations Thailand",
+//     "Bangkok Shipping Office",
+//     "Thailand Freight Support",
+//     "Kintetsu World Express Thailand",
+//     "World Freight Co. Ltd.",
+//     "Asian Tigers Transpo",
+//     "Seaborne Logistics",
+//     "V.A.S. Services",
+//     "B and J Services",
 //   ],
 //   alternates: {
-//     canonical: "https://samuderathai.com/contact",
+//     canonical: "https://thaishipping.com/contact",
 //   },
 //   openGraph: {
-//     title: "Contact Us | Samudera Traffic Co., Ltd. Group",
+//     title: "Contact Us | Thai Shipping Services",
 //     description:
-//       "Get in touch with Samudera Traffic Co., Ltd. Group for all your shipping and logistics needs. Contact our support team for inquiries about sea freight, air freight, trucking, and multimodal shipping solutions.",
-//     url: "https://samuderathai.com/contact",
-//     siteName: "Samudera Traffic Co., Ltd. Group",
+//       "Get in touch with Thai Shipping Services for all your air, sea, and land shipping needs. Contact our team for inquiries about Thai imports, exports, food shipping, and shipping regulations.",
+//     url: "https://thaishipping.com/contact",
+//     siteName: "Thai Shipping Services",
 //     images: [
 //       {
 //         url: "/og-contact.jpg",
 //         width: 1200,
 //         height: 630,
-//         alt: "Samudera Traffic Co., Ltd. Group - Contact Us",
+//         alt: "Thai Shipping Services - Contact Us",
 //       },
 //     ],
 //     type: "website",
+//     locale: "en_US",
 //   },
 //   twitter: {
 //     card: "summary_large_image",
-//     title: "Contact Us | Samudera Traffic Co., Ltd. Group",
+//     title: "Contact Us | Thai Shipping Services",
 //     description:
-//       "Get in touch with Samudera Traffic Co., Ltd. Group for all your shipping and logistics needs. Contact our support team for inquiries.",
+//       "Contact Thai Shipping Services for air, sea, and land shipping inquiries, Thai imports and exports, and shipping regulations.",
 //     images: ["/og-contact.jpg"],
 //   },
 //   robots: {
 //     index: true,
 //     follow: true,
+//     googleBot: {
+//       index: true,
+//       follow: true,
+//       "max-image-preview": "large",
+//       "max-snippet": -1,
+//     },
 //   },
 // };
 
@@ -55,55 +72,63 @@
 //     <>
 //       <Contact />
 
-//       {/* 🔹 Schema Markup for Contact Page */}
+//       {/* 🔹 Schema Markup for Contact Page - Thai Shipping Services */}
 //       <script
 //         type="application/ld+json"
 //         dangerouslySetInnerHTML={{
 //           __html: JSON.stringify({
 //             "@context": "https://schema.org",
 //             "@type": "ContactPage",
-//             name: "Contact Us",
+//             name: "Contact Us - Thai Shipping Services",
 //             description:
-//               "Get in touch with Samudera Traffic Co., Ltd. Group for all your shipping and logistics needs. Contact our support team for inquiries about sea freight, air freight, trucking, and multimodal shipping solutions.",
-//             url: "https://samuderathai.com/contact",
+//               "Get in touch with Thai Shipping Services for all your air, sea, and land shipping needs. Contact our team for inquiries about Thai imports, exports, food shipping, shipping regulations, and logistics providers across Thailand.",
+//             url: "https://thaishipping.com/contact",
 //             publisher: {
 //               "@type": "Organization",
-//               name: "Samudera Traffic Co., Ltd. Group",
-//               url: "https://samuderathai.com",
-//               logo: "https://samuderathai.com/logo.png",
+//               name: "Thai Shipping Services",
+//               url: "https://thaishipping.com",
+//               logo: "https://thaishipping.com/logo.png",
 //             },
 //             mainEntity: {
 //               "@type": "Organization",
-//               name: "Samudera Traffic Co., Ltd. Group",
+//               name: "Thai Shipping Services",
 //               contactPoint: [
 //                 {
 //                   "@type": "ContactPoint",
-//                   telephone: "+66977830395",
+//                   telephone: "+66-2-123-4567",
 //                   contactType: "customer service",
-//                   email: "info@samuderathai.com",
-//                   availableLanguage: ["English"],
+//                   email: "contact@thaishipping.com",
+//                   availableLanguage: ["English", "Thai"],
 //                   contactOption: "TollFree",
 //                   areaServed: "Worldwide",
 //                 },
 //                 {
 //                   "@type": "ContactPoint",
-//                   telephone: "+66977830395",
+//                   telephone: "+66-2-123-4567",
 //                   contactType: "sales",
-//                   email: "info@samuderathai.com",
-//                   availableLanguage: ["English"],
+//                   email: "sales@thaishipping.com",
+//                   availableLanguage: ["English", "Thai"],
+//                   areaServed: "Worldwide",
 //                 },
 //                 {
 //                   "@type": "ContactPoint",
-//                   telephone: "+66977830395",
+//                   telephone: "+66-2-123-4567",
 //                   contactType: "technical support",
-//                   email: "info@samuderathai.com",
-//                   availableLanguage: ["English"],
+//                   email: "support@thaishipping.com",
+//                   availableLanguage: ["English", "Thai"],
+//                 },
+//                 {
+//                   "@type": "ContactPoint",
+//                   telephone: "+66-2-123-4567",
+//                   contactType: "booking",
+//                   email: "booking@thaishipping.com",
+//                   availableLanguage: ["English", "Thai"],
 //                 },
 //               ],
 //               address: {
 //                 "@type": "PostalAddress",
-//                 streetAddress: "Green Tower, 9th floor, 3656/27-28 Rama IV Road",
-//                 addressLocality: "Klongton-Klong Toey",
+//                 streetAddress: "Bangkok, Thailand",
+//                 addressLocality: "Bangkok",
 //                 addressRegion: "Bangkok",
 //                 postalCode: "10110",
 //                 addressCountry: "Thailand",
@@ -111,9 +136,9 @@
 //               openingHoursSpecification: [
 //                 {
 //                   "@type": "OpeningHoursSpecification",
-//                   dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-//                   opens: "07:00",
-//                   closes: "22:00",
+//                   dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+//                   opens: "08:30",
+//                   closes: "17:30",
 //                 },
 //               ],
 //             },
@@ -121,7 +146,7 @@
 //         }}
 //       />
 
-//       {/* 🔹 Breadcrumb Schema for Contact */}
+//       {/* 🔹 Breadcrumb Schema for Contact - Thai Shipping Services */}
 //       <script
 //         type="application/ld+json"
 //         dangerouslySetInnerHTML={{
@@ -133,14 +158,96 @@
 //                 "@type": "ListItem",
 //                 position: 1,
 //                 name: "Home",
-//                 item: "https://samuderathai.com",
+//                 item: "https://thaishipping.com",
 //               },
 //               {
 //                 "@type": "ListItem",
 //                 position: 2,
 //                 name: "Contact Us",
-//                 item: "https://samuderathai.com/contact",
+//                 item: "https://thaishipping.com/contact",
 //               },
+//             ],
+//           }),
+//         }}
+//       />
+
+//       {/* 🔹 Local Business Schema */}
+//       <script
+//         type="application/ld+json"
+//         dangerouslySetInnerHTML={{
+//           __html: JSON.stringify({
+//             "@context": "https://schema.org",
+//             "@type": "LocalBusiness",
+//             name: "Thai Shipping Services",
+//             image: "https://thaishipping.com/logo.png",
+//             description: "Air, sea, and land shipping services in Thailand",
+//             address: {
+//               "@type": "PostalAddress",
+//               streetAddress: "Bangkok, Thailand",
+//               addressLocality: "Bangkok",
+//               addressRegion: "Bangkok",
+//               postalCode: "10110",
+//               addressCountry: "Thailand",
+//             },
+//             telephone: "+66-2-123-4567",
+//             email: "contact@thaishipping.com",
+//             openingHoursSpecification: [
+//               {
+//                 "@type": "OpeningHoursSpecification",
+//                 dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+//                 opens: "08:30",
+//                 closes: "17:30",
+//               },
+//             ],
+//             priceRange: "$$$",
+//             areaServed: [
+//               { "@type": "Country", name: "Thailand" },
+//               { "@type": "Country", name: "China" },
+//               { "@type": "Country", name: "United States" },
+//               { "@type": "Country", name: "United Kingdom" },
+//               { "@type": "Country", name: "Germany" },
+//               { "@type": "Country", name: "Japan" },
+//               { "@type": "Country", name: "South Korea" },
+//               { "@type": "Country", name: "Malaysia" },
+//             ],
+//             hasMap: "https://maps.google.com/?q=Bangkok+Thailand",
+//           }),
+//         }}
+//       />
+
+//       {/* 🔹 Organization Schema */}
+//       <script
+//         type="application/ld+json"
+//         dangerouslySetInnerHTML={{
+//           __html: JSON.stringify({
+//             "@context": "https://schema.org",
+//             "@type": "Organization",
+//             name: "Thai Shipping Services",
+//             url: "https://thaishipping.com",
+//             logo: "https://thaishipping.com/logo.png",
+//             description:
+//               "Air, sea, and land shipping services in Thailand — your guide to Thai imports, exports, food shipping, and shipping regulations.",
+//             foundingDate: "1990",
+//             email: "contact@thaishipping.com",
+//             telephone: "+66-2-123-4567",
+//             address: {
+//               "@type": "PostalAddress",
+//               streetAddress: "Bangkok, Thailand",
+//               addressLocality: "Bangkok",
+//               addressRegion: "Bangkok",
+//               postalCode: "10110",
+//               addressCountry: "Thailand",
+//             },
+//             contactPoint: {
+//               "@type": "ContactPoint",
+//               telephone: "+66-2-123-4567",
+//               contactType: "customer service",
+//               email: "contact@thaishipping.com",
+//               availableLanguage: ["English", "Thai"],
+//             },
+//             sameAs: [
+//               "https://www.facebook.com/ThaiShipping",
+//               "https://www.linkedin.com/company/thai-shipping",
 //             ],
 //           }),
 //         }}
@@ -153,41 +260,48 @@
 import Contact from "@/components/contact";
 import React from "react";
 
-// 🔹 SEO metadata for Contact Us - Hanjin Shipping Thailand
+// 🔹 SEO metadata for Contact Us - Thai Shipping Services
 export const metadata = {
   title: "Contact Us",
   description:
-    "Get in touch with Hanjin Shipping Thailand for all your ocean freight and container shipping needs. Contact our customer service team for inquiries about shipping schedules, bookings, cargo tracking, and logistics solutions across Asia, America, and Europe.",
+    "Get in touch with Thai Shipping Services for all your air, sea, and land shipping needs. Contact our team for inquiries about Thai imports, exports, food shipping, shipping regulations, and logistics providers across Thailand.",
   keywords: [
-    "Hanjin Shipping Thailand",
+    "Thai Shipping Services",
     "Contact Us",
-    "Shipping Inquiries",
-    "Ocean Freight Support",
-    "Container Shipping Contact",
+    "Thailand Shipping Inquiries",
+    "Air Shipping Thailand Contact",
+    "Sea Shipping Thailand Contact",
+    "Land Transportation Thailand",
+    "Thai Logistics Contact",
     "Customer Support Thailand",
-    "Logistics Contact",
-    "Hanjin Customer Service",
-    "Shipping Company Thailand",
-    "Cargo Services Contact",
-    "Freight Forwarding Support",
+    "Thai Imports Contact",
+    "Thai Exports Contact",
+    "Thai Food Shipping Contact",
+    "Shipping Regulations Thailand",
     "Bangkok Shipping Office",
-    "Laemchabang Port Contact",
+    "Thailand Freight Support",
+    "Kintetsu World Express Thailand",
+    "World Freight Co. Ltd.",
+    "Asian Tigers Transpo",
+    "Seaborne Logistics",
+    "V.A.S. Services",
+    "B and J Services",
   ],
   alternates: {
-    canonical: "https://hanjinthailand.com/contact",
+    canonical: "https://thaishipping.com/contact",
   },
   openGraph: {
-    title: "Contact Us | Hanjin Shipping Thailand",
+    title: "Contact Us | Thai Shipping Services",
     description:
-      "Get in touch with Hanjin Shipping Thailand for all your ocean freight and container shipping needs. Contact our customer service team for inquiries about shipping schedules, bookings, and cargo tracking.",
-    url: "https://hanjinthailand.com/contact",
-    siteName: "Hanjin Shipping Thailand",
+      "Get in touch with Thai Shipping Services for all your air, sea, and land shipping needs. Contact our team for inquiries about Thai imports, exports, food shipping, and shipping regulations.",
+    url: "https://thaishipping.com/contact",
+    siteName: "Thai Shipping Services",
     images: [
       {
         url: "/og-contact.jpg",
         width: 1200,
         height: 630,
-        alt: "Hanjin Shipping Thailand - Contact Us",
+        alt: "Thai Shipping Services - Contact Us",
       },
     ],
     type: "website",
@@ -195,9 +309,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contact Us | Hanjin Shipping Thailand",
+    title: "Contact Us | Thai Shipping Services",
     description:
-      "Contact Hanjin Shipping Thailand for ocean freight, container shipping, and logistics inquiries.",
+      "Contact Thai Shipping Services for air, sea, and land shipping inquiries, Thai imports and exports, and shipping regulations.",
     images: ["/og-contact.jpg"],
   },
   robots: {
@@ -217,32 +331,32 @@ export default function Page() {
     <>
       <Contact />
 
-      {/* 🔹 Schema Markup for Contact Page - Hanjin Shipping Thailand */}
+      {/* 🔹 Schema Markup for Contact Page - Thai Shipping Services */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "ContactPage",
-            name: "Contact Us - Hanjin Shipping Thailand",
+            name: "Contact Us - Thai Shipping Services",
             description:
-              "Get in touch with Hanjin Shipping Thailand for all your ocean freight and container shipping needs. Contact our customer service team for inquiries about shipping schedules, bookings, cargo tracking, and logistics solutions.",
-            url: "https://hanjinthailand.com/contact",
+              "Get in touch with Thai Shipping Services for all your air, sea, and land shipping needs. Contact our team for inquiries about Thai imports, exports, food shipping, shipping regulations, and logistics providers across Thailand.",
+            url: "https://thaishipping.com/contact",
             publisher: {
               "@type": "Organization",
-              name: "Hanjin Shipping Thailand",
-              url: "https://hanjinthailand.com",
-              logo: "https://hanjinthailand.com/logo.png",
+              name: "Thai Shipping Services",
+              url: "https://thaishipping.com",
+              logo: "https://thaishipping.com/logo.png",
             },
             mainEntity: {
               "@type": "Organization",
-              name: "Hanjin Shipping (Thailand) Co., Ltd.",
+              name: "Thai Shipping Services",
               contactPoint: [
                 {
                   "@type": "ContactPoint",
                   telephone: "+66-2-123-4567",
                   contactType: "customer service",
-                  email: "contact@hanjinthailand.com",
+                  email: "contact@thaishipping.com",
                   availableLanguage: ["English", "Thai"],
                   contactOption: "TollFree",
                   areaServed: "Worldwide",
@@ -251,7 +365,7 @@ export default function Page() {
                   "@type": "ContactPoint",
                   telephone: "+66-2-123-4567",
                   contactType: "sales",
-                  email: "sales@hanjinthailand.com",
+                  email: "sales@thaishipping.com",
                   availableLanguage: ["English", "Thai"],
                   areaServed: "Worldwide",
                 },
@@ -259,21 +373,21 @@ export default function Page() {
                   "@type": "ContactPoint",
                   telephone: "+66-2-123-4567",
                   contactType: "technical support",
-                  email: "support@hanjinthailand.com",
+                  email: "support@thaishipping.com",
                   availableLanguage: ["English", "Thai"],
                 },
                 {
                   "@type": "ContactPoint",
                   telephone: "+66-2-123-4567",
                   contactType: "booking",
-                  email: "booking@hanjinthailand.com",
+                  email: "booking@thaishipping.com",
                   availableLanguage: ["English", "Thai"],
                 },
               ],
               address: {
                 "@type": "PostalAddress",
-                streetAddress: "6th Floor, Sirinrat Building, 3388/17-18 Rama IV Road, Khlong Tan",
-                addressLocality: "Khlong Toei",
+                streetAddress: "Bangkok, Thailand",
+                addressLocality: "Bangkok",
                 addressRegion: "Bangkok",
                 postalCode: "10110",
                 addressCountry: "Thailand",
@@ -291,7 +405,7 @@ export default function Page() {
         }}
       />
 
-      {/* 🔹 Breadcrumb Schema for Contact - Hanjin Shipping Thailand */}
+      {/* 🔹 Breadcrumb Schema for Contact - Thai Shipping Services */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -303,13 +417,13 @@ export default function Page() {
                 "@type": "ListItem",
                 position: 1,
                 name: "Home",
-                item: "https://hanjinthailand.com",
+                item: "https://thaishipping.com",
               },
               {
                 "@type": "ListItem",
                 position: 2,
                 name: "Contact Us",
-                item: "https://hanjinthailand.com/contact",
+                item: "https://thaishipping.com/contact",
               },
             ],
           }),
@@ -323,19 +437,19 @@ export default function Page() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
-            name: "Hanjin Shipping (Thailand) Co., Ltd.",
-            image: "https://hanjinthailand.com/logo.png",
-            description: "Ocean freight and container shipping services in Thailand",
+            name: "Thai Shipping Services",
+            image: "https://thaishipping.com/logo.png",
+            description: "Air, sea, and land shipping services in Thailand",
             address: {
               "@type": "PostalAddress",
-              streetAddress: "6th Floor, Sirinrat Building, 3388/17-18 Rama IV Road, Khlong Tan",
-              addressLocality: "Khlong Toei",
+              streetAddress: "Bangkok, Thailand",
+              addressLocality: "Bangkok",
               addressRegion: "Bangkok",
               postalCode: "10110",
               addressCountry: "Thailand",
             },
             telephone: "+66-2-123-4567",
-            email: "contact@hanjinthailand.com",
+            email: "contact@thaishipping.com",
             openingHoursSpecification: [
               {
                 "@type": "OpeningHoursSpecification",
@@ -353,8 +467,9 @@ export default function Page() {
               { "@type": "Country", name: "Germany" },
               { "@type": "Country", name: "Japan" },
               { "@type": "Country", name: "South Korea" },
+              { "@type": "Country", name: "Malaysia" },
             ],
-            hasMap: "https://maps.google.com/?q=6th+Floor+Sirinrat+Building+Rama+IV+Road+Khlong+Tan+Khlong+Toei+Bangkok+10110",
+            hasMap: "https://maps.google.com/?q=Bangkok+Thailand",
           }),
         }}
       />
@@ -366,17 +481,18 @@ export default function Page() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
-            name: "Hanjin Shipping Thailand",
-            url: "https://hanjinthailand.com",
-            logo: "https://hanjinthailand.com/logo.png",
-            description: "Leading ocean freight and container shipping solutions provider in Thailand",
-            foundingDate: "1988",
-            email: "contact@hanjinthailand.com",
+            name: "Thai Shipping Services",
+            url: "https://thaishipping.com",
+            logo: "https://thaishipping.com/logo.png",
+            description:
+              "Air, sea, and land shipping services in Thailand — your guide to Thai imports, exports, food shipping, and shipping regulations.",
+            foundingDate: "1990",
+            email: "contact@thaishipping.com",
             telephone: "+66-2-123-4567",
             address: {
               "@type": "PostalAddress",
-              streetAddress: "6th Floor, Sirinrat Building, 3388/17-18 Rama IV Road, Khlong Tan",
-              addressLocality: "Khlong Toei",
+              streetAddress: "Bangkok, Thailand",
+              addressLocality: "Bangkok",
               addressRegion: "Bangkok",
               postalCode: "10110",
               addressCountry: "Thailand",
@@ -385,12 +501,12 @@ export default function Page() {
               "@type": "ContactPoint",
               telephone: "+66-2-123-4567",
               contactType: "customer service",
-              email: "contact@hanjinthailand.com",
+              email: "contact@thaishipping.com",
               availableLanguage: ["English", "Thai"],
             },
             sameAs: [
-              "https://www.facebook.com/HanjinShipping",
-              "https://www.linkedin.com/company/hanjin-shipping",
+              "https://www.facebook.com/ThaiShipping",
+              "https://www.linkedin.com/company/thai-shipping",
             ],
           }),
         }}

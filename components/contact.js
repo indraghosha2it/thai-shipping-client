@@ -719,7 +719,7 @@
 //                       </a>{" "}
 //                       and{" "}
 //                       <a
-//                         href="/footer/privacy-policy"
+//                         href="/privacy-policy"
 //                         target="_blank"
 //                         rel="noopener noreferrer"
 //                         className="font-semibold text-[#E96C35] transition-colors hover:text-[#C95020] hover:underline"
@@ -1633,18 +1633,9 @@ export default function ContactPage() {
                     />
                     <span className="text-[13px] leading-6 text-[#5A6B7B]">
                       I agree to the{" "}
+                    
                       <a
-                        href="/footer/terms"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="font-semibold text-[#E96C35] transition-colors hover:text-[#C95020] hover:underline"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        Terms &amp; Conditions
-                      </a>{" "}
-                      and{" "}
-                      <a
-                        href="/footer/privacy-policy"
+                        href="/privacy-policy"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="font-semibold text-[#E96C35] transition-colors hover:text-[#C95020] hover:underline"

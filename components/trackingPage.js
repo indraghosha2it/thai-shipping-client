@@ -1,3 +1,5 @@
+
+
 // "use client";
 
 // import React, { useState, useEffect, useCallback } from "react";
@@ -70,7 +72,7 @@
 //   },
 //   received_at_warehouse: {
 //     label: "Received at Warehouse",
-//     color: "bg-red-100 text-red-800",
+//     color: "bg-blue-100 text-blue-800",
 //     icon: Building,
 //     progress: 14,
 //     order: 2,
@@ -78,7 +80,7 @@
 //   },
 //   picked_up_from_warehouse: {
 //     label: "Picked up from Warehouse",
-//     color: "bg-blue-100 text-blue-800",
+//     color: "bg-indigo-100 text-indigo-800",
 //     icon: Truck,
 //     progress: 20,
 //     order: 3,
@@ -241,7 +243,6 @@
 // };
 
 // // ==================== CANONICAL 16-STATUS STEPS ====================
-// // Timeline shows EXACTLY these 16 statuses in this order
 // const CANONICAL_STATUS_STEPS = [
 //   { status: "booking", label: "Booking", icon: Package, order: 0 },
 //   { status: "pending", label: "Pending", icon: Package, order: 1 },
@@ -348,23 +349,14 @@
 //   }
 // };
 
-// /**
-//  * Detect the likely type of a given search input value.
-//  * Returns the matching type key or null if it cannot be determined.
-//  */
 // const detectInputType = (value) => {
 //   const v = value.trim().toUpperCase();
 
-//   // Container number: ISO 6346 — 4 uppercase letters + 7 digits (11 chars)
 //   if (/^[A-Z]{4}\d{7}$/.test(v)) return "container_number";
-
-//   // Booking number: BKG-YYMM-NNNNN
 //   if (/^BKG-\d{4}-\d{5}$/.test(v)) return "booking_number";
-
-//   // Tracking number: CLG prefix + optional dash + 8 alphanumeric chars
 //   if (/^CLG-?[A-Z0-9]{8}$/.test(v)) return "tracking_number";
 
-//   return null; // Unknown — possibly BL number or other format
+//   return null;
 // };
 
 // const TIMELINE_STATUS_ALIASES = {
@@ -438,15 +430,12 @@
 //   booking_requested: "Booking Created",
 // };
 
-// // Case-wise buttons: For manual/new bookings, start from "Picked up from Warehouse" (skip Booking & Pending)
 // const getActionButtonsForStatus = (source, currentStatusOrder) => {
-//   // For manual/new bookings: buttons start from Picked up from Warehouse (order 2)
 //   if (source === "manual" || source === "new") {
 //     return CANONICAL_STATUS_STEPS.filter(
 //       (step) => step.order >= 2 && step.order > currentStatusOrder,
 //     );
 //   }
-//   // For other cases: buttons progress through all statuses after current
 //   return CANONICAL_STATUS_STEPS.filter(
 //     (step) => step.order > currentStatusOrder,
 //   );
@@ -483,7 +472,6 @@
 //     return "";
 //   })();
 
-//   // Get tracking number from URL on load
 //   const handleTrackFromUrl = useCallback(
 //     async (trackingNum, typeParam = "tracking_number") => {
 //       setLoading(true);
@@ -514,9 +502,6 @@
 //     [],
 //   );
 
-//   // Only auto-search when the page is loaded with a URL param (shared link / refresh).
-//   // Form submissions update the URL via window.history.replaceState which does NOT
-//   // trigger this effect, preventing any race condition.
 //   useEffect(() => {
 //     const trackingParam = decodeTrackingValue(
 //       routeTrackingValue || searchParams.get("tracking"),
@@ -553,7 +538,6 @@
 //       return;
 //     }
 
-//     // Detect the type of the entered value and show mismatch in the results area (not toast)
 //     const detectedType = detectInputType(trimmed);
 //     if (detectedType && detectedType !== searchType) {
 //       const detectedLabel = SEARCH_TYPE_LABELS[detectedType];
@@ -572,8 +556,6 @@
 //       window.sessionStorage.setItem(SEARCH_TYPE_STORAGE_KEY, searchType);
 //     }
 
-//     // Update URL so the browser shows the correct address and the page is
-//     // bookmarkable / shareable without triggering a Next.js route transition.
 //     window.history.replaceState(
 //       null,
 //       "",
@@ -604,7 +586,6 @@
 //     }
 //   };
 
-//   // Copy shareable link to clipboard
 //   const handleCopyShareLink = () => {
 //     const shareUrl = window.location.href;
 //     navigator.clipboard.writeText(shareUrl);
@@ -613,7 +594,6 @@
 //     setTimeout(() => setShareSuccess(false), 3000);
 //   };
 
-//   // Toggle package expansion
 //   const togglePackageExpanded = (index) => {
 //     const newExpanded = new Set(expandedPackages);
 //     if (newExpanded.has(index)) {
@@ -624,7 +604,6 @@
 //     setExpandedPackages(newExpanded);
 //   };
 
-//   // Share using Web Share API (mobile)
 //   const handleShare = async () => {
 //     const shareUrl = window.location.href;
 //     if (navigator.share) {
@@ -643,7 +622,6 @@
 //     }
 //   };
 
-//   // Process hold/resume events
 //   const processTimelineForHoldResume = (data) => {
 //     if (!data?.timeline) return data;
 
@@ -655,14 +633,12 @@
 //     let holdEventEncountered = false;
 //     let originalStatusBeforeHold = null;
 
-//     // Sort timeline chronologically
 //     timeline.sort((a, b) => {
 //       const dateA = new Date(a.date || a.timestamp || a.createdAt || 0);
 //       const dateB = new Date(b.date || b.timestamp || b.createdAt || 0);
 //       return dateA - dateB;
 //     });
 
-//     // First pass: Find the status BEFORE any hold event
 //     for (let i = 0; i < timeline.length; i++) {
 //       const event = timeline[i];
 //       const status = event.status?.toLowerCase() || "";
@@ -694,7 +670,6 @@
 //       }
 //     }
 
-//     // Reset for second pass
 //     currentStatus = null;
 //     isOnHold = false;
 //     holdEventEncountered = false;
@@ -702,7 +677,6 @@
 //     let pendingEvent = null;
 //     let bookingRequestedEvent = null;
 
-//     // Second pass: Process events for display
 //     for (let i = 0; i < timeline.length; i++) {
 //       const event = timeline[i];
 //       const status = normalizeTimelineStatus(
@@ -710,7 +684,6 @@
 //       );
 //       const description = event.description?.toLowerCase() || "";
 
-//       // Booking Requested event
 //       if (status === "booking") {
 //         bookingRequestedEvent = {
 //           ...event,
@@ -727,7 +700,6 @@
 //         continue;
 //       }
 
-//       // On Hold event
 //       if (status === "on_hold" || description.includes("on hold")) {
 //         if (!holdEventEncountered) {
 //           if (currentStatus && currentStatus !== "pending") {
@@ -747,7 +719,6 @@
 //         continue;
 //       }
 
-//       // Resume event
 //       else if (
 //         description.includes("resumed from hold") ||
 //         status.includes("resumed")
@@ -789,7 +760,6 @@
 //         continue;
 //       }
 
-//       // Normal events
 //       else {
 //         if (
 //           status === "pending" &&
@@ -815,7 +785,6 @@
 //       }
 //     }
 
-//     // Add booking_requested at the beginning
 //     if (bookingRequestedEvent) {
 //       let earliestDate = new Date();
 //       if (processedEvents.length > 0) {
@@ -839,7 +808,6 @@
 //       });
 //     }
 
-//     // Add pending event ONLY at the very beginning if no other events exist
 //     if (pendingEvent && processedEvents.length === 0) {
 //       processedEvents.unshift({
 //         ...pendingEvent,
@@ -848,7 +816,6 @@
 //       });
 //     }
 
-//     // Clean up: Remove any 'pending' events that appear after real statuses
 //     processedEvents = processedEvents.filter((event, index) => {
 //       const mappedStatus =
 //         event.mappedStatus || event.status?.toLowerCase() || "";
@@ -902,7 +869,6 @@
 //       return STATUS_CONFIG[normalizedStatus];
 //     }
 
-//     // Fallback: generate a label from status
 //     return {
 //       label: normalizedStatus
 //         .split("_")
@@ -934,7 +900,6 @@
 //       return Number.isNaN(time) ? new Date(0).getTime() : time;
 //     };
 
-//     // Sort timeline by timestamp (chronological)
 //     const sortedTimeline = [...trackingData.timeline].sort((a, b) => {
 //       return getEventTimestamp(a) - getEventTimestamp(b);
 //     });
@@ -942,14 +907,12 @@
 //     const filteredTimeline = [];
 //     const seenStatuses = new Set();
 
-//     // Process events in chronological order
 //     for (const event of sortedTimeline) {
 //       const description = event.description?.toLowerCase() || "";
 //       const status = normalizeTimelineStatus(
 //         event.displayStatus || event.status?.toLowerCase() || "",
 //       );
 
-//       // Skip resume events and removed events
 //       if (
 //         event.isResumeEvent ||
 //         description.includes("removed from consolidation") ||
@@ -958,8 +921,6 @@
 //         continue;
 //       }
 
-//       // For manual shipments: skip pending, keep everything else
-//       // For other shipments: skip booking and pending
 //       if (isManualShipment) {
 //         if (status === "pending") continue;
 //       } else {
@@ -968,7 +929,6 @@
 
 //       const mappedStatus = event.isHoldEvent ? "on_hold" : status;
 
-//       // For on_hold status, allow multiple entries (hold and resume events)
 //       if (mappedStatus === "on_hold") {
 //         filteredTimeline.push({
 //           ...event,
@@ -979,7 +939,6 @@
 //         continue;
 //       }
 
-//       // For other statuses, only add each status once
 //       if (seenStatuses.has(mappedStatus)) {
 //         continue;
 //       }
@@ -1000,7 +959,6 @@
 //     const timeline = getTimelineOldToNew();
 //     const reversed = [...timeline].reverse();
 
-//     // Ensure 'received_at_warehouse' stays at the bottom (last position)
 //     const receivedAtWarehouseIndex = reversed.findIndex(
 //       (e) =>
 //         e.mappedStatus === "received_at_warehouse" ||
@@ -1011,9 +969,7 @@
 //       receivedAtWarehouseIndex > -1 &&
 //       receivedAtWarehouseIndex < reversed.length - 1
 //     ) {
-//       // Remove received_at_warehouse from current position
 //       const receivedEvent = reversed.splice(receivedAtWarehouseIndex, 1)[0];
-//       // Add it at the end (bottom)
 //       reversed.push(receivedEvent);
 //     }
 
@@ -1133,7 +1089,6 @@
 //     }
 
 //     if (trackingData?.consolidation?.containerNumber) {
-//       // Split on commas — the field may hold a comma-separated list
 //       const cnNums = trackingData.consolidation.containerNumber
 //         .split(",")
 //         .map((n) => n.trim())
@@ -1147,7 +1102,6 @@
 //       }
 //     }
 
-//     // Check top-level containers array (for manual shipments with multiple containers)
 //     if (
 //       Array.isArray(trackingData?.containers) &&
 //       trackingData.containers.length > 0
@@ -1161,7 +1115,6 @@
 //       }
 //     }
 
-//     // Check shipmentDetails.containers array (for manual shipments with multiple containers)
 //     if (
 //       Array.isArray(trackingData?.shipmentDetails?.containers) &&
 //       trackingData.shipmentDetails.containers.length > 0
@@ -1253,7 +1206,6 @@
 //       });
 //     }
 
-//     // Final dedup by containerNumber to guard against any upstream duplicates
 //     const seen = new Map();
 //     for (const c of containers) {
 //       const key = c.containerNumber || "N/A";
@@ -1291,7 +1243,6 @@
 //     const vessels = [];
 //     const seenVessels = new Set();
 
-//     // Priority 1: Get from top-level vesselName (from consolidation or transport)
 //     if (trackingData?.vesselName && trackingData.vesselName !== "N/A") {
 //       const vals = Array.isArray(trackingData.vesselName)
 //         ? trackingData.vesselName
@@ -1304,7 +1255,6 @@
 //       });
 //     }
 
-//     // Priority 2: Get from consolidation
 //     if (
 //       trackingData?.consolidation?.vesselName &&
 //       trackingData.consolidation.vesselName !== "N/A"
@@ -1320,7 +1270,6 @@
 //       });
 //     }
 
-//     // Priority 3: Get from individual containers (for manual shipments)
 //     const containers = getShipmentContainers();
 //     containers.forEach((container) => {
 //       if (
@@ -1333,7 +1282,6 @@
 //       }
 //     });
 
-//     // Priority 4: Get from transportLegs array (multiple entries)
 //     if (
 //       Array.isArray(trackingData?.shipmentDetails?.transportLegs) &&
 //       trackingData.shipmentDetails.transportLegs.length > 0
@@ -1346,7 +1294,6 @@
 //       });
 //     }
 
-//     // Priority 5: Get from transportLegs at top level
 //     if (
 //       Array.isArray(trackingData?.transportLegs) &&
 //       trackingData.transportLegs.length > 0
@@ -1359,7 +1306,6 @@
 //       });
 //     }
 
-//     // Priority 6: Fallback to single transport object
 //     if (vessels.length === 0) {
 //       const singleVessel =
 //         trackingData?.transport?.vesselName ||
@@ -1372,7 +1318,6 @@
 //       }
 //     }
 
-//     // Priority 7: Additional fallback: bookings collection
 //     if (vessels.length === 0) {
 //       if (Array.isArray(trackingData?.bookings)) {
 //         trackingData.bookings.forEach((b) => {
@@ -1414,7 +1359,6 @@
 //     const voyages = [];
 //     const seenVoyages = new Set();
 
-//     // Priority 1: Get from top-level voyageNumber (from consolidation or transport)
 //     if (trackingData?.voyageNumber && trackingData.voyageNumber !== "N/A") {
 //       const vals = Array.isArray(trackingData.voyageNumber)
 //         ? trackingData.voyageNumber
@@ -1427,7 +1371,6 @@
 //       });
 //     }
 
-//     // Priority 2: Get from consolidation
 //     if (
 //       trackingData?.consolidation?.voyageNumber &&
 //       trackingData.consolidation.voyageNumber !== "N/A"
@@ -1443,7 +1386,6 @@
 //       });
 //     }
 
-//     // Priority 3: Get from individual containers (for manual shipments)
 //     const containers = getShipmentContainers();
 //     containers.forEach((container) => {
 //       if (
@@ -1456,7 +1398,6 @@
 //       }
 //     });
 
-//     // Priority 4: Get from transportLegs array (multiple entries)
 //     if (
 //       Array.isArray(trackingData?.shipmentDetails?.transportLegs) &&
 //       trackingData.shipmentDetails.transportLegs.length > 0
@@ -1469,7 +1410,6 @@
 //       });
 //     }
 
-//     // Priority 5: Get from transportLegs at top level
 //     if (
 //       Array.isArray(trackingData?.transportLegs) &&
 //       trackingData.transportLegs.length > 0
@@ -1482,7 +1422,6 @@
 //       });
 //     }
 
-//     // Priority 6: Fallback to single transport object
 //     if (voyages.length === 0) {
 //       const singleVoyage =
 //         trackingData?.transport?.voyageNumber ||
@@ -1495,7 +1434,6 @@
 //       }
 //     }
 
-//     // Priority 7: Additional fallback: bookings collection
 //     if (voyages.length === 0) {
 //       if (Array.isArray(trackingData?.bookings)) {
 //         trackingData.bookings.forEach((b) => {
@@ -1546,7 +1484,6 @@
 //   const getShipmentBlValue = () => {
 //     const blValues = [];
 
-//     // Priority 1: Get from top-level blNumber first
 //     if (trackingData?.blNumber && trackingData.blNumber !== "N/A") {
 //       const vals = Array.isArray(trackingData.blNumber)
 //         ? trackingData.blNumber
@@ -1557,7 +1494,6 @@
 //       blValues.push(...vals);
 //     }
 
-//     // Priority 2: Get from consolidation
 //     if (
 //       trackingData?.consolidation?.blNumber &&
 //       trackingData.consolidation.blNumber !== "N/A"
@@ -1583,7 +1519,6 @@
 //       });
 //     }
 
-//     // Priority 2.5: Get from top-level blNumbers array (covers all container BLs for both sources)
 //     if (Array.isArray(trackingData?.blNumbers)) {
 //       trackingData.blNumbers.forEach((bl) => {
 //         if (bl && bl !== "N/A" && !blValues.includes(bl)) {
@@ -1592,7 +1527,6 @@
 //       });
 //     }
 
-//     // Priority 2.6: Get from containers[] array (manual shipments multiple BLs)
 //     if (Array.isArray(trackingData?.containers)) {
 //       trackingData.containers.forEach((container) => {
 //         if (container?.blNumber && container.blNumber !== "N/A") {
@@ -1620,7 +1554,6 @@
 //       });
 //     }
 
-//     // Priority 3: Highest-priority fallback: newShipments / newShipment collection
 //     if (blValues.length === 0) {
 //       if (Array.isArray(trackingData?.newShipments)) {
 //         trackingData.newShipments.forEach((ns) => {
@@ -1694,7 +1627,6 @@
 //       }
 //     }
 
-//     // Priority 4: Get from shipmentDetails
 //     if (blValues.length === 0 && trackingData?.shipmentDetails?.blNumber) {
 //       const vals = String(trackingData.shipmentDetails.blNumber)
 //         .split(",")
@@ -1705,7 +1637,6 @@
 //       });
 //     }
 
-//     // Priority 5: Get from transport
 //     if (blValues.length === 0 && trackingData?.transport?.blNumber) {
 //       const vals = String(trackingData.transport.blNumber)
 //         .split(",")
@@ -1716,7 +1647,6 @@
 //       });
 //     }
 
-//     // Final deduplication and return
 //     return blValues.length > 0 ? [...new Set(blValues)].join(", ") : "N/A";
 //   };
 
@@ -1824,7 +1754,6 @@
 
 //   const getEventDescription = (event) => {
 //     const status = event.mappedStatus || event.status?.toLowerCase() || "";
-//     // Only show container/seal details for container sealed events
 //     if (status !== "container_sealed") {
 //       return "";
 //     }
@@ -2061,11 +1990,9 @@
 //     }
 //   };
 
-//   // Format just the date part without timezone conversion
 //   const formatDateOnly = (dateString) => {
 //     if (!dateString) return "N/A";
 
-//     // If it's in YYYY-MM-DD format, parse it directly
 //     if (/^\d{4}-\d{2}-\d{2}$/.test(dateString)) {
 //       const [year, month, day] = dateString.split("-");
 //       const monthNames = [
@@ -2141,15 +2068,13 @@
 //       ? `${window.location.origin}${window.location.pathname}`
 //       : "";
 
-//   // Container Details Modal Component
 //   const ContainerDetailsModal = () => {
 //     if (!selectedContainerDetails) return null;
 
 //     return (
-//       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+//       <div className="fixed inset-0 z-[150] flex items-center justify-center bg-black/50 p-4">
 //         <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-//           {/* Modal Header */}
-//           <div className="sticky top-0 bg-gradient-to-r from-[#3D5885] to-[#133978] text-white p-6 flex justify-between items-center">
+//           <div className="sticky top-0 bg-gradient-to-r from-[#041367] to-[#0f2b6e] text-white p-6 flex justify-between items-center">
 //             <h2 className="text-2xl font-bold">Container Tracking Details</h2>
 //             <button
 //               onClick={() => setSelectedContainerDetails(null)}
@@ -2159,55 +2084,52 @@
 //             </button>
 //           </div>
 
-//           {/* Modal Content */}
 //           <div className="p-6 space-y-6">
 //             {selectedContainerDetails.stepTitle && (
-//               <div className="border border-red-200 bg-red-50 rounded-lg p-4">
-//                 <p className="text-xs text-red-600 uppercase tracking-wide mb-1 font-semibold">
+//               <div className="border border-blue-200 bg-blue-50 rounded-lg p-4">
+//                 <p className="text-xs text-blue-600 uppercase tracking-wide mb-1 font-semibold">
 //                   Timeline Step
 //                 </p>
-//                 <p className="text-lg font-bold text-red-900">
+//                 <p className="text-lg font-bold text-blue-900">
 //                   {selectedContainerDetails.stepTitle}
 //                 </p>
 //                 {selectedContainerDetails.stepDate && (
-//                   <p className="text-sm text-red-800 mt-1">
+//                   <p className="text-sm text-blue-800 mt-1">
 //                     {selectedContainerDetails.stepDate}
 //                   </p>
 //                 )}
 //                 {selectedContainerDetails.stepLocation && (
-//                   <p className="text-sm text-red-800 mt-1">
+//                   <p className="text-sm text-blue-800 mt-1">
 //                     Location: {selectedContainerDetails.stepLocation}
 //                   </p>
 //                 )}
 //                 {selectedContainerDetails.stepDescription && (
-//                   <p className="text-sm text-red-900 mt-2">
+//                   <p className="text-sm text-blue-900 mt-2">
 //                     {selectedContainerDetails.stepDescription}
 //                   </p>
 //                 )}
 //               </div>
 //             )}
 
-//             {/* Booking & Shipment Reference */}
 //             <div className="grid grid-cols-2 gap-3">
-//               <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
-//                 <p className="text-xs text-blue-600 uppercase tracking-wide font-semibold">
+//               <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-3">
+//                 <p className="text-xs text-indigo-600 uppercase tracking-wide font-semibold">
 //                   Booking Number
 //                 </p>
-//                 <p className="text-sm font-bold text-blue-900 mt-1">
+//                 <p className="text-sm font-bold text-indigo-900 mt-1">
 //                   {selectedContainerDetails.bookingNumber || "N/A"}
 //                 </p>
 //               </div>
-//               <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
-//                 <p className="text-xs text-blue-600 uppercase tracking-wide font-semibold">
+//               <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-3">
+//                 <p className="text-xs text-indigo-600 uppercase tracking-wide font-semibold">
 //                   Shipment Number
 //                 </p>
-//                 <p className="text-sm font-bold text-blue-900 mt-1">
+//                 <p className="text-sm font-bold text-indigo-900 mt-1">
 //                   {selectedContainerDetails.shipmentNumber || "N/A"}
 //                 </p>
 //               </div>
 //             </div>
 
-//             {/* Container & Vessel Details */}
 //             <div className="space-y-4">
 //               <div>
 //                 <p className="text-xs text-green-600 uppercase tracking-wide font-semibold mb-2">
@@ -2317,7 +2239,6 @@
 //               </div>
 //             </div>
 
-//             {/* Shipment Dimensions */}
 //             <div className="grid grid-cols-3 gap-3">
 //               <div className="border border-gray-200 rounded-lg p-3 bg-gray-50">
 //                 <p className="text-xs text-gray-500 uppercase tracking-wide font-semibold">
@@ -2345,7 +2266,6 @@
 //               </div>
 //             </div>
 
-//             {/* Port Information */}
 //             <div className="grid grid-cols-2 gap-3">
 //               <div className="border border-gray-300 rounded-lg p-3 bg-gray-50">
 //                 <p className="text-xs text-gray-600 uppercase tracking-wide font-semibold">
@@ -2365,13 +2285,12 @@
 //               </div>
 //             </div>
 
-//             {/* Sender Information */}
 //             {selectedContainerDetails.senderName && (
-//               <div className="border border-green-200 bg-green-50 rounded-lg p-3">
-//                 <p className="text-xs text-green-700 uppercase tracking-wide font-semibold mb-2">
+//               <div className="border border-blue-200 bg-blue-50 rounded-lg p-3">
+//                 <p className="text-xs text-blue-700 uppercase tracking-wide font-semibold mb-2">
 //                   📤 Sender
 //                 </p>
-//                 <div className="space-y-1 text-sm text-green-900">
+//                 <div className="space-y-1 text-sm text-blue-900">
 //                   <p>
 //                     <span className="font-semibold">Name:</span>{" "}
 //                     {selectedContainerDetails.senderName}
@@ -2398,7 +2317,6 @@
 //               </div>
 //             )}
 
-//             {/* Receiver Information */}
 //             {selectedContainerDetails.receiverName && (
 //               <div className="border border-purple-200 bg-purple-50 rounded-lg p-3">
 //                 <p className="text-xs text-purple-700 uppercase tracking-wide font-semibold mb-2">
@@ -2431,20 +2349,18 @@
 //               </div>
 //             )}
 
-//             {/* Status */}
-//             <div className="border border-red-200 bg-red-50 rounded-lg p-3">
-//               <p className="text-xs text-red-600 uppercase tracking-wide mb-2 font-semibold">
+//             <div className="border border-blue-200 bg-blue-50 rounded-lg p-3">
+//               <p className="text-xs text-blue-600 uppercase tracking-wide mb-2 font-semibold">
 //                 Current Status
 //               </p>
-//               <p className="text-sm font-semibold text-red-900">
+//               <p className="text-sm font-semibold text-blue-900">
 //                 {selectedContainerDetails.status || "N/A"}
 //               </p>
 //             </div>
 
-//             {/* Close Button */}
 //             <button
 //               onClick={() => setSelectedContainerDetails(null)}
-//               className="w-full border border-red-500 text-black hover:bg-gradient-to-r hover:from-red-400 hover:to-red-600 hover:text-white py-2 rounded-lg font-medium hover:from-red-500 hover:to-red-700 transition"
+//               className="w-full border border-blue-500 text-black hover:bg-gradient-to-r hover:from-blue-400 hover:to-blue-600 hover:text-white py-2 rounded-lg font-medium transition"
 //             >
 //               Close Details
 //             </button>
@@ -2455,14 +2371,14 @@
 //   };
 
 //   return (
-//     <div className="bg-gray-50 min-h-screen pt-4 md:pt-24 sm:pt-0">
-//       {/* Hero Section */}
+//     <div className="bg-gray-50 min-h-screen pt-4  sm:pt-0">
+//       {/* Hero Section - Hanjin Styling */}
 //       <div className="relative h-64 sm:h-80 overflow-hidden">
-//         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-[url('/images/aboutBannerimg.jpeg')] " />
-//         <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/30 to-gray-50/10" />
+//         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-[url('/images/building.avif')]" />
+//         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
 //         <div className="absolute inset-0 max-w-4xl mx-auto text-center px-4 pt-12 sm:pt-16 text-white flex flex-col justify-center">
 //           <h1 className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4 drop-shadow-lg">
-//             Track Your Shipment{" "}
+//             Track Your Shipment
 //           </h1>
 //           <p className="text-base sm:text-xl drop-shadow-md">
 //             Enter your tracking number to get real-time updates
@@ -2477,7 +2393,6 @@
 //           className="bg-white rounded-xl shadow-xl p-3 sm:p-2"
 //         >
 //           <div className="flex flex-col sm:flex-row gap-3 sm:gap-2">
-//             {/* Search Type Dropdown */}
 //             <div className="flex w-full items-center px-3 py-1 sm:w-auto sm:py-0 sm:border-r border-gray-200">
 //               <select
 //                 value={searchType}
@@ -2496,7 +2411,6 @@
 //               </select>
 //             </div>
 
-//             {/* Search Input */}
 //             <div className="flex-1 flex items-center px-4 py-1 sm:py-0">
 //               <Search className="h-5 w-5 text-gray-400" />
 //               <input
@@ -2511,11 +2425,10 @@
 //               />
 //             </div>
 
-//             {/* Search Button */}
 //             <button
 //               type="submit"
 //               disabled={loading}
-//               className="w-full sm:w-auto px-8 py-3 sm:py-4 bg-[#dc0000] text-white rounded-lg hover:bg-[#9c0000] disabled:bg-gray-300 font-medium min-w-[120px]"
+//               className="w-full sm:w-auto px-8 py-3 sm:py-4 bg-gradient-to-r from-[#041367] to-[#0f2b6e] text-white rounded-lg hover:from-[#0f2b6e] hover:to-[#041367] disabled:bg-gray-300 font-medium min-w-[120px] transition-all duration-300"
 //             >
 //               {loading ? "Searching..." : "Search"}
 //             </button>
@@ -2542,7 +2455,6 @@
 
 //         {trackingData && !error && (
 //           <div className="space-y-4">
-//             {/* Share Button */}
 //             <div className="flex justify-end">
 //               <button
 //                 onClick={handleShare}
@@ -2553,11 +2465,11 @@
 //               </button>
 //             </div>
 
-//             {/* ===== HEADER SECTION ===== */}
+//             {/* Header Section */}
 //             <div className="bg-white rounded-xl shadow-lg p-4 sm:p-6">
 //               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-4 mb-4">
 //                 <div className="min-w-0">
-//                   <h2 className="text-xl sm:text-2xl font-bold break-words">
+//                   <h2 className="text-xl sm:text-2xl font-bold break-words text-[#041367]">
 //                     {trackingData.trackingNumber || "N/A"}
 //                   </h2>
 //                   <p className="text-sm sm:text-base text-gray-500 break-words">
@@ -2598,7 +2510,7 @@
 //                     </p>
 //                   </div>
 //                   <div className="flex flex-wrap items-center gap-2 sm:justify-end">
-//                     <span className="text-xs px-2.5 py-1 rounded-full bg-red-100 text-red-700 font-medium shrink-0">
+//                     <span className="text-xs px-2.5 py-1 rounded-full bg-blue-100 text-blue-700 font-medium shrink-0">
 //                       {trackingData.shipmentDetails?.shippingMode ||
 //                         trackingData.shippingMode ||
 //                         "DDU"}
@@ -2616,10 +2528,10 @@
 
 //                 {showRouteDetails && (
 //                   <div className="px-4 pb-4 pt-0">
-//                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 bg-gray-50 p-3 sm:p-4 rounded-lg">
+//                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 bg-gradient-to-r from-blue-50 to-indigo-50 p-3 sm:p-4 rounded-lg">
 //                       <div className="text-center">
 //                         <p className="text-xs text-gray-500 mb-1">FROM</p>
-//                         <p className="font-medium text-base sm:text-lg break-words">
+//                         <p className="font-medium text-base sm:text-lg break-words text-[#041367]">
 //                           {getRouteOrigin()}
 //                         </p>
 //                         {getEstimatedDeparture() && (
@@ -2630,7 +2542,7 @@
 //                       </div>
 //                       <div className="text-center sm:border-l sm:border-r border-gray-200">
 //                         <p className="text-xs text-gray-500 mb-1">CURRENT</p>
-//                         <p className="font-medium text-base sm:text-lg break-words">
+//                         <p className="font-medium text-base sm:text-lg break-words text-[#041367]">
 //                           {getCurrentLocation()}
 //                         </p>
 //                         <p className="text-xs text-gray-400">
@@ -2639,7 +2551,7 @@
 //                       </div>
 //                       <div className="text-center">
 //                         <p className="text-xs text-gray-500 mb-1">TO</p>
-//                         <p className="font-medium text-base sm:text-lg break-words">
+//                         <p className="font-medium text-base sm:text-lg break-words text-[#041367]">
 //                           {getRouteDestination()}
 //                         </p>
 //                         {getEstimatedArrival() && (
@@ -2655,7 +2567,7 @@
 //                         <p className="text-[11px] text-gray-500 uppercase tracking-wide">
 //                           Total Packages
 //                         </p>
-//                         <p className="text-lg font-semibold text-gray-900 mt-1">
+//                         <p className="text-lg font-semibold text-[#041367] mt-1">
 //                           {trackingData.shipmentDetails?.totalPackages ||
 //                             trackingData.totalPackages ||
 //                             0}
@@ -2665,7 +2577,7 @@
 //                         <p className="text-[11px] text-gray-500 uppercase tracking-wide">
 //                           Total Weight
 //                         </p>
-//                         <p className="text-lg font-semibold text-gray-900 mt-1">
+//                         <p className="text-lg font-semibold text-[#041367] mt-1">
 //                           {trackingData.shipmentDetails?.totalWeight ||
 //                             trackingData.totalWeight ||
 //                             0}{" "}
@@ -2676,7 +2588,7 @@
 //                         <p className="text-[11px] text-gray-500 uppercase tracking-wide">
 //                           Shipping Mode
 //                         </p>
-//                         <p className="text-lg font-semibold text-gray-900 mt-1">
+//                         <p className="text-lg font-semibold text-[#041367] mt-1">
 //                           {trackingData.shipmentDetails?.shippingMode ||
 //                             trackingData.shippingMode ||
 //                             "DDU"}
@@ -2695,14 +2607,14 @@
 //                                   {vessels.map((v, i) => (
 //                                     <p
 //                                       key={i}
-//                                       className="text-sm font-semibold text-gray-900"
+//                                       className="text-sm font-semibold text-[#041367]"
 //                                     >
 //                                       {v}
 //                                     </p>
 //                                   ))}
 //                                 </div>
 //                               ) : (
-//                                 <p className="text-lg font-semibold text-gray-900">
+//                                 <p className="text-lg font-semibold text-[#041367]">
 //                                   N/A
 //                                 </p>
 //                               )}
@@ -2723,14 +2635,14 @@
 //                                   {voyages.map((v, i) => (
 //                                     <p
 //                                       key={i}
-//                                       className="text-sm font-semibold text-gray-900"
+//                                       className="text-sm font-semibold text-[#041367]"
 //                                     >
 //                                       {v}
 //                                     </p>
 //                                   ))}
 //                                 </div>
 //                               ) : (
-//                                 <p className="text-lg font-semibold text-gray-900">
+//                                 <p className="text-lg font-semibold text-[#041367]">
 //                                   N/A
 //                                 </p>
 //                               )}
@@ -2742,7 +2654,7 @@
 //                         <p className="text-[11px] text-gray-500 uppercase tracking-wide">
 //                           BL Number
 //                         </p>
-//                         <p className="text-lg font-semibold text-gray-900 mt-1">
+//                         <p className="text-sm font-semibold text-[#041367] mt-1 break-words">
 //                           {getShipmentBlValue()}
 //                         </p>
 //                       </div>
@@ -2750,7 +2662,7 @@
 //                         <p className="text-[11px] text-gray-500 uppercase tracking-wide">
 //                           Current Location
 //                         </p>
-//                         <p className="text-sm font-semibold text-gray-900 mt-1 line-clamp-2">
+//                         <p className="text-sm font-semibold text-[#041367] mt-1 line-clamp-2">
 //                           {getCurrentLocation()}
 //                         </p>
 //                       </div>
@@ -2758,7 +2670,7 @@
 //                         <p className="text-[11px] text-gray-500 uppercase tracking-wide">
 //                           Estimated Arrival
 //                         </p>
-//                         <p className="text-sm font-semibold text-gray-900 mt-1">
+//                         <p className="text-sm font-semibold text-[#041367] mt-1">
 //                           {getEstimatedArrival()
 //                             ? formatDate(getEstimatedArrival())
 //                             : "Awaiting schedule update"}
@@ -2766,12 +2678,12 @@
 //                       </div>
 //                     </div>
 
-//                     <div className="mt-3 rounded-lg border border-red-100 bg-gradient-to-r from-red-50 via-amber-50 to-white px-4 py-2.5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-2">
-//                       <div className="flex items-center gap-2 text-sm text-red-700 font-medium">
+//                     <div className="mt-3 rounded-lg border border-blue-100 bg-gradient-to-r from-blue-50 via-indigo-50 to-white px-4 py-2.5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-2">
+//                       <div className="flex items-center gap-2 text-sm text-[#041367] font-medium">
 //                         <Activity className="h-4 w-4" />
 //                         <span>Live Tracking Timeline</span>
 //                       </div>
-//                       <span className="text-xs text-red-600">
+//                       <span className="text-xs text-blue-600">
 //                         Newest updates first for faster review
 //                       </span>
 //                     </div>
@@ -2813,10 +2725,9 @@
 //               </div>
 //             </div>
 
-//             {/* Rest of your tabs and content remain the same */}
-//             {/* ===== TABS ===== */}
+//             {/* Tabs */}
 //             <div className="bg-white rounded-xl shadow-lg overflow-hidden -mt-2 border border-gray-200">
-//               <div className="flex items-center justify-between px-6 pt-4 pb-3 border-b bg-gradient-to-r from-white to-red-50/40">
+//               <div className="flex items-center justify-between px-6 pt-4 pb-3 border-b bg-gradient-to-r from-white to-blue-50/40">
 //                 <div>
 //                   <h3 className="text-sm font-semibold text-gray-900">
 //                     Shipment Timeline
@@ -2825,7 +2736,7 @@
 //                     Operational events, exceptions, and delivery milestones
 //                   </p>
 //                 </div>
-//                 <div className="text-xs px-2.5 py-1 rounded-full bg-red-100 text-red-700 font-medium">
+//                 <div className="text-xs px-2.5 py-1 rounded-full bg-blue-100 text-blue-700 font-medium">
 //                   Live event stream
 //                 </div>
 //               </div>
@@ -2834,7 +2745,7 @@
 //                   onClick={() => setActiveTab("timeline")}
 //                   className={`px-6 py-3 text-sm font-medium whitespace-nowrap ${
 //                     activeTab === "timeline"
-//                       ? "text-red-600 border-b-2 border-red-600"
+//                       ? "text-[#041367] border-b-2 border-[#041367]"
 //                       : "text-gray-500 hover:text-gray-700"
 //                   }`}
 //                 >
@@ -2844,7 +2755,7 @@
 //                   onClick={() => setActiveTab("packages")}
 //                   className={`px-6 py-3 text-sm font-medium whitespace-nowrap ${
 //                     activeTab === "packages"
-//                       ? "text-red-600 border-b-2 border-red-600"
+//                       ? "text-[#041367] border-b-2 border-[#041367]"
 //                       : "text-gray-500 hover:text-gray-700"
 //                   }`}
 //                 >
@@ -2854,7 +2765,7 @@
 //                   onClick={() => setActiveTab("overview")}
 //                   className={`px-6 py-3 text-sm font-medium whitespace-nowrap ${
 //                     activeTab === "overview"
-//                       ? "text-red-600 border-b-2 border-red-600"
+//                       ? "text-[#041367] border-b-2 border-[#041367]"
 //                       : "text-gray-500 hover:text-gray-700"
 //                   }`}
 //                 >
@@ -2864,7 +2775,7 @@
 //                   onClick={() => setActiveTab("details")}
 //                   className={`px-6 py-3 text-sm font-medium whitespace-nowrap ${
 //                     activeTab === "details"
-//                       ? "text-red-600 border-b-2 border-red-600"
+//                       ? "text-[#041367] border-b-2 border-[#041367]"
 //                       : "text-gray-500 hover:text-gray-700"
 //                   }`}
 //                 >
@@ -2872,7 +2783,7 @@
 //                 </button>
 //               </div>
 
-//               {/* ===== TIMELINE TAB ===== */}
+//               {/* Timeline Tab */}
 //               {activeTab === "timeline" && (
 //                 <div className="p-4 sm:p-6">
 //                   <div className="mb-6">
@@ -2885,7 +2796,6 @@
 //                   </div>
 
 //                   {(() => {
-//                     // Define canonical timeline steps in order (with booking_confirmed replacing booking/pending)
 //                     const TIMELINE_STEPS = [
 //                       "booking_confirmed",
 //                       "picked_up_from_warehouse",
@@ -2904,16 +2814,13 @@
 //                       "returned",
 //                     ];
 
-//                     // Get timeline events (new to old - most recent first)
 //                     const timelineEvents = getTimelineNewToOld();
 
-//                     // Map timeline events by normalized status
 //                     const eventsByStatus = {};
 //                     timelineEvents.forEach((event) => {
 //                       const status = normalizeTimelineStatus(
 //                         event.mappedStatus || event.status,
 //                       );
-//                       // Map booking/pending to booking_confirmed for display
 //                       const displayStatus =
 //                         status === "booking" || status === "pending"
 //                           ? "booking_confirmed"
@@ -2923,7 +2830,6 @@
 //                       }
 //                     });
 
-//                     // Determine if in early stage (Booking Confirmed only)
 //                     const currentStatus = normalizeTimelineStatus(
 //                       trackingData?.status || "",
 //                     );
@@ -2934,7 +2840,6 @@
 //                       "draft",
 //                     ].includes(currentStatus);
 
-//                     // Extract unique statuses in the order they appear in timeline (already new-to-old)
 //                     const uniqueStatusesInOrder = [];
 //                     timelineEvents.forEach((event) => {
 //                       const status = normalizeTimelineStatus(
@@ -2949,7 +2854,6 @@
 //                       }
 //                     });
 
-//                     // Filter to display steps (in chronological order of first occurrence)
 //                     let displaySteps = [];
 //                     if (isEarlyStage) {
 //                       displaySteps = uniqueStatusesInOrder.filter(
@@ -2974,7 +2878,6 @@
 //                       <div className="grid grid-cols-1 gap-4">
 //                         {displaySteps.map((stepStatus, index) => {
 //                           const event = eventsByStatus[stepStatus];
-//                           // Use booking_confirmed label or fallback to status config
 //                           const stepTitle =
 //                             stepStatus === "booking_confirmed"
 //                               ? "Booking Confirmed"
@@ -2985,7 +2888,6 @@
 //                           );
 //                           let stepDescription = event.description || "";
 
-//                           // Override description for picked_up_from_warehouse
 //                           if (stepStatus === "picked_up_from_warehouse") {
 //                             stepDescription =
 //                               "Shipment Updated into Picked up from Warehouse";
@@ -2996,8 +2898,8 @@
 //                               key={stepStatus}
 //                               className="border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
 //                             >
-//                               <div className="bg-gradient-to-r from-red-50 to-red-100 border-b border-red-200 px-6 py-4">
-//                                 <h3 className="text-lg font-bold text-gray-900">
+//                               <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-b border-blue-200 px-6 py-4">
+//                                 <h3 className="text-lg font-bold text-[#041367]">
 //                                   {stepTitle}
 //                                 </h3>
 //                               </div>
@@ -3008,7 +2910,7 @@
 //                                     <p className="text-xs text-gray-500 uppercase tracking-wide mb-2 font-semibold">
 //                                       Status
 //                                     </p>
-//                                     <p className="text-sm font-semibold text-gray-900">
+//                                     <p className="text-sm font-semibold text-[#041367]">
 //                                       {stepTitle}
 //                                     </p>
 //                                     <p className="text-xs text-gray-500 uppercase tracking-wide mt-3 mb-2 font-semibold">
@@ -3023,7 +2925,7 @@
 //                                     <p className="text-xs text-gray-500 uppercase tracking-wide mb-2 font-semibold">
 //                                       Location
 //                                     </p>
-//                                     <p className="text-sm font-semibold text-gray-900">
+//                                     <p className="text-sm font-semibold text-[#041367]">
 //                                       {stepLocation}
 //                                     </p>
 //                                     <p className="text-xs text-gray-500 uppercase tracking-wide mt-3 mb-2 font-semibold">
@@ -3039,13 +2941,13 @@
 //                                     <p className="text-xs text-gray-500 uppercase tracking-wide mb-2 font-semibold">
 //                                       Port of Loading
 //                                     </p>
-//                                     <p className="text-sm font-semibold text-gray-900">
+//                                     <p className="text-sm font-semibold text-[#041367]">
 //                                       {getRouteOrigin() || "N/A"}
 //                                     </p>
 //                                     <p className="text-xs text-gray-500 uppercase tracking-wide mt-3 mb-2 font-semibold">
 //                                       Port of Destination
 //                                     </p>
-//                                     <p className="text-sm font-semibold text-gray-900">
+//                                     <p className="text-sm font-semibold text-[#041367]">
 //                                       {getRouteDestination() || "N/A"}
 //                                     </p>
 //                                     {stepStatus === "container_sealed" && (
@@ -3107,10 +3009,8 @@
 //                                           ]
 //                                         : [];
 
-//                                     // Resolve bookingNumber if it's an ObjectId (raw ID)
 //                                     let bookingNumberValue =
 //                                       bookingInfo.bookingNumber;
-//                                     // fallback to trackingData.bookingId if present
 //                                     if (
 //                                       (!bookingNumberValue ||
 //                                         bookingNumberValue === "N/A") &&
@@ -3136,7 +3036,6 @@
 //                                             bookingNumberValue;
 //                                         }
 //                                       } catch (e) {
-//                                         // ignore and keep original value
 //                                       }
 //                                     }
 
@@ -3176,7 +3075,7 @@
 //                                       status: stepTitle || "N/A",
 //                                     });
 //                                   }}
-//                                   className="w-full bg-gradient-to-r from-[#AB1139] to-red-500 text-white py-2 rounded-lg font-semibold hover:bg-red-700 transition"
+//                                   className="w-full bg-gradient-to-r from-[#041367] to-[#0f2b6e] text-white py-2 rounded-lg font-semibold hover:from-[#0f2b6e] hover:to-[#041367] transition"
 //                                 >
 //                                   Check Details
 //                                 </button>
@@ -3190,11 +3089,11 @@
 //                 </div>
 //               )}
 
-//               {/* ===== PACKAGES TAB ===== */}
+//               {/* Packages Tab */}
 //               {activeTab === "packages" && (
 //                 <div className="p-6">
-//                   <h3 className="font-medium mb-3 flex items-center text-center border-b border-red-200">
-//                     <Package className="h-4 w-4 text-red-500 mr-2 " />
+//                   <h3 className="font-medium mb-3 flex items-center text-center border-b border-blue-200">
+//                     <Package className="h-4 w-4 text-[#041367] mr-2" />
 //                     Package Details
 //                   </h3>
 //                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4 bg-gray-50 border border-gray-200 rounded-xl p-4">
@@ -3211,7 +3110,7 @@
 //                                 {vessels.map((v, i) => (
 //                                   <p
 //                                     key={i}
-//                                     className="font-medium text-sm text-gray-900"
+//                                     className="font-medium text-sm text-[#041367]"
 //                                   >
 //                                     {v}
 //                                   </p>
@@ -3239,7 +3138,7 @@
 //                                 {voyages.map((v, i) => (
 //                                   <p
 //                                     key={i}
-//                                     className="font-medium text-sm text-gray-900"
+//                                     className="font-medium text-sm text-[#041367]"
 //                                   >
 //                                     {v}
 //                                   </p>
@@ -3271,7 +3170,7 @@
 //                                 {blArray.map((bl, i) => (
 //                                   <p
 //                                     key={i}
-//                                     className="font-medium text-sm text-gray-900"
+//                                     className="font-medium text-sm text-[#041367]"
 //                                   >
 //                                     {bl}
 //                                   </p>
@@ -3298,12 +3197,12 @@
 //                           return (
 //                             <div
 //                               key={index}
-//                               className={`relative bg-white rounded-xl p-4 shadow-sm hover:shadow-lg transition transform hover:-translate-y-0.5 self-start`}
+//                               className={`relative bg-white rounded-xl p-4 shadow-sm hover:shadow-lg transition transform hover:-translate-y-0.5 self-start border border-gray-100`}
 //                             >
 //                               <div className="flex justify-between items-start mb-3">
 //                                 <div>
 //                                   <div className="flex items-center gap-2">
-//                                     <span className="font-medium">
+//                                     <span className="font-medium text-[#041367]">
 //                                       Package #{index + 1}
 //                                     </span>
 //                                     <span className="text-xs bg-gray-100 px-2 py-1 rounded">
@@ -3325,7 +3224,7 @@
 //                                   <button
 //                                     onClick={() => togglePackageExpanded(index)}
 //                                     aria-expanded={isExpanded}
-//                                     className="p-1.5 bg-red-50 hover:bg-red-100 text-red-600 rounded-md text-sm transition"
+//                                     className="p-1.5 bg-blue-50 hover:bg-blue-100 text-[#041367] rounded-md text-sm transition"
 //                                   >
 //                                     {isExpanded ? (
 //                                       <ChevronUp className="h-4 w-4" />
@@ -3344,7 +3243,6 @@
 //                                   "No description"}
 //                               </p>
 
-//                               {/* Container & Seal Info - Always Visible */}
 //                               {(pkg.containerNumber ||
 //                                 pkg.sealNumber ||
 //                                 getShipmentContainers().length > 0) && (
@@ -3402,7 +3300,7 @@
 //                                   <p className="text-xs text-gray-500">
 //                                     Quantity
 //                                   </p>
-//                                   <p className="font-medium">
+//                                   <p className="font-medium text-[#041367]">
 //                                     {pkg.quantity || 1}
 //                                   </p>
 //                                 </div>
@@ -3410,7 +3308,7 @@
 //                                   <p className="text-xs text-gray-500">
 //                                     Weight
 //                                   </p>
-//                                   <p className="font-medium">
+//                                   <p className="font-medium text-[#041367]">
 //                                     {pkg.weight || 0} kg
 //                                   </p>
 //                                 </div>
@@ -3420,7 +3318,7 @@
 //                                       <p className="text-xs text-gray-500">
 //                                         Volume
 //                                       </p>
-//                                       <p className="font-medium">
+//                                       <p className="font-medium text-[#041367]">
 //                                         {pkg.volume || 0} m³
 //                                       </p>
 //                                     </div>
@@ -3441,7 +3339,7 @@
 //                       {trackingData.packages.length > 6 && (
 //                         <button
 //                           onClick={() => setShowAllPackages(!showAllPackages)}
-//                           className="w-full py-2 text-red-500 text-sm flex items-center justify-center"
+//                           className="w-full py-2 text-[#041367] text-sm flex items-center justify-center"
 //                         >
 //                           {showAllPackages
 //                             ? "Show Less"
@@ -3462,19 +3360,19 @@
 //                 </div>
 //               )}
 
-//               {/* ===== OVERVIEW TAB ===== */}
+//               {/* Overview Tab */}
 //               {activeTab === "overview" && (
 //                 <div className="p-6">
 //                   <div className="grid grid-cols-1">
 //                     <div className="px-6">
-//                       <h3 className="font-medium mb-3 flex items-center text-center border-b border-red-200">
-//                         <Ship className="h-4 w-4 text-red-500 mr-2 " />
+//                       <h3 className="font-medium mb-3 flex items-center text-center border-b border-blue-200">
+//                         <Ship className="h-4 w-4 text-[#041367] mr-2" />
 //                         Shipment Summary
 //                       </h3>
-//                       <div className="space-y-2 ">
+//                       <div className="space-y-2">
 //                         <div className="flex justify-between py-1 border-b">
 //                           <span className="text-gray-500">Total Packages</span>
-//                           <span className="font-medium">
+//                           <span className="font-medium text-[#041367]">
 //                             {trackingData.shipmentDetails?.totalPackages ||
 //                               trackingData.totalPackages ||
 //                               0}
@@ -3482,7 +3380,7 @@
 //                         </div>
 //                         <div className="flex justify-between py-1 border-b">
 //                           <span className="text-gray-500">Total Weight</span>
-//                           <span className="font-medium">
+//                           <span className="font-medium text-[#041367]">
 //                             {trackingData.shipmentDetails?.totalWeight ||
 //                               trackingData.totalWeight ||
 //                               0}{" "}
@@ -3491,7 +3389,7 @@
 //                         </div>
 //                         <div className="flex justify-between py-1 border-b">
 //                           <span className="text-gray-500">Total Volume</span>
-//                           <span className="font-medium">
+//                           <span className="font-medium text-[#041367]">
 //                             {trackingData.shipmentDetails?.totalVolume ||
 //                               trackingData.totalVolume ||
 //                               0}{" "}
@@ -3500,7 +3398,7 @@
 //                         </div>
 //                         <div className="flex justify-between py-1 border-b">
 //                           <span className="text-gray-500">Shipping Mode</span>
-//                           <span className="font-medium">
+//                           <span className="font-medium text-[#041367]">
 //                             {trackingData.shipmentDetails?.shippingMode ||
 //                               trackingData.shippingMode ||
 //                               "DDU"}
@@ -3508,7 +3406,7 @@
 //                         </div>
 //                         <div className="flex justify-between py-1 border-b">
 //                           <span className="text-gray-500">Service Type</span>
-//                           <span className="font-medium capitalize">
+//                           <span className="font-medium text-[#041367] capitalize">
 //                             {trackingData.shipmentDetails?.serviceType ||
 //                               "standard"}
 //                           </span>
@@ -3527,14 +3425,18 @@
 //                                       ? `Vessel ${i + 1}`
 //                                       : "Vessel"}
 //                                   </span>
-//                                   <span className="font-medium">{v}</span>
+//                                   <span className="font-medium text-[#041367]">
+//                                     {v}
+//                                   </span>
 //                                 </div>
 //                               ))}
 //                             </div>
 //                           ) : (
 //                             <div className="flex justify-between py-1 border-b">
 //                               <span className="text-gray-500">Vessel</span>
-//                               <span className="font-medium">N/A</span>
+//                               <span className="font-medium text-[#041367]">
+//                                 N/A
+//                               </span>
 //                             </div>
 //                           );
 //                         })()}
@@ -3552,14 +3454,18 @@
 //                                       ? `Voyage ${i + 1}`
 //                                       : "Voyage"}
 //                                   </span>
-//                                   <span className="font-medium">{v}</span>
+//                                   <span className="font-medium text-[#041367]">
+//                                     {v}
+//                                   </span>
 //                                 </div>
 //                               ))}
 //                             </div>
 //                           ) : (
 //                             <div className="flex justify-between py-1 border-b">
 //                               <span className="text-gray-500">Voyage</span>
-//                               <span className="font-medium">N/A</span>
+//                               <span className="font-medium text-[#041367]">
+//                                 N/A
+//                               </span>
 //                             </div>
 //                           );
 //                         })()}
@@ -3581,7 +3487,9 @@
 //                                       ? `BL Number ${i + 1}`
 //                                       : "BL Number"}
 //                                   </span>
-//                                   <span className="font-medium">{bl}</span>
+//                                   <span className="font-medium text-[#041367] break-words text-right ml-2">
+//                                     {bl}
+//                                   </span>
 //                                 </div>
 //                               ))}
 //                             </div>
@@ -3591,7 +3499,7 @@
 //                           <span className="text-gray-500">
 //                             Container Number
 //                           </span>
-//                           <span className="font-medium capitalize">
+//                           <span className="font-medium capitalize text-[#041367]">
 //                             {getShipmentContainerValue("containerNumber")}
 //                           </span>
 //                         </div>
@@ -3608,7 +3516,7 @@
 //                                 <span className="text-gray-500">
 //                                   Seal Number
 //                                 </span>
-//                                 <span className="font-medium capitalize">
+//                                 <span className="font-medium capitalize text-[#041367]">
 //                                   {cleanedSeals}
 //                                 </span>
 //                               </div>
@@ -3621,34 +3529,34 @@
 //                     {trackingData.consolidation && (
 //                       <div className="md:col-span-2 mt-6 px-6">
 //                         <h3 className="font-medium mb-3 flex items-center">
-//                           <Layers className="h-4 w-4 text-red-500 mr-2" />
+//                           <Layers className="h-4 w-4 text-[#041367] mr-2" />
 //                           Consolidation Information
 //                         </h3>
-//                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-red-50 p-4 rounded-lg">
+//                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-blue-50 p-4 rounded-lg">
 //                           <div>
 //                             <p className="text-xs text-gray-500">
 //                               Queue Number
 //                             </p>
-//                             <p className="font-medium">
+//                             <p className="font-medium text-[#041367]">
 //                               {trackingData.consolidation.number || "N/A"}
 //                             </p>
 //                           </div>
 //                           <div>
 //                             <p className="text-xs text-gray-500">Container</p>
-//                             <p className="font-medium">
+//                             <p className="font-medium text-[#041367]">
 //                               {getShipmentContainerValue("containerNumber")}
 //                             </p>
 //                           </div>
 //                           <div>
 //                             <p className="text-xs text-gray-500">Origin</p>
-//                             <p className="font-medium">
+//                             <p className="font-medium text-[#041367]">
 //                               {trackingData.consolidation.originWarehouse ||
 //                                 "N/A"}
 //                             </p>
 //                           </div>
 //                           <div>
 //                             <p className="text-xs text-gray-500">Destination</p>
-//                             <p className="font-medium">
+//                             <p className="font-medium text-[#041367]">
 //                               {trackingData.consolidation.destinationPort ||
 //                                 "N/A"}
 //                             </p>
@@ -3660,14 +3568,14 @@
 //                 </div>
 //               )}
 
-//               {/* ===== DETAILS TAB ===== */}
+//               {/* Details Tab */}
 //               {activeTab === "details" && (
 //                 <div className="p-6">
 //                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 //                     {getShipmentContainers().length > 0 && (
 //                       <div className="md:col-span-2">
 //                         <h3 className="font-medium mb-3 flex items-center">
-//                           <Box className="h-4 w-4 text-red-500 mr-2" />
+//                           <Box className="h-4 w-4 text-[#041367] mr-2" />
 //                           Container & Seal Numbers
 //                         </h3>
 //                         <div className="bg-blue-50 p-4 rounded-lg space-y-2">
@@ -3716,11 +3624,11 @@
 //                     {trackingData.sender && (
 //                       <div>
 //                         <h3 className="font-medium mb-3 flex items-center">
-//                           <User className="h-4 w-4 text-red-500 mr-2" />
+//                           <User className="h-4 w-4 text-[#041367] mr-2" />
 //                           Sender Information
 //                         </h3>
 //                         <div className="bg-gray-50 p-4 rounded-lg space-y-2">
-//                           <p className="font-medium">
+//                           <p className="font-medium text-[#041367]">
 //                             {trackingData.sender.name || "N/A"}
 //                           </p>
 //                           {trackingData.sender.companyName && (
@@ -3747,11 +3655,11 @@
 //                     {trackingData.receiver && (
 //                       <div>
 //                         <h3 className="font-medium mb-3 flex items-center">
-//                           <User className="h-4 w-4 text-red-500 mr-2" />
+//                           <User className="h-4 w-4 text-[#041367] mr-2" />
 //                           Receiver Information
 //                         </h3>
 //                         <div className="bg-gray-50 p-4 rounded-lg space-y-2">
-//                           <p className="font-medium">
+//                           <p className="font-medium text-[#041367]">
 //                             {trackingData.receiver.name || "N/A"}
 //                           </p>
 //                           {trackingData.receiver.companyName && (
@@ -3791,31 +3699,16 @@
 //                 </div>
 //               )}
 //             </div>
-
-//             {/* PDF Download Button */}
-//             {/* <div className="flex justify-end">
-//               <PDFDownloadLink
-//                 document={<TrackingPDF data={trackingData} />}
-//                 fileName={`tracking-${trackingData?.trackingNumber || 'shipment'}.pdf`}
-//                 className="px-4 py-2 bg-[#E67E22] text-white rounded-lg hover:bg-[#d35400] text-sm flex items-center"
-//               >
-//                 {({ loading }) => (
-//                   <>
-//                     <FileText className="h-4 w-4 mr-2" />
-//                     {loading ? 'Generating PDF...' : 'Download PDF'}
-//                   </>
-//                 )}
-//               </PDFDownloadLink>
-//             </div> */}
 //           </div>
 //         )}
 //       </div>
 
-//       {/* Container Details Modal */}
 //       <ContainerDetailsModal />
 //     </div>
 //   );
 // }
+
+
 
 
 "use client";
@@ -3867,6 +3760,10 @@ import { toast } from "react-toastify";
 import { trackByNumber, getBookingById } from "@/services/booking";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { TrackingPDF } from "@/components/trackingPdf";
+
+// ==================== BRAND COLORS ====================
+const NAVY = "#073155";
+const ORANGE = "#E96C35";
 
 const SEARCH_TYPE_STORAGE_KEY = "samudera_tracking_search_type";
 
@@ -5643,14 +5540,14 @@ export default function TrackingPage() {
       <>
         {dedupedContainers.length > 0 && (
           <>
-            <span className="text-red-600">Container:</span>{" "}
+            <span className="text-[#E96C35]">Container:</span>{" "}
             {dedupedContainers.join(", ")}
           </>
         )}
         {dedupedContainers.length > 0 && dedupedSeals.length > 0 && " "}
         {dedupedSeals.length > 0 && (
           <>
-            <span className="text-red-600">Seal:</span>{" "}
+            <span className="text-[#E96C35]">Seal:</span>{" "}
             {dedupedSeals.join(", ")}
           </>
         )}
@@ -5659,7 +5556,7 @@ export default function TrackingPage() {
             <br />
             {vessels.map((v, i) => (
               <div key={`vessel-${i}`}>
-                <span className="text-red-600">
+                <span className="text-[#E96C35]">
                   Vessel{vessels.length > 1 ? ` ${i + 1}` : ""}:
                 </span>{" "}
                 {v}
@@ -5672,7 +5569,7 @@ export default function TrackingPage() {
             <br />
             {voyages.map((v, i) => (
               <div key={`voyage-${i}`}>
-                <span className="text-red-600">
+                <span className="text-[#E96C35]">
                   Voyage{voyages.length > 1 ? ` ${i + 1}` : ""}:
                 </span>{" "}
                 {v}
@@ -5683,7 +5580,7 @@ export default function TrackingPage() {
         {blNumber && blNumber !== "N/A" && (
           <>
             <br />
-            <span className="text-red-600">BL:</span> {blNumber}
+            <span className="text-[#E96C35]">BL:</span> {blNumber}
           </>
         )}
       </>
@@ -5892,7 +5789,10 @@ export default function TrackingPage() {
     return (
       <div className="fixed inset-0 z-[150] flex items-center justify-center bg-black/50 p-4">
         <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-          <div className="sticky top-0 bg-gradient-to-r from-[#041367] to-[#0f2b6e] text-white p-6 flex justify-between items-center">
+          <div
+            className="sticky top-0 text-white p-6 flex justify-between items-center"
+            style={{ background: `linear-gradient(90deg, ${NAVY}, #0a4270)` }}
+          >
             <h2 className="text-2xl font-bold">Container Tracking Details</h2>
             <button
               onClick={() => setSelectedContainerDetails(null)}
@@ -5908,7 +5808,7 @@ export default function TrackingPage() {
                 <p className="text-xs text-blue-600 uppercase tracking-wide mb-1 font-semibold">
                   Timeline Step
                 </p>
-                <p className="text-lg font-bold text-blue-900">
+                <p className="text-lg font-bold" style={{ color: NAVY }}>
                   {selectedContainerDetails.stepTitle}
                 </p>
                 {selectedContainerDetails.stepDate && (
@@ -6178,7 +6078,18 @@ export default function TrackingPage() {
 
             <button
               onClick={() => setSelectedContainerDetails(null)}
-              className="w-full border border-blue-500 text-black hover:bg-gradient-to-r hover:from-blue-400 hover:to-blue-600 hover:text-white py-2 rounded-lg font-medium transition"
+              className="w-full border text-black py-2 rounded-lg font-medium transition-all duration-300 hover:text-white"
+              style={{
+                borderColor: ORANGE,
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = ORANGE;
+                e.currentTarget.style.color = "white";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "transparent";
+                e.currentTarget.style.color = "black";
+              }}
             >
               Close Details
             </button>
@@ -6189,16 +6100,27 @@ export default function TrackingPage() {
   };
 
   return (
-    <div className="bg-gray-50 min-h-screen pt-4  sm:pt-0">
-      {/* Hero Section - Hanjin Styling */}
+    <div className="bg-gray-50 min-h-screen pt-4 sm:pt-0 -mt-6">
+      {/* Hero Section */}
       <div className="relative h-64 sm:h-80 overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-[url('/images/building.avif')]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
+        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-[url('/images/track.jpg')]" />
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `linear-gradient(90deg, ${NAVY}E6 0%, ${NAVY}99 40%, ${NAVY}66 70%, ${NAVY}33 100%)`,
+          }}
+        />
         <div className="absolute inset-0 max-w-4xl mx-auto text-center px-4 pt-12 sm:pt-16 text-white flex flex-col justify-center">
-          <h1 className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4 drop-shadow-lg">
+          <p
+            className="text-[11px] font-bold uppercase tracking-[0.22em] mb-2"
+            style={{ color: "#F2A57C" }}
+          >
             Track Your Shipment
+          </p>
+          <h1 className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4 drop-shadow-lg">
+            Real-Time Shipment Tracking
           </h1>
-          <p className="text-base sm:text-xl drop-shadow-md">
+          <p className="text-base sm:text-lg text-white/80 drop-shadow-md">
             Enter your tracking number to get real-time updates
           </p>
         </div>
@@ -6208,7 +6130,7 @@ export default function TrackingPage() {
       <div className="relative z-10 mx-auto max-w-3xl px-3 sm:px-4 mt-4 sm:-mt-8 sm:z-10">
         <form
           onSubmit={handleTrack}
-          className="bg-white rounded-xl shadow-xl p-3 sm:p-2"
+          className="bg-white rounded-2xl shadow-xl border border-gray-100 p-3 sm:p-2"
         >
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-2">
             <div className="flex w-full items-center px-3 py-1 sm:w-auto sm:py-0 sm:border-r border-gray-200">
@@ -6221,6 +6143,7 @@ export default function TrackingPage() {
                   setTrackingData(null);
                 }}
                 className="w-full px-2 py-3 sm:py-4 focus:outline-none text-gray-700 font-medium text-sm"
+                style={{ color: NAVY }}
               >
                 <option value="tracking_number">Tracking Number</option>
                 <option value="bl_number">BL Number</option>
@@ -6246,7 +6169,10 @@ export default function TrackingPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full sm:w-auto px-8 py-3 sm:py-4 bg-gradient-to-r from-[#041367] to-[#0f2b6e] text-white rounded-lg hover:from-[#0f2b6e] hover:to-[#041367] disabled:bg-gray-300 font-medium min-w-[120px] transition-all duration-300"
+              className="w-full sm:w-auto px-8 py-3 sm:py-4 text-white rounded-lg disabled:bg-gray-300 font-medium min-w-[120px] transition-all duration-300 hover:opacity-90"
+              style={{
+                background: `linear-gradient(135deg, ${NAVY}, #0a4270)`,
+              }}
             >
               {loading ? "Searching..." : "Search"}
             </button>
@@ -6277,6 +6203,7 @@ export default function TrackingPage() {
               <button
                 onClick={handleShare}
                 className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg text-gray-600 hover:bg-gray-50 transition"
+                style={{ color: NAVY }}
               >
                 <Share2 className="h-4 w-4" />
                 Share Tracking
@@ -6284,10 +6211,13 @@ export default function TrackingPage() {
             </div>
 
             {/* Header Section */}
-            <div className="bg-white rounded-xl shadow-lg p-4 sm:p-6">
+            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-4 sm:p-6">
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-4 mb-4">
                 <div className="min-w-0">
-                  <h2 className="text-xl sm:text-2xl font-bold break-words text-[#041367]">
+                  <h2
+                    className="text-xl sm:text-2xl font-bold break-words"
+                    style={{ color: NAVY }}
+                  >
                     {trackingData.trackingNumber || "N/A"}
                   </h2>
                   <p className="text-sm sm:text-base text-gray-500 break-words">
@@ -6328,7 +6258,10 @@ export default function TrackingPage() {
                     </p>
                   </div>
                   <div className="flex flex-wrap items-center gap-2 sm:justify-end">
-                    <span className="text-xs px-2.5 py-1 rounded-full bg-blue-100 text-blue-700 font-medium shrink-0">
+                    <span
+                      className="text-xs px-2.5 py-1 rounded-full font-medium shrink-0 text-white"
+                      style={{ backgroundColor: NAVY }}
+                    >
                       {trackingData.shipmentDetails?.shippingMode ||
                         trackingData.shippingMode ||
                         "DDU"}
@@ -6346,10 +6279,18 @@ export default function TrackingPage() {
 
                 {showRouteDetails && (
                   <div className="px-4 pb-4 pt-0">
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 bg-gradient-to-r from-blue-50 to-indigo-50 p-3 sm:p-4 rounded-lg">
+                    <div
+                      className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-3 sm:p-4 rounded-lg"
+                      style={{
+                        background: `linear-gradient(90deg, ${NAVY}0D, ${ORANGE}0D)`,
+                      }}
+                    >
                       <div className="text-center">
                         <p className="text-xs text-gray-500 mb-1">FROM</p>
-                        <p className="font-medium text-base sm:text-lg break-words text-[#041367]">
+                        <p
+                          className="font-medium text-base sm:text-lg break-words"
+                          style={{ color: NAVY }}
+                        >
                           {getRouteOrigin()}
                         </p>
                         {getEstimatedDeparture() && (
@@ -6360,7 +6301,10 @@ export default function TrackingPage() {
                       </div>
                       <div className="text-center sm:border-l sm:border-r border-gray-200">
                         <p className="text-xs text-gray-500 mb-1">CURRENT</p>
-                        <p className="font-medium text-base sm:text-lg break-words text-[#041367]">
+                        <p
+                          className="font-medium text-base sm:text-lg break-words"
+                          style={{ color: NAVY }}
+                        >
                           {getCurrentLocation()}
                         </p>
                         <p className="text-xs text-gray-400">
@@ -6369,7 +6313,10 @@ export default function TrackingPage() {
                       </div>
                       <div className="text-center">
                         <p className="text-xs text-gray-500 mb-1">TO</p>
-                        <p className="font-medium text-base sm:text-lg break-words text-[#041367]">
+                        <p
+                          className="font-medium text-base sm:text-lg break-words"
+                          style={{ color: NAVY }}
+                        >
                           {getRouteDestination()}
                         </p>
                         {getEstimatedArrival() && (
@@ -6385,7 +6332,10 @@ export default function TrackingPage() {
                         <p className="text-[11px] text-gray-500 uppercase tracking-wide">
                           Total Packages
                         </p>
-                        <p className="text-lg font-semibold text-[#041367] mt-1">
+                        <p
+                          className="text-lg font-semibold mt-1"
+                          style={{ color: NAVY }}
+                        >
                           {trackingData.shipmentDetails?.totalPackages ||
                             trackingData.totalPackages ||
                             0}
@@ -6395,7 +6345,10 @@ export default function TrackingPage() {
                         <p className="text-[11px] text-gray-500 uppercase tracking-wide">
                           Total Weight
                         </p>
-                        <p className="text-lg font-semibold text-[#041367] mt-1">
+                        <p
+                          className="text-lg font-semibold mt-1"
+                          style={{ color: NAVY }}
+                        >
                           {trackingData.shipmentDetails?.totalWeight ||
                             trackingData.totalWeight ||
                             0}{" "}
@@ -6406,7 +6359,10 @@ export default function TrackingPage() {
                         <p className="text-[11px] text-gray-500 uppercase tracking-wide">
                           Shipping Mode
                         </p>
-                        <p className="text-lg font-semibold text-[#041367] mt-1">
+                        <p
+                          className="text-lg font-semibold mt-1"
+                          style={{ color: NAVY }}
+                        >
                           {trackingData.shipmentDetails?.shippingMode ||
                             trackingData.shippingMode ||
                             "DDU"}
@@ -6425,14 +6381,18 @@ export default function TrackingPage() {
                                   {vessels.map((v, i) => (
                                     <p
                                       key={i}
-                                      className="text-sm font-semibold text-[#041367]"
+                                      className="text-sm font-semibold"
+                                      style={{ color: NAVY }}
                                     >
                                       {v}
                                     </p>
                                   ))}
                                 </div>
                               ) : (
-                                <p className="text-lg font-semibold text-[#041367]">
+                                <p
+                                  className="text-lg font-semibold"
+                                  style={{ color: NAVY }}
+                                >
                                   N/A
                                 </p>
                               )}
@@ -6453,14 +6413,18 @@ export default function TrackingPage() {
                                   {voyages.map((v, i) => (
                                     <p
                                       key={i}
-                                      className="text-sm font-semibold text-[#041367]"
+                                      className="text-sm font-semibold"
+                                      style={{ color: NAVY }}
                                     >
                                       {v}
                                     </p>
                                   ))}
                                 </div>
                               ) : (
-                                <p className="text-lg font-semibold text-[#041367]">
+                                <p
+                                  className="text-lg font-semibold"
+                                  style={{ color: NAVY }}
+                                >
                                   N/A
                                 </p>
                               )}
@@ -6472,7 +6436,10 @@ export default function TrackingPage() {
                         <p className="text-[11px] text-gray-500 uppercase tracking-wide">
                           BL Number
                         </p>
-                        <p className="text-sm font-semibold text-[#041367] mt-1 break-words">
+                        <p
+                          className="text-sm font-semibold mt-1 break-words"
+                          style={{ color: NAVY }}
+                        >
                           {getShipmentBlValue()}
                         </p>
                       </div>
@@ -6480,7 +6447,10 @@ export default function TrackingPage() {
                         <p className="text-[11px] text-gray-500 uppercase tracking-wide">
                           Current Location
                         </p>
-                        <p className="text-sm font-semibold text-[#041367] mt-1 line-clamp-2">
+                        <p
+                          className="text-sm font-semibold mt-1 line-clamp-2"
+                          style={{ color: NAVY }}
+                        >
                           {getCurrentLocation()}
                         </p>
                       </div>
@@ -6488,7 +6458,10 @@ export default function TrackingPage() {
                         <p className="text-[11px] text-gray-500 uppercase tracking-wide">
                           Estimated Arrival
                         </p>
-                        <p className="text-sm font-semibold text-[#041367] mt-1">
+                        <p
+                          className="text-sm font-semibold mt-1"
+                          style={{ color: NAVY }}
+                        >
                           {getEstimatedArrival()
                             ? formatDate(getEstimatedArrival())
                             : "Awaiting schedule update"}
@@ -6496,30 +6469,55 @@ export default function TrackingPage() {
                       </div>
                     </div>
 
-                    <div className="mt-3 rounded-lg border border-blue-100 bg-gradient-to-r from-blue-50 via-indigo-50 to-white px-4 py-2.5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-2">
-                      <div className="flex items-center gap-2 text-sm text-[#041367] font-medium">
+                    <div
+                      className="mt-3 rounded-lg border px-4 py-2.5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-2"
+                      style={{
+                        borderColor: `${NAVY}1A`,
+                        background: `linear-gradient(90deg, ${NAVY}08, ${ORANGE}08, white)`,
+                      }}
+                    >
+                      <div
+                        className="flex items-center gap-2 text-sm font-medium"
+                        style={{ color: NAVY }}
+                      >
                         <Activity className="h-4 w-4" />
                         <span>Live Tracking Timeline</span>
                       </div>
-                      <span className="text-xs text-blue-600">
+                      <span
+                        className="text-xs"
+                        style={{ color: `${NAVY}CC` }}
+                      >
                         Newest updates first for faster review
                       </span>
                     </div>
 
                     {/* Containers Section */}
                     {getShipmentContainers().length > 0 && (
-                      <div className="mt-3 rounded-lg border border-blue-200 bg-blue-50 p-4">
-                        <p className="text-sm font-semibold text-blue-900 mb-3">
+                      <div
+                        className="mt-3 rounded-lg border p-4"
+                        style={{
+                          borderColor: `${NAVY}33`,
+                          background: `${NAVY}08`,
+                        }}
+                      >
+                        <p
+                          className="text-sm font-semibold mb-3"
+                          style={{ color: NAVY }}
+                        >
                           📦 Containers & Seals
                         </p>
                         <div className="space-y-2">
                           {getShipmentContainers().map((container, idx) => (
                             <div
                               key={idx}
-                              className="flex items-center justify-between bg-white p-2 rounded border border-blue-100"
+                              className="flex items-center justify-between bg-white p-2 rounded border"
+                              style={{ borderColor: `${NAVY}1A` }}
                             >
                               <div>
-                                <p className="text-xs text-blue-700 font-medium">
+                                <p
+                                  className="text-xs font-medium"
+                                  style={{ color: NAVY }}
+                                >
                                   Container #{idx + 1}
                                 </p>
                                 <p className="text-xs text-gray-600 mt-1">
@@ -6544,58 +6542,89 @@ export default function TrackingPage() {
             </div>
 
             {/* Tabs */}
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden -mt-2 border border-gray-200">
-              <div className="flex items-center justify-between px-6 pt-4 pb-3 border-b bg-gradient-to-r from-white to-blue-50/40">
+            <div className="bg-white rounded-2xl shadow-lg overflow-hidden -mt-2 border border-gray-100">
+              <div
+                className="flex items-center justify-between px-6 pt-4 pb-3 border-b"
+                style={{
+                  background: `linear-gradient(90deg, white, ${NAVY}08)`,
+                }}
+              >
                 <div>
-                  <h3 className="text-sm font-semibold text-gray-900">
+                  <h3
+                    className="text-sm font-semibold"
+                    style={{ color: NAVY }}
+                  >
                     Shipment Timeline
                   </h3>
                   <p className="text-xs text-gray-500 mt-0.5">
                     Operational events, exceptions, and delivery milestones
                   </p>
                 </div>
-                <div className="text-xs px-2.5 py-1 rounded-full bg-blue-100 text-blue-700 font-medium">
+                <div
+                  className="text-xs px-2.5 py-1 rounded-full font-medium text-white"
+                  style={{ backgroundColor: NAVY }}
+                >
                   Live event stream
                 </div>
               </div>
               <div className="flex border-b overflow-x-auto px-2 sm:px-6 bg-white">
                 <button
                   onClick={() => setActiveTab("timeline")}
-                  className={`px-6 py-3 text-sm font-medium whitespace-nowrap ${
+                  className={`px-6 py-3 text-sm font-medium whitespace-nowrap transition-all ${
                     activeTab === "timeline"
-                      ? "text-[#041367] border-b-2 border-[#041367]"
+                      ? "border-b-2"
                       : "text-gray-500 hover:text-gray-700"
                   }`}
+                  style={
+                    activeTab === "timeline"
+                      ? { color: NAVY, borderColor: ORANGE }
+                      : {}
+                  }
                 >
                   Timeline
                 </button>
                 <button
                   onClick={() => setActiveTab("packages")}
-                  className={`px-6 py-3 text-sm font-medium whitespace-nowrap ${
+                  className={`px-6 py-3 text-sm font-medium whitespace-nowrap transition-all ${
                     activeTab === "packages"
-                      ? "text-[#041367] border-b-2 border-[#041367]"
+                      ? "border-b-2"
                       : "text-gray-500 hover:text-gray-700"
                   }`}
+                  style={
+                    activeTab === "packages"
+                      ? { color: NAVY, borderColor: ORANGE }
+                      : {}
+                  }
                 >
                   Packages ({trackingData.packages?.length || 0})
                 </button>
                 <button
                   onClick={() => setActiveTab("overview")}
-                  className={`px-6 py-3 text-sm font-medium whitespace-nowrap ${
+                  className={`px-6 py-3 text-sm font-medium whitespace-nowrap transition-all ${
                     activeTab === "overview"
-                      ? "text-[#041367] border-b-2 border-[#041367]"
+                      ? "border-b-2"
                       : "text-gray-500 hover:text-gray-700"
                   }`}
+                  style={
+                    activeTab === "overview"
+                      ? { color: NAVY, borderColor: ORANGE }
+                      : {}
+                  }
                 >
                   Overview
                 </button>
                 <button
                   onClick={() => setActiveTab("details")}
-                  className={`px-6 py-3 text-sm font-medium whitespace-nowrap ${
+                  className={`px-6 py-3 text-sm font-medium whitespace-nowrap transition-all ${
                     activeTab === "details"
-                      ? "text-[#041367] border-b-2 border-[#041367]"
+                      ? "border-b-2"
                       : "text-gray-500 hover:text-gray-700"
                   }`}
+                  style={
+                    activeTab === "details"
+                      ? { color: NAVY, borderColor: ORANGE }
+                      : {}
+                  }
                 >
                   Details
                 </button>
@@ -6605,7 +6634,10 @@ export default function TrackingPage() {
               {activeTab === "timeline" && (
                 <div className="p-4 sm:p-6">
                   <div className="mb-6">
-                    <h3 className="text-lg font-bold text-gray-900">
+                    <h3
+                      className="text-lg font-bold"
+                      style={{ color: NAVY }}
+                    >
                       Shipment Timeline
                     </h3>
                     <p className="text-sm text-gray-500 mt-1">
@@ -6716,8 +6748,17 @@ export default function TrackingPage() {
                               key={stepStatus}
                               className="border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white"
                             >
-                              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-b border-blue-200 px-6 py-4">
-                                <h3 className="text-lg font-bold text-[#041367]">
+                              <div
+                                className="border-b px-6 py-4"
+                                style={{
+                                  background: `linear-gradient(90deg, ${NAVY}08, ${ORANGE}08)`,
+                                  borderColor: `${NAVY}1A`,
+                                }}
+                              >
+                                <h3
+                                  className="text-lg font-bold"
+                                  style={{ color: NAVY }}
+                                >
                                   {stepTitle}
                                 </h3>
                               </div>
@@ -6728,7 +6769,10 @@ export default function TrackingPage() {
                                     <p className="text-xs text-gray-500 uppercase tracking-wide mb-2 font-semibold">
                                       Status
                                     </p>
-                                    <p className="text-sm font-semibold text-[#041367]">
+                                    <p
+                                      className="text-sm font-semibold"
+                                      style={{ color: NAVY }}
+                                    >
                                       {stepTitle}
                                     </p>
                                     <p className="text-xs text-gray-500 uppercase tracking-wide mt-3 mb-2 font-semibold">
@@ -6743,7 +6787,10 @@ export default function TrackingPage() {
                                     <p className="text-xs text-gray-500 uppercase tracking-wide mb-2 font-semibold">
                                       Location
                                     </p>
-                                    <p className="text-sm font-semibold text-[#041367]">
+                                    <p
+                                      className="text-sm font-semibold"
+                                      style={{ color: NAVY }}
+                                    >
                                       {stepLocation}
                                     </p>
                                     <p className="text-xs text-gray-500 uppercase tracking-wide mt-3 mb-2 font-semibold">
@@ -6759,13 +6806,19 @@ export default function TrackingPage() {
                                     <p className="text-xs text-gray-500 uppercase tracking-wide mb-2 font-semibold">
                                       Port of Loading
                                     </p>
-                                    <p className="text-sm font-semibold text-[#041367]">
+                                    <p
+                                      className="text-sm font-semibold"
+                                      style={{ color: NAVY }}
+                                    >
                                       {getRouteOrigin() || "N/A"}
                                     </p>
                                     <p className="text-xs text-gray-500 uppercase tracking-wide mt-3 mb-2 font-semibold">
                                       Port of Destination
                                     </p>
-                                    <p className="text-sm font-semibold text-[#041367]">
+                                    <p
+                                      className="text-sm font-semibold"
+                                      style={{ color: NAVY }}
+                                    >
                                       {getRouteDestination() || "N/A"}
                                     </p>
                                     {stepStatus === "container_sealed" && (
@@ -6773,7 +6826,10 @@ export default function TrackingPage() {
                                         <p className="text-xs text-gray-500 uppercase tracking-wide mt-3 mb-1 font-semibold">
                                           Container & Seal
                                         </p>
-                                        <p className="text-sm font-semibold text-red-600">
+                                        <p
+                                          className="text-sm font-semibold"
+                                          style={{ color: ORANGE }}
+                                        >
                                           {getShipmentContainerValue(
                                             "containerNumber",
                                           )}{" "}
@@ -6893,7 +6949,10 @@ export default function TrackingPage() {
                                       status: stepTitle || "N/A",
                                     });
                                   }}
-                                  className="w-full bg-gradient-to-r from-[#041367] to-[#0f2b6e] text-white py-2 rounded-lg font-semibold hover:from-[#0f2b6e] hover:to-[#041367] transition"
+                                  className="w-full text-white py-2 rounded-lg font-semibold transition-all duration-300 hover:opacity-90"
+                                  style={{
+                                    background: `linear-gradient(135deg, ${NAVY}, #0a4270)`,
+                                  }}
                                 >
                                   Check Details
                                 </button>
@@ -6910,8 +6969,14 @@ export default function TrackingPage() {
               {/* Packages Tab */}
               {activeTab === "packages" && (
                 <div className="p-6">
-                  <h3 className="font-medium mb-3 flex items-center text-center border-b border-blue-200">
-                    <Package className="h-4 w-4 text-[#041367] mr-2" />
+                  <h3
+                    className="font-medium mb-3 flex items-center text-center border-b pb-2"
+                    style={{ color: NAVY, borderColor: `${NAVY}33` }}
+                  >
+                    <Package
+                      className="h-4 w-4 mr-2"
+                      style={{ color: ORANGE }}
+                    />
                     Package Details
                   </h3>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4 bg-gray-50 border border-gray-200 rounded-xl p-4">
@@ -6928,7 +6993,8 @@ export default function TrackingPage() {
                                 {vessels.map((v, i) => (
                                   <p
                                     key={i}
-                                    className="font-medium text-sm text-[#041367]"
+                                    className="font-medium text-sm"
+                                    style={{ color: NAVY }}
                                   >
                                     {v}
                                   </p>
@@ -6956,7 +7022,8 @@ export default function TrackingPage() {
                                 {voyages.map((v, i) => (
                                   <p
                                     key={i}
-                                    className="font-medium text-sm text-[#041367]"
+                                    className="font-medium text-sm"
+                                    style={{ color: NAVY }}
                                   >
                                     {v}
                                   </p>
@@ -6988,7 +7055,8 @@ export default function TrackingPage() {
                                 {blArray.map((bl, i) => (
                                   <p
                                     key={i}
-                                    className="font-medium text-sm text-[#041367]"
+                                    className="font-medium text-sm"
+                                    style={{ color: NAVY }}
                                   >
                                     {bl}
                                   </p>
@@ -7020,7 +7088,10 @@ export default function TrackingPage() {
                               <div className="flex justify-between items-start mb-3">
                                 <div>
                                   <div className="flex items-center gap-2">
-                                    <span className="font-medium text-[#041367]">
+                                    <span
+                                      className="font-medium"
+                                      style={{ color: NAVY }}
+                                    >
                                       Package #{index + 1}
                                     </span>
                                     <span className="text-xs bg-gray-100 px-2 py-1 rounded">
@@ -7042,7 +7113,11 @@ export default function TrackingPage() {
                                   <button
                                     onClick={() => togglePackageExpanded(index)}
                                     aria-expanded={isExpanded}
-                                    className="p-1.5 bg-blue-50 hover:bg-blue-100 text-[#041367] rounded-md text-sm transition"
+                                    className="p-1.5 rounded-md text-sm transition"
+                                    style={{
+                                      backgroundColor: `${ORANGE}1A`,
+                                      color: ORANGE,
+                                    }}
                                   >
                                     {isExpanded ? (
                                       <ChevronUp className="h-4 w-4" />
@@ -7064,8 +7139,17 @@ export default function TrackingPage() {
                               {(pkg.containerNumber ||
                                 pkg.sealNumber ||
                                 getShipmentContainers().length > 0) && (
-                                <div className="mb-3 p-2 bg-blue-50 border border-blue-200 rounded-lg">
-                                  <p className="text-xs font-semibold text-blue-700 mb-2">
+                                <div
+                                  className="mb-3 p-2 rounded-lg border"
+                                  style={{
+                                    backgroundColor: `${NAVY}08`,
+                                    borderColor: `${NAVY}1A`,
+                                  }}
+                                >
+                                  <p
+                                    className="text-xs font-semibold mb-2"
+                                    style={{ color: NAVY }}
+                                  >
                                     📦 Container Info
                                   </p>
                                   <div className="space-y-1">
@@ -7081,7 +7165,10 @@ export default function TrackingPage() {
                                         .join(", ");
                                       return (
                                         cleanedContainer && (
-                                          <p className="text-xs text-blue-600">
+                                          <p
+                                            className="text-xs"
+                                            style={{ color: `${NAVY}CC` }}
+                                          >
                                             <span className="font-medium">
                                               Container:
                                             </span>{" "}
@@ -7100,7 +7187,10 @@ export default function TrackingPage() {
                                         .join(", ");
                                       return (
                                         cleanedSeals && (
-                                          <p className="text-xs text-blue-600">
+                                          <p
+                                            className="text-xs"
+                                            style={{ color: `${NAVY}CC` }}
+                                          >
                                             <span className="font-medium">
                                               Seal:
                                             </span>{" "}
@@ -7118,7 +7208,10 @@ export default function TrackingPage() {
                                   <p className="text-xs text-gray-500">
                                     Quantity
                                   </p>
-                                  <p className="font-medium text-[#041367]">
+                                  <p
+                                    className="font-medium"
+                                    style={{ color: NAVY }}
+                                  >
                                     {pkg.quantity || 1}
                                   </p>
                                 </div>
@@ -7126,7 +7219,10 @@ export default function TrackingPage() {
                                   <p className="text-xs text-gray-500">
                                     Weight
                                   </p>
-                                  <p className="font-medium text-[#041367]">
+                                  <p
+                                    className="font-medium"
+                                    style={{ color: NAVY }}
+                                  >
                                     {pkg.weight || 0} kg
                                   </p>
                                 </div>
@@ -7136,7 +7232,10 @@ export default function TrackingPage() {
                                       <p className="text-xs text-gray-500">
                                         Volume
                                       </p>
-                                      <p className="font-medium text-[#041367]">
+                                      <p
+                                        className="font-medium"
+                                        style={{ color: NAVY }}
+                                      >
                                         {pkg.volume || 0} m³
                                       </p>
                                     </div>
@@ -7157,7 +7256,8 @@ export default function TrackingPage() {
                       {trackingData.packages.length > 6 && (
                         <button
                           onClick={() => setShowAllPackages(!showAllPackages)}
-                          className="w-full py-2 text-[#041367] text-sm flex items-center justify-center"
+                          className="w-full py-2 text-sm flex items-center justify-center"
+                          style={{ color: NAVY }}
                         >
                           {showAllPackages
                             ? "Show Less"
@@ -7183,14 +7283,23 @@ export default function TrackingPage() {
                 <div className="p-6">
                   <div className="grid grid-cols-1">
                     <div className="px-6">
-                      <h3 className="font-medium mb-3 flex items-center text-center border-b border-blue-200">
-                        <Ship className="h-4 w-4 text-[#041367] mr-2" />
+                      <h3
+                        className="font-medium mb-3 flex items-center text-center border-b pb-2"
+                        style={{ color: NAVY, borderColor: `${NAVY}33` }}
+                      >
+                        <Ship
+                          className="h-4 w-4 mr-2"
+                          style={{ color: ORANGE }}
+                        />
                         Shipment Summary
                       </h3>
                       <div className="space-y-2">
                         <div className="flex justify-between py-1 border-b">
                           <span className="text-gray-500">Total Packages</span>
-                          <span className="font-medium text-[#041367]">
+                          <span
+                            className="font-medium"
+                            style={{ color: NAVY }}
+                          >
                             {trackingData.shipmentDetails?.totalPackages ||
                               trackingData.totalPackages ||
                               0}
@@ -7198,7 +7307,10 @@ export default function TrackingPage() {
                         </div>
                         <div className="flex justify-between py-1 border-b">
                           <span className="text-gray-500">Total Weight</span>
-                          <span className="font-medium text-[#041367]">
+                          <span
+                            className="font-medium"
+                            style={{ color: NAVY }}
+                          >
                             {trackingData.shipmentDetails?.totalWeight ||
                               trackingData.totalWeight ||
                               0}{" "}
@@ -7207,7 +7319,10 @@ export default function TrackingPage() {
                         </div>
                         <div className="flex justify-between py-1 border-b">
                           <span className="text-gray-500">Total Volume</span>
-                          <span className="font-medium text-[#041367]">
+                          <span
+                            className="font-medium"
+                            style={{ color: NAVY }}
+                          >
                             {trackingData.shipmentDetails?.totalVolume ||
                               trackingData.totalVolume ||
                               0}{" "}
@@ -7216,7 +7331,10 @@ export default function TrackingPage() {
                         </div>
                         <div className="flex justify-between py-1 border-b">
                           <span className="text-gray-500">Shipping Mode</span>
-                          <span className="font-medium text-[#041367]">
+                          <span
+                            className="font-medium"
+                            style={{ color: NAVY }}
+                          >
                             {trackingData.shipmentDetails?.shippingMode ||
                               trackingData.shippingMode ||
                               "DDU"}
@@ -7224,7 +7342,10 @@ export default function TrackingPage() {
                         </div>
                         <div className="flex justify-between py-1 border-b">
                           <span className="text-gray-500">Service Type</span>
-                          <span className="font-medium text-[#041367] capitalize">
+                          <span
+                            className="font-medium capitalize"
+                            style={{ color: NAVY }}
+                          >
                             {trackingData.shipmentDetails?.serviceType ||
                               "standard"}
                           </span>
@@ -7243,7 +7364,10 @@ export default function TrackingPage() {
                                       ? `Vessel ${i + 1}`
                                       : "Vessel"}
                                   </span>
-                                  <span className="font-medium text-[#041367]">
+                                  <span
+                                    className="font-medium"
+                                    style={{ color: NAVY }}
+                                  >
                                     {v}
                                   </span>
                                 </div>
@@ -7252,7 +7376,10 @@ export default function TrackingPage() {
                           ) : (
                             <div className="flex justify-between py-1 border-b">
                               <span className="text-gray-500">Vessel</span>
-                              <span className="font-medium text-[#041367]">
+                              <span
+                                className="font-medium"
+                                style={{ color: NAVY }}
+                              >
                                 N/A
                               </span>
                             </div>
@@ -7272,7 +7399,10 @@ export default function TrackingPage() {
                                       ? `Voyage ${i + 1}`
                                       : "Voyage"}
                                   </span>
-                                  <span className="font-medium text-[#041367]">
+                                  <span
+                                    className="font-medium"
+                                    style={{ color: NAVY }}
+                                  >
                                     {v}
                                   </span>
                                 </div>
@@ -7281,7 +7411,10 @@ export default function TrackingPage() {
                           ) : (
                             <div className="flex justify-between py-1 border-b">
                               <span className="text-gray-500">Voyage</span>
-                              <span className="font-medium text-[#041367]">
+                              <span
+                                className="font-medium"
+                                style={{ color: NAVY }}
+                              >
                                 N/A
                               </span>
                             </div>
@@ -7305,7 +7438,10 @@ export default function TrackingPage() {
                                       ? `BL Number ${i + 1}`
                                       : "BL Number"}
                                   </span>
-                                  <span className="font-medium text-[#041367] break-words text-right ml-2">
+                                  <span
+                                    className="font-medium break-words text-right ml-2"
+                                    style={{ color: NAVY }}
+                                  >
                                     {bl}
                                   </span>
                                 </div>
@@ -7317,7 +7453,10 @@ export default function TrackingPage() {
                           <span className="text-gray-500">
                             Container Number
                           </span>
-                          <span className="font-medium capitalize text-[#041367]">
+                          <span
+                            className="font-medium capitalize"
+                            style={{ color: NAVY }}
+                          >
                             {getShipmentContainerValue("containerNumber")}
                           </span>
                         </div>
@@ -7334,7 +7473,10 @@ export default function TrackingPage() {
                                 <span className="text-gray-500">
                                   Seal Number
                                 </span>
-                                <span className="font-medium capitalize text-[#041367]">
+                                <span
+                                  className="font-medium capitalize"
+                                  style={{ color: NAVY }}
+                                >
                                   {cleanedSeals}
                                 </span>
                               </div>
@@ -7347,34 +7489,52 @@ export default function TrackingPage() {
                     {trackingData.consolidation && (
                       <div className="md:col-span-2 mt-6 px-6">
                         <h3 className="font-medium mb-3 flex items-center">
-                          <Layers className="h-4 w-4 text-[#041367] mr-2" />
+                          <Layers
+                            className="h-4 w-4 mr-2"
+                            style={{ color: ORANGE }}
+                          />
                           Consolidation Information
                         </h3>
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-blue-50 p-4 rounded-lg">
+                        <div
+                          className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4 rounded-lg"
+                          style={{ backgroundColor: `${NAVY}08` }}
+                        >
                           <div>
                             <p className="text-xs text-gray-500">
                               Queue Number
                             </p>
-                            <p className="font-medium text-[#041367]">
+                            <p
+                              className="font-medium"
+                              style={{ color: NAVY }}
+                            >
                               {trackingData.consolidation.number || "N/A"}
                             </p>
                           </div>
                           <div>
                             <p className="text-xs text-gray-500">Container</p>
-                            <p className="font-medium text-[#041367]">
+                            <p
+                              className="font-medium"
+                              style={{ color: NAVY }}
+                            >
                               {getShipmentContainerValue("containerNumber")}
                             </p>
                           </div>
                           <div>
                             <p className="text-xs text-gray-500">Origin</p>
-                            <p className="font-medium text-[#041367]">
+                            <p
+                              className="font-medium"
+                              style={{ color: NAVY }}
+                            >
                               {trackingData.consolidation.originWarehouse ||
                                 "N/A"}
                             </p>
                           </div>
                           <div>
                             <p className="text-xs text-gray-500">Destination</p>
-                            <p className="font-medium text-[#041367]">
+                            <p
+                              className="font-medium"
+                              style={{ color: NAVY }}
+                            >
                               {trackingData.consolidation.destinationPort ||
                                 "N/A"}
                             </p>
@@ -7393,16 +7553,26 @@ export default function TrackingPage() {
                     {getShipmentContainers().length > 0 && (
                       <div className="md:col-span-2">
                         <h3 className="font-medium mb-3 flex items-center">
-                          <Box className="h-4 w-4 text-[#041367] mr-2" />
+                          <Box
+                            className="h-4 w-4 mr-2"
+                            style={{ color: ORANGE }}
+                          />
                           Container & Seal Numbers
                         </h3>
-                        <div className="bg-blue-50 p-4 rounded-lg space-y-2">
+                        <div
+                          className="p-4 rounded-lg space-y-2"
+                          style={{ backgroundColor: `${NAVY}08` }}
+                        >
                           {getShipmentContainers().map((container, index) => (
                             <div
                               key={index}
-                              className="bg-white rounded-lg border border-blue-100 p-3"
+                              className="bg-white rounded-lg border p-3"
+                              style={{ borderColor: `${NAVY}1A` }}
                             >
-                              <p className="text-xs text-blue-700 font-medium mb-1">
+                              <p
+                                className="text-xs font-medium mb-1"
+                                style={{ color: NAVY }}
+                              >
                                 Container #{index + 1}
                               </p>
                               {container.containerNumber &&
@@ -7442,11 +7612,17 @@ export default function TrackingPage() {
                     {trackingData.sender && (
                       <div>
                         <h3 className="font-medium mb-3 flex items-center">
-                          <User className="h-4 w-4 text-[#041367] mr-2" />
+                          <User
+                            className="h-4 w-4 mr-2"
+                            style={{ color: ORANGE }}
+                          />
                           Sender Information
                         </h3>
                         <div className="bg-gray-50 p-4 rounded-lg space-y-2">
-                          <p className="font-medium text-[#041367]">
+                          <p
+                            className="font-medium"
+                            style={{ color: NAVY }}
+                          >
                             {trackingData.sender.name || "N/A"}
                           </p>
                           {trackingData.sender.companyName && (
@@ -7473,11 +7649,17 @@ export default function TrackingPage() {
                     {trackingData.receiver && (
                       <div>
                         <h3 className="font-medium mb-3 flex items-center">
-                          <User className="h-4 w-4 text-[#041367] mr-2" />
+                          <User
+                            className="h-4 w-4 mr-2"
+                            style={{ color: ORANGE }}
+                          />
                           Receiver Information
                         </h3>
                         <div className="bg-gray-50 p-4 rounded-lg space-y-2">
-                          <p className="font-medium text-[#041367]">
+                          <p
+                            className="font-medium"
+                            style={{ color: NAVY }}
+                          >
                             {trackingData.receiver.name || "N/A"}
                           </p>
                           {trackingData.receiver.companyName && (
